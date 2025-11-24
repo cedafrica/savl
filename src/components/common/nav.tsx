@@ -1,11 +1,6 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, } from "react";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover"
 
 import { ChevronDown } from "lucide-react";
 
