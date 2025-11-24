@@ -137,7 +137,8 @@ const Nav = () => {
         } flex flex-col overflow-y-auto`}
       >
         <ul className="flex flex-col gap-10 px-10 pt-32 text-white text-2xl tracking-wide">
-          {NavItems.map((item, idx) => (
+         {NavItems.map((item) => (
+
             <li key={item.label} className={`flex flex-col transition-all`}>
               {item.type === "dropdown" ? (
                 <>
