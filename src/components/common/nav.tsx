@@ -1,4 +1,4 @@
-import MaxContainer from "./max-container";
+
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect, } from "react";
 import {
@@ -6,7 +6,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { Button } from "../ui/button";
+
 import { ChevronDown } from "lucide-react";
 
 const Nav = () => {
