@@ -58,12 +58,13 @@ const Nav = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500
-      ${scrolled ? "bg-black/30 backdrop-blur-2xl border-b border-white/10" : "bg-transparent border-b border-white/10"}
-    `}
+      className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${
+        scrolled
+          ? "bg-black/30 backdrop-blur-2xl border-b border-white/10"
+          : "bg-black/20 sm:bg-transparent border-b border-white/10"
+      }`}
     >
-      <div className="max-w-[1500px] mx-auto px-8 sm:px-20 py-5 flex items-center justify-between">
-        
+      <div className="max-w-[1500px] mx-auto px-8 sm:px-20 py-5 flex items-center justify-between relative">
         {/* Logo */}
         <img src="/spectra-logo.svg" alt="logo" className="w-40 sm:w-56" />
 
@@ -110,36 +111,35 @@ const Nav = () => {
         {/* Mobile Hamburger */}
         <button
           onClick={toggleNav}
-          className="sm:hidden z-50 w-10 h-10 flex flex-col justify-between relative"
+          className="sm:hidden z-[1000] absolute right-8 top-6 w-10 h-10 flex flex-col justify-between"
         >
           <span
-            className={`h-[3px] bg-white transition-all duration-500 origin-left ${
+            className={`h-[3px] w-full bg-white block transition-all duration-500 origin-left ${
               open ? "rotate-45 translate-y-3" : ""
             }`}
-          ></span>
+          />
           <span
-            className={`h-[3px] bg-white transition-all duration-500 ${
+            className={`h-[3px] w-full bg-white block transition-all duration-500 ${
               open ? "opacity-0" : ""
             }`}
-          ></span>
+          />
           <span
-            className={`h-[3px] bg-white transition-all duration-500 origin-left ${
+            className={`h-[3px] w-full bg-white block transition-all duration-500 origin-left ${
               open ? "-rotate-45 -translate-y-3" : ""
             }`}
-          ></span>
+          />
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <div
-        className={`sm:hidden fixed inset-0 z-40 bg-black/95 backdrop-blur-md transform transition-transform duration-500 ${
+        className={`sm:hidden fixed inset-0 z-[999] bg-black/95 backdrop-blur-md transform transition-transform duration-500 ${
           open ? "translate-x-0" : "translate-x-full"
         } flex flex-col overflow-y-auto`}
       >
         <ul className="flex flex-col gap-10 px-10 pt-32 text-white text-2xl tracking-wide">
-         {NavItems.map((item) => (
-
-            <li key={item.label} className={`flex flex-col transition-all`}>
+          {NavItems.map((item) => (
+            <li key={item.label} className="flex flex-col transition-all">
               {item.type === "dropdown" ? (
                 <>
                   <button
@@ -154,7 +154,6 @@ const Nav = () => {
                     />
                   </button>
 
-                  {/* Mobile dropdown */}
                   <div
                     className={`overflow-hidden transition-all duration-500 ml-2 ${
                       openApplication ? "mt-6 max-h-[1000px]" : "max-h-0"
@@ -175,7 +174,10 @@ const Nav = () => {
                 </>
               ) : (
                 item.href && (
-                  <Link to={item.href} className="text-white text-2xl font-semibold">
+                  <Link
+                    to={item.href}
+                    className="text-white text-2xl font-semibold"
+                  >
                     {item.label}
                   </Link>
                 )
