@@ -21,12 +21,12 @@ const Nav = () => {
     setOpenApplication(false);
   }, [location.pathname]);
 
-  // Prevent background scroll when mobile menu is open
+  // Prevent background scroll
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  // Navbar background animation on scroll
+  // Navbar scroll detection
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -58,13 +58,14 @@ const Nav = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-[999] transition-all duration-500 ${
+      className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-500 ${
         scrolled
           ? "bg-black/30 backdrop-blur-2xl border-b border-white/10"
           : "bg-black/20 sm:bg-transparent border-b border-white/10"
       }`}
     >
       <div className="max-w-[1500px] mx-auto px-8 sm:px-20 py-5 flex items-center justify-between relative">
+        
         {/* Logo */}
         <img src="/spectra-logo.svg" alt="logo" className="w-40 sm:w-56" />
 
@@ -111,7 +112,7 @@ const Nav = () => {
         {/* Mobile Hamburger */}
         <button
           onClick={toggleNav}
-          className="sm:hidden z-[1000] absolute right-8 top-6 w-10 h-10 flex flex-col justify-between"
+          className="sm:hidden z-[10000] absolute right-8 top-6 w-10 h-10 flex flex-col justify-between"
         >
           <span
             className={`h-[3px] w-full bg-white block transition-all duration-500 origin-left ${
@@ -131,9 +132,9 @@ const Nav = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay (fixed) */}
       <div
-        className={`sm:hidden fixed inset-0 z-[998] bg-black/95 backdrop-blur-md transform transition-transform duration-500 ${
+        className={`sm:hidden fixed inset-0 z-[9998] bg-black/95 backdrop-blur-md transform transition-transform duration-500 ${
           open ? "translate-x-0" : "translate-x-full"
         } flex flex-col overflow-y-auto`}
       >
