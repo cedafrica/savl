@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+html {
+  font-size: min(10px, 0.6944vw);
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 2.66vw;
+  }
+}
+
+body {
+  font-family: 'Figtree', Helvetica, sans-serif;
+  font-optical-sizing: auto;
+  width: 100vw;
+}
+
+#root {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0rem;
+}
