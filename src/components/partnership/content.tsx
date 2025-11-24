@@ -7,15 +7,6 @@ import {
 } from "@radix-ui/react-tabs";
 import { motion } from "framer-motion";
 
-const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: (i = 1) => ({
-        opacity: 1,
-        y: 0,
-        transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
-    }),
-};
-
 const Content = () => {
     const partners = [
         {
@@ -93,11 +84,10 @@ const Content = () => {
                     {partners.map((partner, index) => (
                         <motion.div
                             key={index}
-                            custom={index + 1}
-                            initial="hidden"
-                            whileInView="visible"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.2, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                             viewport={{ once: true }}
-                            variants={fadeUp}
                             className="flex flex-col justify-between sm:justify-normal max-w-152 sm:gap-8 gap-9 items-start text-[#000000]"
                         >
                             <img
@@ -115,11 +105,10 @@ const Content = () => {
 
                 {/* Trusted by */}
                 <motion.div
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                     viewport={{ once: true }}
-                    variants={fadeUp}
-                    custom={4}
                     className="flex flex-col mt-[8.4rem]"
                 >
                     <h2 className="sm:text-[3.8rem] text-[2.8rem] font-bold text-center">
@@ -156,7 +145,7 @@ const Content = () => {
                                         initial={{ opacity: 0, y: 20 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        transition={{ delay: index * 0.1, duration: 0.5 }}
+                                        transition={{ delay: index * 0.1, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                                         className="max-w-160 w-full"
                                     >
                                         <img src={content} alt="logo" />

@@ -2,33 +2,21 @@ import MaxContainer from "../common/max-container";
 import CustomButton from "./custom-button";
 import { motion } from "framer-motion";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.3, duration: 0.8, ease: "easeOut" },
-  }),
-};
-
 const Services = () => {
   const Solutions = [
     {
       name: "Video & Projection",
       text: "From large-scale LED walls to ultra-high-definition projection, we deliver stunning visual experiences that captivate audiences and enhance engagement.",
-      link: "",
       image: "/video_projection.png",
     },
     {
       name: "Audio Systems",
       text: "Our expertly tuned sound systems bring unparalleled clarity to worship halls, stadiums, and event venues, ensuring every voice and note is heard as intended.",
-      link: "",
       image: "/audio_system.png",
     },
     {
       name: "Lighting Solutions",
       text: "Lighting is more than illumination—it’s an experience. Our intelligent lighting solutions set the mood, enhance performances, and create unforgettable atmospheres.",
-      link: "",
       image: "/lightning_solution.png",
     },
   ];
@@ -37,19 +25,20 @@ const Services = () => {
     <MaxContainer className="w-full">
       {Solutions.map((solution, index) => {
         const isEven = (index + 1) % 2 === 0;
+        const delay = index * 0.3;
+
         return (
-          <motion.div
+          <div
             key={index}
             className="grid w-full gap-[2.1rem] sm:gap-0 sm:grid-cols-2 items-center my-16"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
           >
-            {/* Text Content */}
+            {/* Text */}
             <motion.div
               className={`self-center max-w-220 ${isEven ? "sm:order-2 sm:pl-16" : "sm:order-1 sm:pl-32"}`}
-              variants={fadeUp}
-              custom={index * 2 + 1}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+              viewport={{ once: true }}
             >
               <h2 className="sm:text-[6.2rem] mt-[2.1rem] sm:mt-0 text-[2.4rem] font-semibold sm:font-bold sm:leading-[120%]">
                 {solution.name}
@@ -65,10 +54,12 @@ const Services = () => {
               src={solution.image}
               alt={solution.name}
               className={`${isEven ? "order-1" : "order-2"}`}
-              variants={fadeUp}
-              custom={index * 2 + 2}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: delay + 0.15, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+              viewport={{ once: true }}
             />
-          </motion.div>
+          </div>
         );
       })}
     </MaxContainer>

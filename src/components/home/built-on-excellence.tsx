@@ -2,7 +2,7 @@ import CustomButton from "../common/custom-button";
 import MaxContainer from "../common/max-container";
 import { motion } from "framer-motion";
 
-const fadeUp = {
+const fadeUp: any = {
   hidden: { opacity: 0, y: 40 },
   visible: (i = 1) => ({
     opacity: 1,
@@ -47,7 +47,7 @@ const BuiltOnExcellence = () => {
         {/* HEADLINE */}
         <motion.h2
           className="text-black font-semibold sm:text-[3.6rem] text-[2.4rem] leading-tight max-w-[50rem] sm:max-w-none"
-          variants={fadeUp}
+          variants ={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
