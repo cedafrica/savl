@@ -1,15 +1,55 @@
+import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.3, duration: 0.7, ease: "easeOut" },
+  }),
+};
+
 const Hero = () => {
-    return ( 
-        <section className="flex bg-[url('/partner-hero.png')] bg-cover bg-no-repeat px-10 sm:px-32 flex-col justify-center sm:bg-fixed text-white sm:h-[min(100vh,960px)] h-screen">
-            <h1 className="sm:text-[6.1rem] text-[3.2rem]  font-bold">The Power of Partnerships</h1>
-            <p className="sm:text-[2rem] text-[1.4rem] max-w-400 w-full font-normal">Our relationships with industry-leading brands ensure you receive the highest quality equipment, expert support, and cutting-edge technology for every project.</p>
-            <img 
-                src="/cedia.png" 
-                alt="cedia" 
-                className="sm:w-[19.6rem] w-[14.1rem] mt-4 sm:mt-8" 
-            />
-        </section>
-     );
-}
- 
+  return (
+    <section className="relative flex bg-[url('/partner-hero.png')] bg-cover bg-no-repeat px-10 sm:px-32 flex-col justify-center sm:bg-fixed text-white sm:h-[min(100vh,960px)] h-screen">
+      
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/50"></div> 
+      
+      {/* Content above overlay */}
+      <div className="relative z-10 flex flex-col gap-4">
+        <motion.h1
+          className="sm:text-[6.1rem] text-[3.2rem] font-bold"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={1}
+        >
+          The Power of Partnerships
+        </motion.h1>
+
+        <motion.p
+          className="sm:text-[2rem] text-[1.4rem] max-w-400 w-full font-normal"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={2}
+        >
+          Our relationships with industry-leading brands ensure you receive the highest quality equipment, expert support, and cutting-edge technology for every project.
+        </motion.p>
+
+        <motion.img
+          src="/cedia.png"
+          alt="cedia"
+          className="sm:w-[19.6rem] w-[14.1rem] mt-4 sm:mt-8"
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          custom={3}
+        />
+      </div>
+    </section>
+  );
+};
+
 export default Hero;

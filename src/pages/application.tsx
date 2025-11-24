@@ -12,8 +12,8 @@ const Application = () => {
             id: "house-of-worship",
             headlineText: "Transform Your Worship Experience with Cutting-Edge AV & Lighting",
             subHeadlineText: "Engage your congregation like never before with immersive sound, crystal-clear visuals, and inspiring lighting.",
-            link: "",
-            buttonLabel: "Request a Consultation",
+            link: "./contact",
+            buttonLabel: "Let's Discuss Your Next Project",
             backgroundImage: "bg-[url(/Church.webp)]",
             bodyContents: [
                 {
@@ -81,7 +81,7 @@ const Application = () => {
             ],
             ctaHeadline: "Ready to Elevate Your Worship Experience?",
             ctaSubheadline: "Let our experts design an AV and lighting system that inspires your congregation.",
-            ctaButtonText: "Schedule Your Free Consultation Today",
+            ctaButtonText: "Let's Discuss Your Next Project",
             ctaButtonLink: "/contact"
         },
         {
@@ -157,7 +157,7 @@ const Application = () => {
             ],
             ctaHeadline: "Ready to Transform Your Café or Restaurant?",
             ctaSubheadline: "Let our experts design a sound, lighting, and visual system that delights your guests.",
-            ctaButtonText: "Schedule Your Free Consultation Today",
+            ctaButtonText: "Let's Discuss Your Next Project",
             ctaButtonLink: "/contact"
         },
         {
@@ -233,7 +233,7 @@ const Application = () => {
             ],
             ctaHeadline: "Ready to Elevate Your Night Club or Lounge?",
             ctaSubheadline: "Let our experts design an audio, lighting, and visual system that keeps guests talking.",
-            ctaButtonText: "Schedule Your Free Consultation Today",
+            ctaButtonText: "Let's Discuss Your Next Project",
             ctaButtonLink: "/contact"
         },
         {
@@ -309,7 +309,7 @@ const Application = () => {
             ],
             ctaHeadline: "Ready to Transform Your Worship for Large Congregations?",
             ctaSubheadline: "Let our experts design a scalable audio, video, and lighting system that engages every member of your congregation.",
-            ctaButtonText: "Schedule Your Free Consultation Today",
+            ctaButtonText: "Let's Discuss Your Next Project",
             ctaButtonLink: "/contact"
         },
         {
@@ -385,7 +385,7 @@ const Application = () => {
             ],
             ctaHeadline: "Ready to Elevate Your Hotel or Resort Experience?",
             ctaSubheadline: "Let our experts design an AV and lighting system that delights every guest.",
-            ctaButtonText: "Schedule Your Free Consultation Today",
+            ctaButtonText: "Let's Discuss Your Next Project",
             ctaButtonLink: "/contact"
         },
         {
@@ -461,7 +461,7 @@ const Application = () => {
             ],
             ctaHeadline: "Ready to Elevate Your Auditorium or Concert Hall?",
             ctaSubheadline: "Let our experts design an AV and lighting system that enhances every performance.",
-            ctaButtonText: "Schedule Your Free Consultation Today",
+            ctaButtonText: "Let's Discuss Your Next Project",
             ctaButtonLink: "/contact"
         },
         {
@@ -537,7 +537,7 @@ const Application = () => {
             ],
             ctaHeadline: "Ready to Take Your Live Event to the Next Level?",
             ctaSubheadline: "Let our experts design an AV and lighting system that wows every audience.",
-            ctaButtonText: "Schedule Your Free Consultation Today",
+            ctaButtonText: "Let's Discuss Your Next Project",
             ctaButtonLink: "/contact"
         }
     ]

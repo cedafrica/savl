@@ -1,6 +1,16 @@
 import { Calendar } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i = 1) => ({
+        opacity: 1,
+        y: 0,
+        transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
+    }),
+};
 
 const News = () => {
     const news = [
@@ -40,14 +50,18 @@ const News = () => {
             decription: "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
             link: "/news/123"
         },
-    ]
+    ];
 
     return (
-
         <div>
-            <div className="">
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+            >
                 <div className="flex flex-col sm:flex-row">
-                    <div className="relative w-full h-80  mt-11 sm:mt-0 sm:w-[32.1rem] sm:h-[30.1rem] shrink-0">
+                    <div className="relative w-full h-80 mt-11 sm:mt-0 sm:w-[32.1rem] sm:h-[30.1rem] shrink-0">
                         <img
                             src="/dance.png"
                             alt="dance"
@@ -89,27 +103,25 @@ const News = () => {
                         </div>
                     </div>
                 </div>
+            </motion.div>
 
-            </div>
             <h2 className="sm:text-[3rem] text-[2.8rem] my-8 sm:mt-20 font-semibold">Latest Articles</h2>
 
-            <div className="grid sm:gap-8 gap-12 sm:mt-20 sm:grid-cols-2">
-                {
-                    news.map((item, index) => {
-                        return (
-                            <Card
-                                {...item}
-                                key={index}
-                            />
-                        )
-                    })
-                }
-            </div>
+            <motion.div
+                className="grid sm:gap-8 gap-12 sm:mt-20 sm:grid-cols-2"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+            >
+                {news.map((item, index) => (
+                    <Card key={index} {...item} index={index} />
+                ))}
+            </motion.div>
         </div>
     );
-}
+};
 
-const Card = ({ image, name, date, time, title, decription, link }: {
+const Card = ({ image, name, date, time, title, decription, link, index }: {
     image: string;
     name: string;
     date: string;
@@ -117,9 +129,21 @@ const Card = ({ image, name, date, time, title, decription, link }: {
     title: string;
     decription: string;
     link: string;
+    index?: number;
 }) => {
     return (
-        <div className="w-full shadow-xl">
+        <motion.div
+            className="w-full shadow-xl"
+            custom={index}
+            variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: (i = 1) => ({
+                    opacity: 1,
+                    y: 0,
+                    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
+                }),
+            }}
+        >
             <img
                 src={image}
                 alt=""
@@ -140,8 +164,8 @@ const Card = ({ image, name, date, time, title, decription, link }: {
                     <Link to={link}>Read More</Link>
                 </Button>
             </div>
-        </div>
+        </motion.div>
     )
-}
+};
 
 export default News;
