@@ -21,12 +21,12 @@ const Nav = () => {
     setOpenApplication(false);
   }, [location.pathname]);
 
-  // Body lock for mobile menu
+  // Prevent background scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.position = open ? "fixed" : "static";
+    document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  // Navbar scroll background
+  // Navbar background animation on scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -131,9 +131,9 @@ const Nav = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <div
-        className={`sm:hidden fixed inset-0 z-[999] bg-black/95 backdrop-blur-md transform transition-transform duration-500 ${
+        className={`sm:hidden fixed inset-0 z-[998] bg-black/95 backdrop-blur-md transform transition-transform duration-500 ${
           open ? "translate-x-0" : "translate-x-full"
         } flex flex-col overflow-y-auto`}
       >
