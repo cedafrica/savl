@@ -39,14 +39,14 @@ const TrustedByLeaders = () => {
   }, []);
 
   const leaders = [
-    { image: "/ma.png", description: "MA Lighting is a leading provider of professional lighting control solutions, renowned for its grandMA consoles and innovative stage lighting technology." },
-    { image: "/crestron.png", description: "Crestron is a global leader in automation and control solutions, delivering advanced technologies for smart homes, offices, and AV integration." },
-    { image: "/infiled.png", description: "INFILED specializes in high-quality LED display solutions, offering innovative screens for events, retail, broadcasting, and large-scale installations." },
-    { image: "/infiled.png", description: "INFILED specializes in high-quality LED display solutions, offering innovative screens for events, retail, broadcasting, and large-scale installations." },
+    { image: "/ma.png", description: "MA Lighting is a leading provider of professional lighting control solutions." },
+    { image: "/crestron.png", description: "Crestron is a global leader in automation and control solutions." },
+    { image: "/infiled.png", description: "INFILED specializes in high-quality LED display solutions for events and installations." },
+    { image: "/infiled.png", description: "INFILED specializes in high-quality LED display solutions for events and installations." },
   ];
 
   return (
-    <section className="sm:px-32 px-6 sm:pt-32 pt-16 bg-white">
+    <section className="sm:px-32 px-6 sm:pt-32 pt-16">
       {/* Heading */}
       <div className="text-center space-y-4">
         <h2 className="sm:text-[3.8rem] text-[2.8rem] font-semibold text-black">
@@ -67,21 +67,20 @@ const TrustedByLeaders = () => {
           }}
           opts={{ align: "start", loop: true }}
         >
-          <CarouselContent className="w-full gap-6">
+          <CarouselContent className="w-full">
             {leaders.map((item, index) => (
-              <CarouselItem key={index} className="sm:basis-1/4">
-                <div className="flex flex-col items-center text-center px-6 sm:px-8 py-10 bg-white rounded-[2rem] shadow-lg min-h-[30rem] justify-between">
-                  {/* Logo */}
-                  <div className="flex items-center justify-center h-32 sm:h-36 mb-6 sm:mb-8">
+              <CarouselItem key={index} className="sm:basis-1/3">
+                <div className="flex flex-col items-center text-center px-6 sm:px-8 py-8 sm:py-12 bg-[#F5F5F5] rounded-xl min-h-[28rem]">
+                  {/* Logo centered */}
+                  <div className="flex justify-center items-center w-70 h-32 sm:h-40 mb-6 sm:mb-8">
                     <img
                       src={item.image}
                       alt="logo"
                       className="max-h-full max-w-full object-contain"
                     />
                   </div>
-
                   {/* Description */}
-                  <p className="sm:text-[1.8rem] text-[1.6rem] text-center text-black/80 flex-grow">
+                  <p className="sm:text-[1.8rem] text-[1.6rem] text-center flex-1">
                     {item.description}
                   </p>
                 </div>
