@@ -2,23 +2,13 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 
-type NavChild = {
-  label: string;
-  link: string;
-};
-
-type NavItem = {
-  label: string;
-  href?: string;
-  type?: "dropdown";
-  children?: NavChild[];
-};
+type NavChild = { label: string; link: string };
+type NavItem = { label: string; href?: string; type?: "dropdown"; children?: NavChild[] };
 
 const Nav: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [openApplication, setOpenApplication] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
   const location = useLocation();
 
   const NavItems: NavItem[] = [
@@ -44,7 +34,7 @@ const Nav: React.FC = () => {
     { label: "Contact", href: "/contact" },
   ];
 
-  // Scroll detection
+  // Navbar background on scroll
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -56,11 +46,11 @@ const Nav: React.FC = () => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  // Scroll to top and close mobile menu on route change
+  // Close mobile menu and scroll to top on route change
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
     setOpen(false);
     setOpenApplication(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.pathname]);
 
   return (
@@ -142,13 +132,13 @@ const Nav: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Fullscreen */}
+      {/* Mobile Fullscreen Menu */}
       <div
         className={`sm:hidden fixed top-0 left-0 w-full h-full z-[10000] bg-black/95 backdrop-blur-md transform transition-transform duration-300 ${
           open ? "translate-x-0" : "-translate-x-full"
         } flex flex-col`}
       >
-        {/* Cancel / X Button */}
+        {/* Fancy Cancel / X Button */}
         <button
           onClick={() => setOpen(false)}
           className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-[10001]"
