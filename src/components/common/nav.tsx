@@ -44,10 +44,18 @@ const Nav = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-500 ${scrolled ? "bg-black/90 backdrop-blur-md shadow-lg" : "bg-black/60"}`}>
+      <nav
+        className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-500 ${
+          scrolled ? "bg-black/90 backdrop-blur-md shadow-lg" : "bg-black/60"
+        }`}
+      >
         <div className="max-w-[1500px] mx-auto px-8 sm:px-20 py-5 flex items-center justify-between relative">
           {/* Logo */}
-          <img src="/spectra-logo.svg" alt="logo" className="w-40 sm:w-56 transition-all duration-300 hover:scale-105" />
+          <img
+            src="/spectra-logo.svg"
+            alt="logo"
+            className="w-40 sm:w-56 transition-all duration-300 hover:scale-105"
+          />
 
           {/* Desktop Menu */}
           <ul className="hidden sm:flex items-center gap-12 text-white tracking-wide">
@@ -89,19 +97,42 @@ const Nav = () => {
           {/* Mobile Hamburger */}
           <button
             onClick={() => setOpen(!open)}
-            className="sm:hidden z-[10000] relative w-10 h-10 flex flex-col justify-between"
+            className="sm:hidden z-[10001] relative w-10 h-10 flex flex-col justify-between items-center"
           >
-            <span className={`h-[3px] w-full bg-white block transition-all duration-500 origin-left ${open ? "rotate-45 translate-y-3" : ""}`} />
-            <span className={`h-[3px] w-full bg-white block transition-all duration-500 ${open ? "opacity-0" : ""}`} />
-            <span className={`h-[3px] w-full bg-white block transition-all duration-500 origin-left ${open ? "-rotate-45 -translate-y-3" : ""}`} />
+            {/* Hamburger to X animation */}
+            <span
+              className={`h-[3px] w-full bg-white block transition-all duration-300 ${
+                open ? "rotate-45 translate-y-2.5" : ""
+              }`}
+            />
+            <span
+              className={`h-[3px] w-full bg-white block transition-all duration-300 ${
+                open ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`h-[3px] w-full bg-white block transition-all duration-300 ${
+                open ? "-rotate-45 -translate-y-2.5" : ""
+              }`}
+            />
           </button>
         </div>
       </nav>
 
       {/* Mobile Menu Fullscreen */}
       <div
-        className={`sm:hidden fixed top-0 left-0 w-full h-full z-[10000] bg-black/95 backdrop-blur-md transform transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"} flex flex-col`}
+        className={`sm:hidden fixed top-0 left-0 w-full h-full z-[10000] bg-black/95 backdrop-blur-md transform transition-transform duration-300 ${
+          open ? "translate-x-0" : "-translate-x-full"
+        } flex flex-col`}
       >
+        {/* Optional: Close button on top-right */}
+        <button
+          onClick={() => setOpen(false)}
+          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-[10001]"
+        >
+          <span className="text-white text-3xl font-bold">&times;</span>
+        </button>
+
         <div className="px-8 pt-32 flex flex-col gap-8 text-white text-2xl">
           {NavItems.map((item) => (
             <div key={item.label} className="flex flex-col">
@@ -112,9 +143,17 @@ const Nav = () => {
                     className="flex justify-between items-center font-semibold w-full py-2 hover:text-gray-300 transition duration-300"
                   >
                     {item.label}
-                    <ChevronDown className={`w-6 h-6 transition-transform ${openApplication ? "rotate-180" : ""}`} />
+                    <ChevronDown
+                      className={`w-6 h-6 transition-transform ${
+                        openApplication ? "rotate-180" : ""
+                      }`}
+                    />
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ml-2 ${openApplication ? "max-h-96 mt-2" : "max-h-0"}`}>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ml-2 ${
+                      openApplication ? "max-h-96 mt-2" : "max-h-0"
+                    }`}
+                  >
                     <div className="flex flex-col gap-2">
                       {item.children.map((child) => (
                         <a
