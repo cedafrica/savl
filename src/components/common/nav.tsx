@@ -56,8 +56,9 @@ const Nav: React.FC = () => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  // Close mobile menu on route change
+  // Scroll to top and close mobile menu on route change
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setOpen(false);
     setOpenApplication(false);
   }, [location.pathname]);
@@ -147,6 +148,14 @@ const Nav: React.FC = () => {
           open ? "translate-x-0" : "-translate-x-full"
         } flex flex-col`}
       >
+        {/* Cancel / X Button */}
+        <button
+          onClick={() => setOpen(false)}
+          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-[10001]"
+        >
+          <span className="text-white text-3xl font-bold">&times;</span>
+        </button>
+
         <div className="px-8 pt-32 flex flex-col gap-8 text-white text-2xl">
           {NavItems.map((item) => (
             <div key={item.label} className="flex flex-col">
