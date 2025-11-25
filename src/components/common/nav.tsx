@@ -1,12 +1,27 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 
-const Nav = () => {
+type NavChild = {
+  label: string;
+  link: string;
+};
+
+type NavItem = {
+  label: string;
+  href?: string;
+  type?: "dropdown";
+  children?: NavChild[];
+};
+
+const Nav: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [openApplication, setOpenApplication] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  const NavItems = [
+  const location = useLocation();
+
+  const NavItems: NavItem[] = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Services", href: "/services" },
@@ -16,20 +31,20 @@ const Nav = () => {
       label: "Applications",
       type: "dropdown",
       children: [
-        { label: "Houses of Worship", link: "house-of-worship" },
-        { label: "Cafés & Restaurants", link: "cafes-restaurants" },
-        { label: "Night Clubs & Lounges", link: "night-clubs-lounges" },
-        { label: "Large Congregations", link: "large-congregations" },
-        { label: "Hotels & Resorts", link: "hotels-resorts" },
-        { label: "Auditoriums & Concert Halls", link: "auditoriums-concert-halls" },
-        { label: "Concerts & Live Events", link: "concerts-live-events" },
+        { label: "Houses of Worship", link: "/application/house-of-worship" },
+        { label: "Cafés & Restaurants", link: "/application/cafes-restaurants" },
+        { label: "Night Clubs & Lounges", link: "/application/night-clubs-lounges" },
+        { label: "Large Congregations", link: "/application/large-congregations" },
+        { label: "Hotels & Resorts", link: "/application/hotels-resorts" },
+        { label: "Auditoriums & Concert Halls", link: "/application/auditoriums-concert-halls" },
+        { label: "Concerts & Live Events", link: "/application/concerts-live-events" },
       ],
     },
     { label: "News", href: "/news" },
     { label: "Contact", href: "/contact" },
   ];
 
-  // Scroll detection for navbar background
+  // Scroll detection
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -41,6 +56,12 @@ const Nav = () => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setOpen(false);
+    setOpenApplication(false);
+  }, [location.pathname]);
+
   return (
     <>
       {/* Navbar */}
@@ -51,16 +72,18 @@ const Nav = () => {
       >
         <div className="max-w-[1500px] mx-auto px-8 sm:px-20 py-5 flex items-center justify-between relative">
           {/* Logo */}
-          <img
-            src="/spectra-logo.svg"
-            alt="logo"
-            className="w-40 sm:w-56 transition-all duration-300 hover:scale-105"
-          />
+          <Link to="/" className="block">
+            <img
+              src="/spectra-logo.svg"
+              alt="logo"
+              className="w-40 sm:w-56 transition-all duration-300 hover:scale-105"
+            />
+          </Link>
 
           {/* Desktop Menu */}
           <ul className="hidden sm:flex items-center gap-12 text-white tracking-wide">
             {NavItems.map((item) =>
-              item.type === "dropdown" ? (
+              item.type === "dropdown" && item.children ? (
                 <li key={item.label} className="relative group select-none">
                   <button className="text-lg font-medium flex items-center gap-2 hover:text-gray-300 transition duration-300">
                     {item.label}
@@ -70,27 +93,27 @@ const Nav = () => {
                   <div className="absolute left-0 top-full mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0 transition-all duration-300 bg-white text-black rounded-xl shadow-lg px-6 py-4 w-64">
                     <div className="flex flex-col gap-3">
                       {item.children.map((child) => (
-                        <a
+                        <Link
                           key={child.link}
-                          href={`/application/${child.link}`}
+                          to={child.link}
                           className="hover:text-gray-700 font-semibold transition duration-200"
                         >
                           {child.label}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
                 </li>
-              ) : (
+              ) : item.href ? (
                 <li key={item.label}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className="text-lg font-medium hover:text-gray-300 transition duration-300"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
-              )
+              ) : null
             )}
           </ul>
 
@@ -99,7 +122,6 @@ const Nav = () => {
             onClick={() => setOpen(!open)}
             className="sm:hidden z-[10001] relative w-10 h-10 flex flex-col justify-between items-center"
           >
-            {/* Hamburger to X animation */}
             <span
               className={`h-[3px] w-full bg-white block transition-all duration-300 ${
                 open ? "rotate-45 translate-y-2.5" : ""
@@ -125,18 +147,10 @@ const Nav = () => {
           open ? "translate-x-0" : "-translate-x-full"
         } flex flex-col`}
       >
-        {/* Optional: Close button on top-right */}
-        <button
-          onClick={() => setOpen(false)}
-          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-[10001]"
-        >
-          <span className="text-white text-3xl font-bold">&times;</span>
-        </button>
-
         <div className="px-8 pt-32 flex flex-col gap-8 text-white text-2xl">
           {NavItems.map((item) => (
             <div key={item.label} className="flex flex-col">
-              {item.type === "dropdown" ? (
+              {item.type === "dropdown" && item.children ? (
                 <>
                   <button
                     onClick={() => setOpenApplication(!openApplication)}
@@ -156,27 +170,27 @@ const Nav = () => {
                   >
                     <div className="flex flex-col gap-2">
                       {item.children.map((child) => (
-                        <a
+                        <Link
                           key={child.link}
-                          href={`/application/${child.link}`}
+                          to={child.link}
                           className="text-white/80 hover:text-white py-1 transition duration-200"
                           onClick={() => setOpen(false)}
                         >
                           {child.label}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   </div>
                 </>
-              ) : (
-                <a
-                  href={item.href}
+              ) : item.href ? (
+                <Link
+                  to={item.href}
                   className="py-2 font-semibold hover:text-gray-300 transition duration-300"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
-                </a>
-              )}
+                </Link>
+              ) : null}
             </div>
           ))}
         </div>
