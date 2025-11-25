@@ -97,14 +97,7 @@ const WhySpecialAVL = () => {
           ))}
 
           {/* CTA Button */}
-          <motion.div variants={fadeUp} custom={advantages.length + 2}>
-            <Button
-              className="px-8 w-fit sm:mt-10 bg-transparent border border-white rounded-4xl text-[1.2rem] text-white py-6"
-              asChild
-            >
-              <Link to={""}>Learn More</Link>
-            </Button>
-          </motion.div>
+          
         </motion.div>
       </MaxContainer>
     </section>
