@@ -2,20 +2,6 @@ import MaxContainer from "../common/max-container";
 import { UserRound, Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
-import { motion } from "framer-motion";
-
-const fadeUp: any = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.3,
-      duration: 0.8,
-      ease: "easeOut",
-    },
-  }),
-};
 
 const ReadTheLatestNews = () => {
   const News = [
@@ -51,34 +37,21 @@ const ReadTheLatestNews = () => {
   return (
     <section className="sm:pt-28 sm:pb-32 pb-20 px-10 sm:px-32 bg-white">
       {/* Heading */}
-      <motion.div
-        className="text-center space-y-4"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={0}
-      >
+      <div className="text-center space-y-4">
         <h2 className="text-[2.6rem] sm:text-[4rem] font-semibold tracking-tight text-black">
           Read The Latest News
         </h2>
         <p className="text-[1.8rem] sm:text-[2rem] text-black/70 max-w-[50rem] mx-auto">
-          Stay informed with insights, trends, and top stories shaping the industry
-          today.
+          Stay informed with insights, trends, and top stories shaping the industry today.
         </p>
-      </motion.div>
+      </div>
 
       {/* News Cards */}
       <MaxContainer className="grid sm:grid-cols-3 gap-12 mt-20">
         {News.map((item, index) => (
-          <motion.div
+          <div
             key={index}
             className="group max-w-160 w-full rounded-2xl overflow-hidden bg-white shadow-[0px_10px_40px_rgba(0,0,0,0.06)] hover:shadow-[0px_20px_50px_rgba(0,0,0,0.10)] transition-all duration-500"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            custom={index + 1}
           >
             <div className="overflow-hidden">
               <img
@@ -117,7 +90,7 @@ const ReadTheLatestNews = () => {
                 <Link to={item.link}>Read More →</Link>
               </Button>
             </div>
-          </motion.div>
+          </div>
         ))}
       </MaxContainer>
     </section>

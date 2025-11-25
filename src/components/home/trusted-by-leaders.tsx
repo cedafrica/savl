@@ -4,16 +4,6 @@ import { useRef, useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import type { CarouselApi } from "@/components/ui/carousel";
-import { motion } from "framer-motion";
-
-const fadeUp: any = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.3, duration: 0.8, ease: "easeOut" },
-  }),
-};
 
 const TrustedByLeaders = () => {
   const carouselApiRef = useRef<CarouselApi>(undefined);
@@ -49,49 +39,26 @@ const TrustedByLeaders = () => {
   }, []);
 
   const leaders = [
-    {
-      image: "/ma.png",
-      description:
-        "MA Lighting is a leading provider of professional lighting control solutions, renowned for its grandMA consoles and innovative stage lighting technology.",
-    },
-    {
-      image: "/crestron.png",
-      description:
-        "Crestron is a global leader in automation and control solutions, delivering advanced technologies for smart homes, offices, and AV integration.",
-    },
-    {
-      image: "/infiled.png",
-      description:
-        "INFILED specializes in high-quality LED display solutions, offering innovative screens for events, retail, broadcasting, and large-scale installations.",
-    },
-    {
-      image: "/infiled.png",
-      description:
-        "INFILED specializes in high-quality LED display solutions, offering innovative screens for events, retail, broadcasting, and large-scale installations.",
-    },
+    { image: "/ma.png", description: "MA Lighting is a leading provider of professional lighting control solutions, renowned for its grandMA consoles and innovative stage lighting technology." },
+    { image: "/crestron.png", description: "Crestron is a global leader in automation and control solutions, delivering advanced technologies for smart homes, offices, and AV integration." },
+    { image: "/infiled.png", description: "INFILED specializes in high-quality LED display solutions, offering innovative screens for events, retail, broadcasting, and large-scale installations." },
+    { image: "/infiled.png", description: "INFILED specializes in high-quality LED display solutions, offering innovative screens for events, retail, broadcasting, and large-scale installations." },
   ];
 
   return (
-    <section className="sm:px-32 px-10 sm:pt-[6.6rem] pt-[3.1rem]">
+    <section className="sm:px-32 px-6 sm:pt-32 pt-16">
       {/* Heading */}
-      <motion.div
-        className="text-center space-y-4"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        custom={0}
-      >
-        <h2 className="text-center sm:text-[3.8rem] font-semibold text-[2.8rem]">
+      <div className="text-center space-y-4">
+        <h2 className="sm:text-[3.8rem] text-[2.8rem] font-semibold text-black">
           Trusted by Industry Leaders
         </h2>
-        <p className="text-center mx-auto sm:text-[2rem] text-[1.6rem] max-w-[47.1rem]">
+        <p className="sm:text-[2rem] text-[1.6rem] max-w-[47.1rem] mx-auto text-center">
           We partner with the world's most respected audiovisual brands
         </p>
-      </motion.div>
+      </div>
 
       {/* Carousel */}
-      <MaxContainer className="sm:mt-32 mt-[4.1rem]">
+      <MaxContainer className="sm:mt-20 mt-12">
         <Carousel
           className="w-full"
           setApi={(api) => {
@@ -103,23 +70,16 @@ const TrustedByLeaders = () => {
           <CarouselContent className="w-full">
             {leaders.map((item, index) => (
               <CarouselItem key={index} className="sm:basis-1/3">
-                <motion.div
-                  className="flex flex-col justify-between px-[2.4rem] pt-[3.2rem] sm:pb-[6.8rem] pb-[4.1rem] bg-[#F5F5F5] w-full rounded-[.54rem] min-h-[28rem]"
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  custom={index + 1}
-                >
+                <div className="flex flex-col items-center text-center px-6 sm:px-8 py-8 sm:py-12 bg-[#F5F5F5] rounded-xl min-h-[24rem]">
                   <img
                     src={item.image}
                     alt="logo"
-                    className="sm:w-50 w-24 mx-auto object-contain"
+                    className="sm:w-70 w-58 h-auto object-contain mb-6 sm:mb-8"
                   />
-                  <p className="sm:text-[1.8rem] text-[1.6rem] sm:mt-8 mt-6 text-center">
+                  <p className="sm:text-[1.8rem] text-[1.6rem] text-center">
                     {item.description}
                   </p>
-                </motion.div>
+                </div>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -127,22 +87,22 @@ const TrustedByLeaders = () => {
       </MaxContainer>
 
       {/* Navigation Buttons */}
-      <div className="flex justify-center mt-[1.6rem] sm:mt-[4.1rem] gap-[1.6rem]">
+      <div className="flex justify-center mt-8 sm:mt-12 gap-4 sm:gap-6">
         <Button
           variant="outline"
-          className="rounded-full sm:size-[5.8rem] size-[4.1rem] border-black disabled:opacity-50 disabled:cursor-not-allowed"
+          className="rounded-full sm:w-14 sm:h-14 w-12 h-12 border-black disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={scrollPrev}
           disabled={!canScrollPrev}
         >
-          <ArrowLeft className="sm:size-[2.1rem] size-[1.6rem]" />
+          <ArrowLeft className="sm:w-6 sm:h-6 w-5 h-5" />
         </Button>
         <Button
           variant="outline"
-          className="rounded-full sm:size-[5.8rem] size-[4.1rem] border-black disabled:opacity-50 disabled:cursor-not-allowed"
+          className="rounded-full sm:w-14 sm:h-14 w-12 h-12 border-black disabled:opacity-50 disabled:cursor-not-allowed"
           onClick={scrollNext}
           disabled={!canScrollNext}
         >
-          <ArrowRight className="sm:size-[2.1rem] size-[1.6rem]" />
+          <ArrowRight className="sm:w-6 sm:h-6 w-5 h-5" />
         </Button>
       </div>
     </section>

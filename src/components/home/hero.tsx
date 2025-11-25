@@ -139,7 +139,7 @@ const slides = [
   <Button
     className="
   sm:text-[1.6rem] text-[1.4rem]
-  px-12 py-6 sm:px-16 sm:py-9
+  px-12 py-9 sm:px-16 sm:py-9
   rounded-[3rem]
   border border-white
   bg-transparent
