@@ -138,18 +138,19 @@ const slides = [
             <a href={currentSlideData.ctaLink}>
   <Button
     className="
-      sm:text-[1.6rem] text-[1.4rem]
-      px-12 py-12 sm:px-16 sm:py-9
-      rounded-[3rem]
-      border border-white
-      bg-transparent
-      text-white
-      font-semibold
-      shadow-lg
-      transition-all duration-500 ease-in-out
-      hover:bg-white hover:text-black hover:scale-105
-      flex items-center gap-3
-    "
+  sm:text-[1.6rem] text-[1.4rem]
+  px-12 py-6 sm:px-16 sm:py-9
+  rounded-[3rem]
+  border border-white
+  bg-transparent
+  text-white
+  font-semibold
+  shadow-lg
+  transition-all duration-500 ease-in-out
+  hover:bg-white hover:text-black hover:scale-105
+  flex items-center gap-3
+"
+
   >
     {currentSlideData.ctaText}
     <MoveRight className="size-[1.9rem]" />
