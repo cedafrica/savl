@@ -218,7 +218,7 @@ const BuiltOnExcellence = () => {
   custom={8}
 >
   <img
-    src="/lights.png"
+    src="/restaurant3.webp"
     alt="Audiovisual Excellence"
     loading="lazy"
     className="

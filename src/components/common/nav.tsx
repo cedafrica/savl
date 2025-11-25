@@ -81,23 +81,25 @@ const Nav: React.FC = () => {
                     />
                   </button>
 
-                  {/* Full-width Dropdown */}
-                  {openApplication && (
-                    <div className="fixed top-[80px] left-0 w-screen bg-white text-black shadow-xl py-6 z-[9998] transition-all duration-500 ease-out">
-                      <div className="max-w-[1500px] mx-auto flex justify-start gap-10 px-10">
-                        {item.children?.map((child) => (
-                          <Link
-                            key={child.link}
-                            to={child.link}
-                            className="text-[1.4rem] font-semibold hover:text-gray-700 transition-colors duration-300 whitespace-nowrap"
-                            onClick={() => setOpenApplication(false)}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
+                  {/* Full-width Dropdown with smooth left-to-right animation */}
+                  <div
+                    className={`fixed top-[80px] left-0 w-screen bg-white text-black shadow-xl z-[9998] transform scale-x-0 origin-left transition-transform duration-500 ease-out ${
+                      openApplication ? "scale-x-100" : ""
+                    }`}
+                  >
+                    <div className="max-w-[1500px] mx-auto flex justify-start gap-10 px-10 py-6">
+                      {item.children?.map((child) => (
+                        <Link
+                          key={child.link}
+                          to={child.link}
+                          className="text-[1.4rem] font-semibold hover:text-gray-700 transition-colors duration-300 whitespace-nowrap"
+                          onClick={() => setOpenApplication(false)}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
                     </div>
-                  )}
+                  </div>
                 </li>
               ) : (
                 <li key={item.label}>

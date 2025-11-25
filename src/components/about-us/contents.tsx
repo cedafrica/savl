@@ -48,7 +48,7 @@ const Content = () => {
 
       {/* Elevating Audiovisual Excellence */}
       <motion.div
-  className="relative w-full h-screen sm:h-screen bg-[url(/okparaji.png)] bg-cover bg-center bg-no-repeat flex items-center"
+  className="relative w-full h-screen sm:h-screen bg-[url(/shw.webp)] bg-cover bg-center bg-no-repeat flex items-center"
   initial="hidden"
   whileInView="visible"
   viewport={{ once: true }}
