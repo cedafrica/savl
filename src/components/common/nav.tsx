@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 
 type NavChild = { label: string; link: string };
@@ -9,7 +9,6 @@ const Nav: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [openApplication, setOpenApplication] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
 
   const NavItems: NavItem[] = [
     { label: "Home", href: "/" },
@@ -46,13 +45,6 @@ const Nav: React.FC = () => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  // Close mobile menu and scroll to top on route change
-  useEffect(() => {
-    setOpen(false);
-    setOpenApplication(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [location.pathname]);
-
   return (
     <>
       {/* Navbar */}
@@ -74,37 +66,49 @@ const Nav: React.FC = () => {
           {/* Desktop Menu */}
           <ul className="hidden sm:flex items-center gap-12 text-white tracking-wide">
             {NavItems.map((item) =>
-              item.type === "dropdown" && item.children ? (
-                <li key={item.label} className="relative group select-none">
-                  <button className="text-lg font-medium flex items-center gap-2 hover:text-gray-300 transition duration-300">
+              item.type === "dropdown" ? (
+                <li key={item.label} className="relative">
+                  {/* Dropdown Button */}
+                  <button
+                    onClick={() => setOpenApplication(!openApplication)}
+                    className="text-[1.5rem] font-medium flex items-center gap-2 hover:text-gray-300 transition duration-300"
+                  >
                     {item.label}
-                    <ChevronDown className="w-5 h-5 transition-transform duration-300 group-hover:rotate-180" />
+                    <ChevronDown
+                      className={`w-5 h-5 transition-transform duration-300 ${
+                        openApplication ? "rotate-180" : ""
+                      }`}
+                    />
                   </button>
-                  {/* Dropdown */}
-                  <div className="absolute left-0 top-full mt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-3 group-hover:translate-y-0 transition-all duration-300 bg-white text-black rounded-xl shadow-lg px-6 py-4 w-64">
-                    <div className="flex flex-col gap-3">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.link}
-                          to={child.link}
-                          className="hover:text-gray-700 font-semibold transition duration-200"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+
+                  {/* Full-width Dropdown */}
+                  {openApplication && (
+                    <div className="fixed top-[80px] left-0 w-screen bg-white text-black shadow-xl py-6 z-[9998] transition-all duration-500 ease-out">
+                      <div className="max-w-[1500px] mx-auto flex justify-start gap-10 px-10">
+                        {item.children?.map((child) => (
+                          <Link
+                            key={child.link}
+                            to={child.link}
+                            className="text-[1.4rem] font-semibold hover:text-gray-700 transition-colors duration-300 whitespace-nowrap"
+                            onClick={() => setOpenApplication(false)}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </li>
-              ) : item.href ? (
+              ) : (
                 <li key={item.label}>
                   <Link
-                    to={item.href}
-                    className="text-lg font-medium hover:text-gray-300 transition duration-300"
+                    to={item.href ?? "#"}
+                    className="text-[1.5rem] font-medium hover:text-gray-300 transition duration-300"
                   >
                     {item.label}
                   </Link>
                 </li>
-              ) : null
+              )
             )}
           </ul>
 
@@ -138,7 +142,7 @@ const Nav: React.FC = () => {
           open ? "translate-x-0" : "-translate-x-full"
         } flex flex-col`}
       >
-        {/* Fancy Cancel / X Button */}
+        {/* X Button */}
         <button
           onClick={() => setOpen(false)}
           className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-[10001]"
@@ -149,7 +153,7 @@ const Nav: React.FC = () => {
         <div className="px-8 pt-32 flex flex-col gap-8 text-white text-2xl">
           {NavItems.map((item) => (
             <div key={item.label} className="flex flex-col">
-              {item.type === "dropdown" && item.children ? (
+              {item.type === "dropdown" ? (
                 <>
                   <button
                     onClick={() => setOpenApplication(!openApplication)}
@@ -162,13 +166,14 @@ const Nav: React.FC = () => {
                       }`}
                     />
                   </button>
+
                   <div
                     className={`overflow-hidden transition-all duration-300 ml-2 ${
                       openApplication ? "max-h-96 mt-2" : "max-h-0"
                     }`}
                   >
                     <div className="flex flex-col gap-2">
-                      {item.children.map((child) => (
+                      {item.children?.map((child) => (
                         <Link
                           key={child.link}
                           to={child.link}
@@ -181,15 +186,15 @@ const Nav: React.FC = () => {
                     </div>
                   </div>
                 </>
-              ) : item.href ? (
+              ) : (
                 <Link
-                  to={item.href}
+                  to={item.href ?? "#"}
                   className="py-2 font-semibold hover:text-gray-300 transition duration-300"
                   onClick={() => setOpen(false)}
                 >
                   {item.label}
                 </Link>
-              ) : null}
+              )}
             </div>
           ))}
         </div>
