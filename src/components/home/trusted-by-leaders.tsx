@@ -46,7 +46,7 @@ const TrustedByLeaders = () => {
   ];
 
   return (
-    <section className="sm:px-32 px-6 sm:pt-32 pt-16">
+    <section className="sm:px-32 px-6 sm:pt-32 pt-16 bg-white">
       {/* Heading */}
       <div className="text-center space-y-4">
         <h2 className="sm:text-[3.8rem] text-[2.8rem] font-semibold text-black">
@@ -67,16 +67,21 @@ const TrustedByLeaders = () => {
           }}
           opts={{ align: "start", loop: true }}
         >
-          <CarouselContent className="w-full">
+          <CarouselContent className="w-full gap-6">
             {leaders.map((item, index) => (
-              <CarouselItem key={index} className="sm:basis-1/3">
-                <div className="flex flex-col items-center text-center px-6 sm:px-8 py-8 sm:py-12 bg-[#F5F5F5] rounded-xl min-h-[24rem]">
-                  <img
-                    src={item.image}
-                    alt="logo"
-                    className="sm:w-70 w-58 h-auto object-contain mb-6 sm:mb-8"
-                  />
-                  <p className="sm:text-[1.8rem] text-[1.6rem] text-center">
+              <CarouselItem key={index} className="sm:basis-1/4">
+                <div className="flex flex-col items-center text-center px-6 sm:px-8 py-10 bg-white rounded-[2rem] shadow-lg min-h-[30rem] justify-between">
+                  {/* Logo */}
+                  <div className="flex items-center justify-center h-32 sm:h-36 mb-6 sm:mb-8">
+                    <img
+                      src={item.image}
+                      alt="logo"
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+
+                  {/* Description */}
+                  <p className="sm:text-[1.8rem] text-[1.6rem] text-center text-black/80 flex-grow">
                     {item.description}
                   </p>
                 </div>
