@@ -18,7 +18,7 @@ const PremiumSolution = () => {
   return (
     <section
       className="
-        bg-[#EDEDED]
+        bg-[#fff]
 
         sm:pt-[8rem] 
         pt-[4rem] 

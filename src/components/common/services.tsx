@@ -49,7 +49,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="bg-[#EDEDED] py-2">
+    <section className="bg-[#fff] py-2">
       <MaxContainer>
 
         {/* IMMERSIVE SERVICE SECTIONS */}
