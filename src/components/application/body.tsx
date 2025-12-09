@@ -1,148 +1,119 @@
-import MaxContainer from "../common/max-container";
-import { motion } from "framer-motion";
+import React from "react";
 
-// FIXED VARIANTS — FM v11 safe
-const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { delay, duration: 1 }
-  }
-});
+interface BodyItem {
+  bold?: string;
+  text?: string;
+}
 
-const zoomReveal = {
-  hidden: { opacity: 0, scale: 1.1 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 1.2 }
-  }
-};
+interface BodySection {
+  title: string;
+  image: string;
+  items: BodyItem[];
+}
 
-const Services = () => {
-  const services = [
-    {
-      title: "Audio Architecture",
-      text:
-        "We engineer audio environments that blend into the architectural narrative—creating rich tonal spaces calibrated for intimacy, clarity, and emotional depth.",
-      image: "/aud.webp",
-    },
-    {
-      title: "Visual Immersion",
-      text:
-        "From LED walls to projection landscapes, our visual systems elevate ambience, storytelling, and commercial presentation into immersive sensory moments.",
-      image: "/the.png",
-    },
-    {
-      title: "Atmospheric Lighting",
-      text:
-        "Lighting is emotion. We sculpt ambience, highlight architecture, and enhance the human experience through refined, programmable lighting ecosystems.",
-      image: "/lightning_solution.png",
-    },
-  ];
+interface BodyProps {
+  contents?: BodySection[];
+}
 
+const Body: React.FC<BodyProps> = ({ contents = [] }) => {
   return (
-    <section className="bg-[#F7F7F7] py-20 sm:py-32 relative">
-      <MaxContainer>
+    <section className="py-32 bg-[#f7f7f7]">
+      <div className="max-w-[95rem] mx-auto px-6 space-y-48">
 
-        {/* TOP HEADING */}
-        <motion.div
-          variants={fadeUp(0.1)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center mb-20 sm:mb-40 px-4"
-        >
-          <h1 className="text-[2.6rem] sm:text-[4rem] leading-tight font-semibold text-slate-900 tracking-tight">
-            Crafting Experiences With Precision
-          </h1>
+        {contents.map((section, index) => (
+          <div key={index} className="relative">
 
-          <p className="text-[1.45rem] sm:text-[1.65rem] text-slate-600 max-w-[750px] mx-auto leading-relaxed mt-4 sm:mt-6">
-            Every environment deserves a sensory identity. We design audiovisual
-            systems that enrich atmosphere, elevate architecture, and move people.
-          </p>
-        </motion.div>
+            {/* CINEMATIC IMAGE */}
+            <div
+              className="
+                w-full 
+                h-[420px] sm:h-[520px] lg:h-[620px]
+                rounded-[40px] 
+                overflow-hidden 
+                shadow-[0_30px_90px_rgba(0,0,0,0.20)]
+              "
+            >
+              <img
+                src={section.image}
+                alt={section.title}
+                className="
+                  w-full h-full object-cover 
+                  transition-all duration-[1500ms]
+                  hover:scale-[1.06]
+                "
+              />
+            </div>
 
-        {/* Vertical guideline (desktop only) */}
-        <div className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-slate-300/40"></div>
-
-        {/* SERVICES LIST */}
-        <div className="flex flex-col space-y-24 sm:space-y-[18rem] px-4 sm:px-0">
-          {services.map((service, index) => {
-            const isEven = index % 2 === 0;
-
-            return (
-              <div
-                key={index}
-                className={`relative flex flex-col lg:flex-row ${
-                  isEven ? "" : "lg:flex-row-reverse"
-                } items-center gap-10 sm:gap-20`}
+            {/* FLOATING GLASS CARD WITH CTA */}
+            <div
+              className={`
+                absolute left-1/2 transform -translate-x-1/2
+                ${index % 2 === 0 ? "lg:-bottom-20" : "lg:-bottom-24"}
+                -bottom-12
+                w-[92%] sm:w-[80%] lg:w-[65%]
+                bg-white/70 backdrop-blur-[16px]
+                rounded-[32px]
+                shadow-[0_12px_40px_rgba(0,0,0,0.15)]
+                p-10 sm:p-12 space-y-10
+              `}
+            >
+              {/* Title */}
+              <h2
+                className="
+                  text-[2.8rem] sm:text-[3.4rem] lg:text-[3.8rem]
+                  font-semibold text-slate-900 
+                  tracking-tight leading-[1.15]
+                "
               >
-                {/* IMAGE */}
-                <motion.div
-                  variants={zoomReveal}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className="
-                    w-full lg:w-1/2 
-                    h-[22rem] sm:h-[36rem]
-                    overflow-hidden rounded-[28px] sm:rounded-[36px] 
-                    shadow-[0_12px_35px_rgba(0,0,0,0.08)]
-                  "
-                >
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
+                {section.title}
+              </h2>
 
-                {/* TEXT */}
-                <motion.div
-                  variants={fadeUp(0.2)}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  className={`
-                    w-full lg:w-1/2 
-                    space-y-4 sm:space-y-6
-                    ${isEven ? "text-left lg:pr-10" : "text-left lg:pl-10"}
-                  `}
-                >
-                  <h2 className="text-[2.4rem] sm:text-[3.2rem] leading-tight font-semibold text-slate-900">
-                    {service.title}
-                  </h2>
-
-                  <p className="text-[1.45rem] sm:text-[1.55rem] text-slate-600 leading-relaxed max-w-[600px]">
-                    {service.text}
-                  </p>
-
-                  <button
+              {/* Apple-style storytelling paragraphs */}
+              <div className="space-y-6">
+                {section.items.map((itm, i) => (
+                  <p
+                    key={i}
                     className="
-                      inline-flex items-center
-                      text-[1.35rem] sm:text-[1.45rem] 
-                      font-medium
-                      border border-slate-300
-                      px-5 sm:px-6 py-2.5 sm:py-3 
-                      rounded-full
-                      hover:bg-slate-900 hover:text-white 
-                      transition-all duration-300
-                      mt-4 sm:mt-6
+                      text-[1.55rem] sm:text-[1.7rem] lg:text-[1.8rem]
+                      text-slate-700 leading-[1.65]
+                      max-w-[60ch]
                     "
                   >
-                    Discuss Your Project →
-                  </button>
-                </motion.div>
+                    {itm.bold && (
+                      <span className="font-semibold text-slate-900">
+                        {itm.bold}:{" "}
+                      </span>
+                    )}
+                    {itm.text}
+                  </p>
+                ))}
               </div>
-            );
-          })}
-        </div>
 
-      </MaxContainer>
+              {/* CTA */}
+              <div className="pt-4">
+                <button
+                  className="
+                    px-7 py-3.5
+                    rounded-full
+                    text-[1.5rem]
+                    font-medium
+                    bg-slate-900 text-white
+                    hover:bg-slate-800
+                    transition-all duration-300
+                    shadow-[0_8px_25px_rgba(0,0,0,0.15)]
+                  "
+                >
+                  Discuss This Project →
+                </button>
+              </div>
+            </div>
+
+          </div>
+        ))}
+
+      </div>
     </section>
   );
 };
 
-export default Services;
+export default Body;

@@ -8,539 +8,329 @@ const Application = () => {
     const { id } = useParams();
 
     const contents: ApplicationContent[] = [
-        {
-            id: "house-of-worship",
-            headlineText: "Transform Your Worship Experience with Cutting-Edge AV & Lighting",
-            subHeadlineText: "Engage your congregation like never before with immersive sound, crystal-clear visuals, and inspiring lighting.",
-            link: "/contact",
-            buttonLabel: "Let's Discuss Your Next Project",
-            backgroundImage: "bg-[url(/Church.webp)]",
-            bodyContents: [
-                {
-                    title: "Why Modern Worship Spaces Need Professional AV Integration",
-                    image: "/Church1.webp",
-                    items: [
-                        {
-                            text: "Clear audio ensures every word, song, and message reaches the congregation with clarity."
-                        },
-                        {
-                            text: "Visual displays amplify sermons, announcements, and worship content."
-                        },
-                        {
-                            text: "Lighting creates atmosphere, highlighting performances and enhancing engagement."
-                        },
-                        {
-                            text: "Seamless integration for live streaming or hybrid worship experiences."
-                        },
-                    ]
-                },
-                {
-                    title: "Our Services for Houses of Worship",
-                    image: "/Church2.webp",
-                    items: [
-                        {
-                            bold: "Audio Systems",
-                            text: "From crystal-clear speech reinforcement to immersive music experiences."
-                        },
-                        {
-                            bold: "Video & Projection",
-                            text: "Large screens, projectors, and LED walls for impactful visuals."
-                        },
-                        {
-                            bold: "Lighting Solutions",
-                            text: "Ambient, stage, and architectural lighting to enhance worship."
-                        },
-                        {
-                            bold: "Control & Automation",
-                            text: "Centralized control systems for audio, video, and lighting."
-                        },
-                        {
-                            bold: "Live Streaming Support",
-                            text: "Reach your congregation online with professional-grade streaming setups."
-                        },
-                    ]
-                },
-                {
-                    title: "Why Choose Spectra AVL",
-                    image: "/worship.png",
-                    items: [
-                        {
-                            text: "Years of experience designing AV systems for churches and worship spaces."
-                        },
-                        {
-                            text: "Customized solutions tailored to your space, budget, and worship style."
-                        },
-                        {
-                            text: "High-quality equipment from trusted brands for reliability and longevity."
-                        },
-                        {
-                            text: "Expert installation and ongoing support—so your system works perfectly every service."
-                        },
-                    ]
-                },
-            ],
-            ctaHeadline: "Ready to Elevate Your Worship Experience?",
-            ctaSubheadline: "Let our experts design an AV and lighting system that inspires your congregation.",
-            ctaButtonText: "Let's Discuss Your Next Project",
-            ctaButtonLink: "/contact"
-        },
-        {
-            id: "cafes-restaurants",
-            headlineText: "Create an Unforgettable Atmosphere for Your Guests",
-            subHeadlineText: "Elevate your café or restaurant with immersive audio, dynamic lighting, and captivating visuals that keep guests coming back.",
-            link: "",
-            buttonLabel: "Let's Discuss Your Next Project",
-            backgroundImage: "bg-[url(/unforgettable.png)]",
-            bodyContents: [
-                {
-                    title: "Why Modern Dining Spaces Need Professional AV Integration",
-                    image: "/restaurant.webp",
-                    items: [
-                        {
-                            text: "Set the perfect mood with ambient music and lighting tailored to your brand."
-                        },
-                        {
-                            text: "Ensure announcements and live events are crystal-clear and seamless."
-                        },
-                        {
-                            text: "Enhance guest engagement with video displays for menus, promotions, or entertainment."
-                        },
-                        {
-                            text: "Simplify operations with centralized control systems for audio, video, and lighting."
-                        },
-                    ]
-                },
-                {
-                    title: "Our Services for Cafés & Restaurants",
-                    image: "/restaurant2.webp",
-                    items: [
-                        {
-                            bold: "Audio Systems",
-                            text: "From background music to live performances—perfectly balanced sound throughout your space."
-                        },
-                        {
-                            bold: "Visual & Display Solutions",
-                            text: "Digital menus, video walls, and screens for a modern dining experience."
-                        },
-                        {
-                            bold: "Lighting Design",
-                            text: "Adjustable lighting for daytime, evenings, or special events to create the right ambiance."
-                        },
-                        {
-                            bold: "Control & Automation",
-                            text: "One-touch management of music, lights, and screens for staff convenience."
-                        },
-                        {
-                            bold: "Event Support",
-                            text: "Seamless AV setup for live music, presentations, or private events."
-                        },
-                    ]
-                },
-                {
-                    title: "Why Choose Spectra AVL",
-                    image: "/restaurant3.webp",
-                    items: [
-                        {
-                            text: "Experience designing AV solutions for high-end cafés and restaurants."
-                        },
-                        {
-                            text: "Custom solutions tailored to your space, brand, and target audience."
-                        },
-                        {
-                            text: "Reliable, high-quality equipment from premium brands."
-                        },
-                        {
-                            text: "Expert installation, integration, and ongoing support for flawless operations."
-                        },
-                    ]
-                },
-            ],
-            ctaHeadline: "Ready to Transform Your Café or Restaurant?",
-            ctaSubheadline: "Let our experts design a sound, lighting, and visual system that delights your guests.",
-            ctaButtonText: "Let's Discuss Your Next Project",
-            ctaButtonLink: "/contact"
-        },
-        {
-            id: "night-clubs-lounges",
-            headlineText: "Turn Up the Night with Stunning Sound & Lighting",
-            subHeadlineText: "Deliver an electrifying experience that keeps guests coming back, with immersive audio, dynamic lighting, and striking visuals.",
-            link: "",
-            buttonLabel: "Let's Discuss Your Next Project",
-            backgroundImage: "bg-[url(/club.png)]",
-            bodyContents: [
-                {
-                    title: "Why Night Clubs & Lounges Need Professional AV Integration",
-                    image: "/engineer.png",
-                    items: [
-                        {
-                            text: "Create high-impact audio experiences with precision-engineered sound systems."
-                        },
-                        {
-                            text: "Transform the space with dynamic lighting that moves with the beat."
-                        },
-                        {
-                            text: "Enhance visuals with LED walls, screens, and projection mapping."
-                        },
-                        {
-                            text: "Ensure seamless control for DJs, events, and staff with centralized AV management."
-                        },
-                    ]
-                },
-                {
-                    title: "Our Services for Night Clubs & Lounges",
-                    image: "/avl.png",
-                    items: [
-                        {
-                            bold: "Audio Systems",
-                            text: "Powerful, balanced sound to energize the dance floor and VIP areas."
-                        },
-                        {
-                            bold: "Lighting Solutions",
-                            text: "Intelligent, programmable lights that create the perfect vibe."
-                        },
-                        {
-                            bold: "Visual & Projection",
-                            text: "LED walls, screens, and immersive visuals to captivate your audience."
-                        },
-                        {
-                            bold: "Control & Automation",
-                            text: "One-touch operation for music, lights, and visuals—perfect for busy nights."
-                        },
-                        {
-                            bold: "Event Support",
-                            text: "Full AV setup for themed nights, guest DJs, and private parties."
-                        },
-                    ]
-                },
-                {
-                    title: "Why Choose Spectra AVL",
-                    image: "/avl.png",
-                    items: [
-                        {
-                            text: "Proven experience designing high-end AV systems for nightlife venues."
-                        },
-                        {
-                            text: "Tailored solutions that match your brand, space, and entertainment style."
-                        },
-                        {
-                            text: "Premium, reliable equipment for uninterrupted performances."
-                        },
-                        {
-                            text: "Expert installation and ongoing support so your venue always shines."
-                        },
-                    ]
-                },
-            ],
-            ctaHeadline: "Ready to Elevate Your Night Club or Lounge?",
-            ctaSubheadline: "Let our experts design an audio, lighting, and visual system that keeps guests talking.",
-            ctaButtonText: "Let's Discuss Your Next Project",
-            ctaButtonLink: "/contact"
-        },
-        {
-            id: "large-congregations",
-            headlineText: "Empower Every Voice, Every Message, Every Moment",
-            subHeadlineText: "Deliver exceptional audio, video, and lighting experiences that engage thousands of worshippers with clarity and impact.",
-            link: "",
-            buttonLabel: "Request a Consultation",
-            backgroundImage: "bg-[url(/congregation.png)]",
-            bodyContents: [
-                {
-                    title: "Why Large Congregations Need Professional AV Integration",
-                    image: "/clear.png",
-                    items: [
-                        {
-                            text: "Ensure clear audio reaches every corner, from the front row to the back balcony."
-                        },
-                        {
-                            text: "Use large-format video displays for sermons, announcements, and live events."
-                        },
-                        {
-                            text: "Enhance engagement with dynamic lighting that complements performances and worship."
-                        },
-                        {
-                            text: "Scalable systems designed to grow with your congregation and events."
-                        },
-                    ]
-                },
-                {
-                    title: "Our Services for Large Congregations",
-                    image: "/light.png",
-                    items: [
-                        {
-                            bold: "Audio Systems",
-                            text: "High-power, high-fidelity sound for speech, music, and choir performances."
-                        },
-                        {
-                            bold: "Video & Projection",
-                            text: "LED walls, projectors, and screens for immersive worship experiences."
-                        },
-                        {
-                            bold: "Lighting Solutions",
-                            text: "Stage, architectural, and ambient lighting for impactful visuals."
-                        },
-                        {
-                            bold: "Control & Automation",
-                            text: "Centralized systems to manage audio, video, and lighting effortlessly."
-                        },
-                        {
-                            bold: "Live Streaming & Recording",
-                            text: "Broadcast services for members who cannot attend in person."
-                        },
-                    ]
-                },
-                {
-                    title: "Why Choose Spectra AVL",
-                    image: "/no.png",
-                    items: [
-                        {
-                            text: "Extensive experience designing AV systems for mega churches and large venues."
-                        },
-                        {
-                            text: "Custom solutions tailored to your sanctuary layout, congregation size, and worship style."
-                        },
-                        {
-                            text: "Premium equipment for reliability and long-term performance."
-                        },
-                        {
-                            text: "Expert installation and ongoing support to ensure flawless operations during every service."
-                        },
-                    ]
-                },
-            ],
-            ctaHeadline: "Ready to Transform Your Worship for Large Congregations?",
-            ctaSubheadline: "Let our experts design a scalable audio, video, and lighting system that engages every member of your congregation.",
-            ctaButtonText: "Let's Discuss Your Next Project",
-            ctaButtonLink: "/contact"
-        },
-        {
-            id: "hotels-resorts",
-            headlineText: "Elevate Every Guest Experience with World-Class AV & Lighting",
-            subHeadlineText: "Deliver immersive audio, stunning visuals, and elegant lighting that leave a lasting impression on your guests.",
-            link: "",
-            buttonLabel: "Let's Discuss Your Next Project",
-            backgroundImage: "bg-[url('/hotel.png')]",
-            bodyContents: [
-                {
-                    title: "Why Hotels & Resorts Need Professional AV Integration",
-                    image: "/sit-up.png",
-                    items: [
-                        {
-                            text: "Create memorable experiences in lobbies, lounges, restaurants, and event spaces."
-                        },
-                        {
-                            text: "Ensure crystal-clear audio for announcements, presentations, and live events."
-                        },
-                        {
-                            text: "Enhance guest satisfaction with dynamic lighting and visual displays."
-                        },
-                        {
-                            text: "Simplify operations with centralized control systems for audio, video, and lighting."
-                        },
-                    ]
-                },
-                {
-                    title: "Our Services for Hotels & Resorts",
-                    image: "/resorts.png",
-                    items: [
-                        {
-                            bold: "Audio Systems",
-                            text: "Ambient sound for lobbies, restaurants, spas, and event halls."
-                        },
-                        {
-                            bold: "Video & Projection",
-                            text: "Screens, LED walls, and projectors for entertainment, promotions, and meetings."
-                        },
-                        {
-                            bold: "Lighting Solutions",
-                            text: "Customizable mood lighting for guest rooms, public spaces, and event venues."
-                        },
-                        {
-                            bold: "Control & Automation",
-                            text: "One-touch operation for staff to manage AV and lighting efficiently."
-                        },
-                        {
-                            bold: "Event & Conference Support",
-                            text: "Professional setups for conferences, weddings, and large-scale events."
-                        },
-                    ]
-                },
-                {
-                    title: "Why Choose Spectra AVL",
-                    image: "/hotels.png",
-                    items: [
-                        {
-                            text: "Proven expertise designing AV and lighting solutions for luxury hotels and resorts."
-                        },
-                        {
-                            text: "Tailored systems to match your brand, space, and guest experience goals."
-                        },
-                        {
-                            text: "Premium, reliable equipment ensuring seamless operations 24/7."
-                        },
-                        {
-                            text: "Expert installation and support for flawless experiences every time."
-                        },
-                    ]
-                },
-            ],
-            ctaHeadline: "Ready to Elevate Your Hotel or Resort Experience?",
-            ctaSubheadline: "Let our experts design an AV and lighting system that delights every guest.",
-            ctaButtonText: "Let's Discuss Your Next Project",
-            ctaButtonLink: "/contact"
-        },
-        {
-            id: "auditoriums-concert-halls",
-            headlineText: "Deliver World-Class Performances with Perfect Sound & Lighting",
-            subHeadlineText: "Transform your auditorium or concert hall with immersive audio, stunning visuals, and elegant lighting for every performance.",
-            link: "",
-            buttonLabel: "Let's Discuss Your Next Project",
-            backgroundImage: "bg-[url(/aud.png)]",
-            bodyContents: [
-                {
-                    title: "Why Auditoriums & Concert Halls Need Professional AV Integration",
-                    image: "/blue_aud.png",
-                    items: [
-                        {
-                            text: "Ensure crystal-clear audio for every performance, speech, or presentation."
-                        },
-                        {
-                            text: "Enhance audience engagement with high-definition visual displays and projection systems."
-                        },
-                        {
-                            text: "Create memorable experiences with dynamic lighting tailored to performances."
-                        },
-                        {
-                            text: "Scalable systems designed for theaters, symphonies, and live events."
-                        },
-                    ]
-                },
-                {
-                    title: "Our Services for Auditoriums & Concert Halls",
-                    image: "/red.png",
-                    items: [
-                        {
-                            bold: "Audio Systems",
-                            text: "High-fidelity sound for speech, music, orchestras, and live performances."
-                        },
-                        {
-                            bold: "Video & Projection",
-                            text: "LED screens, projectors, and immersive visual solutions."
-                        },
-                        {
-                            bold: "Lighting Solutions",
-                            text: "Stage, architectural, and ambient lighting for every event."
-                        },
-                        {
-                            bold: "Control & Automation",
-                            text: "Centralized management of AV systems for smooth operations."
-                        },
-                        {
-                            bold: "Event Support",
-                            text: "Professional AV setup for concerts, conferences, and performances."
-                        },
-                    ]
-                },
-                {
-                    title: "Why Choose Spectra AVL",
-                    image: "/ligh.png",
-                    items: [
-                        {
-                            text: "Experienced in designing AV systems for high-profile auditoriums and concert halls."
-                        },
-                        {
-                            text: "Custom solutions tailored to your space, audience size, and type of performances."
-                        },
-                        {
-                            text: "Premium, reliable equipment ensuring flawless operations every time."
-                        },
-                        {
-                            text: "Expert installation, integration, and ongoing support for consistent performance quality."
-                        },
-                    ]
-                },
-            ],
-            ctaHeadline: "Ready to Elevate Your Auditorium or Concert Hall?",
-            ctaSubheadline: "Let our experts design an AV and lighting system that enhances every performance.",
-            ctaButtonText: "Let's Discuss Your Next Project",
-            ctaButtonLink: "/contact"
-        },
-        {
-            id: "concerts-live-events",
-            headlineText: "Make Every Event Unforgettable with Spectacular AV & Lighting",
-            subHeadlineText: "Deliver immersive sound, stunning visuals, and dynamic lighting that elevates every concert, festival, or live show.",
-            link: "",
-            buttonLabel: "Let's Discuss Your Next Project",
-            backgroundImage: "bg-[url('/mon.png')]",
-            bodyContents: [
-                {
-                    title: "Why Concerts & Live Events Need Professional AV Integration",
-                    image: "/cons.png",
-                    items: [
-                        {
-                            text: "Ensure powerful, clear audio reaches every attendee, no matter the venue size."
-                        },
-                        {
-                            text: "Enhance performances with dynamic lighting and stage effects."
-                        },
-                        {
-                            text: "Captivate audiences with large-format video displays and projection mapping."
-                        },
-                        {
-                            text: "Scalable and flexible systems for indoor and outdoor events, festivals, and live shows."
-                        },
-                    ]
-                },
-                {
-                    title: "Our Services for Concerts & Live Events",
-                    image: "/the.png",
-                    items: [
-                        {
-                            bold: "Audio Systems",
-                            text: "High-output, distortion-free sound for performers and audiences."
-                        },
-                        {
-                            bold: "Video & Projection",
-                            text: "LED walls, screens, and projection solutions to amplify the experience."
-                        },
-                        {
-                            bold: "Lighting Solutions",
-                            text: "Intelligent, programmable lights for dramatic stage effects."
-                        },
-                        {
-                            bold: "Control & Automation",
-                            text: "Seamless management of audio, lighting, and visuals for event staff."
-                        },
-                        {
-                            bold: "Event Support",
-                            text: "Full AV setup, including live streaming, recording, and technical support."
-                        },
-                    ]
-                },
-                {
-                    title: "Why Choose Spectra AVL",
-                    image: "/white.png",
-                    items: [
-                        {
-                            text: "Extensive experience designing AV for concerts, festivals, and live events."
-                        },
-                        {
-                            text: "Customized solutions tailored to your venue, event type, and audience size."
-                        },
-                        {
-                            text: "Premium, reliable equipment built for high-demand, high-impact environments."
-                        },
-                        {
-                            text: "Expert installation, integration, and on-site support for flawless events."
-                        },
-                    ]
-                },
-            ],
-            ctaHeadline: "Ready to Take Your Live Event to the Next Level?",
-            ctaSubheadline: "Let our experts design an AV and lighting system that wows every audience.",
-            ctaButtonText: "Let's Discuss Your Next Project",
-            ctaButtonLink: "/contact"
-        }
-    ]
+    {
+        id: "house-of-worship",
+        headlineText: "Transform Your Worship Experience with Cutting Edge AV and Lighting",
+        subHeadlineText: "Engage your congregation in a deeper and more meaningful way with immersive sound clear visuals and inspiring lighting.",
+        link: "/contact",
+        buttonLabel: "Lets Discuss Your Next Project",
+        backgroundImage: "bg-[url(/Church.webp)]",
+        bodyContents: [
+            {
+                title: "Why Modern Worship Spaces Need Professional AV Integration",
+                image: "/Church1.webp",
+                items: [
+                    { text: "Inspire deeper connection with crystal clear audio that carries every message prayer and song with precision." },
+                    { text: "Amplify sermons worship content and announcements with visual displays that strengthen engagement." },
+                    { text: "Use purposeful lighting to shape emotion highlight moments and elevate the worship atmosphere." },
+                    { text: "Reach members anywhere with seamless live streaming and broadcast ready systems." }
+                ]
+            },
+            {
+                title: "Our Services for Houses of Worship",
+                image: "/Church2.webp",
+                items: [
+                    { bold: "Audio Systems", text: "Purpose tuned sound designed for speech clarity and immersive worship experiences." },
+                    { bold: "Video and Projection", text: "Large format screens projectors and LED walls that enhance teaching and communication." },
+                    { bold: "Lighting Solutions", text: "Atmosphere shaping lighting that supports worship transitions and performances." },
+                    { bold: "Control and Automation", text: "One touch volunteer friendly control over audio video and lighting." },
+                    { bold: "Broadcast and Streaming", text: "Professional streaming setups for hybrid worship environments." }
+                ]
+            },
+            {
+                title: "Why Choose Spectra AVL",
+                image: "/worship.png",
+                items: [
+                    { text: "Deep experience designing acoustically optimized sanctuaries and worship spaces." },
+                    { text: "Custom solutions tailored to your congregation size architecture and worship style." },
+                    { text: "Premium equipment trusted globally for reliability clarity and long term performance." },
+                    { text: "Dedicated expert support ensuring flawless operation for every service." }
+                ]
+            }
+        ],
+        ctaHeadline: "Ready to Elevate Your Worship Experience",
+        ctaSubheadline: "Let our experts design an atmosphere that inspires every heart in the room.",
+        ctaButtonText: "Lets Discuss Your Next Project",
+        ctaButtonLink: "/contact"
+    },
+
+    {
+        id: "cafes-restaurants",
+        headlineText: "Create an Unforgettable Atmosphere for Your Guests",
+        subHeadlineText: "Use immersive audio dynamic lighting and captivating visual design to elevate every dining moment.",
+        link: "/contact",
+        buttonLabel: "Lets Discuss Your Next Project",
+        backgroundImage: "bg-[url(/unforgettable.png)]",
+        bodyContents: [
+            {
+                title: "Why Dining Spaces Need Professional AV Design",
+                image: "/restaurant.webp",
+                items: [
+                    { text: "Set the perfect mood with curated ambient sound and lighting that reflects your brand." },
+                    { text: "Ensure announcements promotions and live events sound clear and professional." },
+                    { text: "Use visual displays to enhance menus storytelling and guest engagement." },
+                    { text: "Centralize control of audio video and lighting for smooth daily operations." }
+                ]
+            },
+            {
+                title: "Our Services for Cafes and Restaurants",
+                image: "/restaurant2.webp",
+                items: [
+                    { bold: "Audio Systems", text: "Balanced sound for background music and live performances alike." },
+                    { bold: "Visual Displays", text: "Digital menus promotional screens and immersive visual storytelling." },
+                    { bold: "Lighting Design", text: "Scene based lighting for daytime evenings and special events." },
+                    { bold: "Control and Automation", text: "One touch control for seamless staff operation throughout the day." },
+                    { bold: "Event Support", text: "Professional AV for private events live music and presentations." }
+                ]
+            },
+            {
+                title: "Why Choose Spectra AV",
+                image: "/restaurant3.webp",
+                items: [
+                    { text: "Tailored AV design that aligns with your interior design brand identity and guest journey." },
+                    { text: "Premium equipment that ensures performance reliability and longevity." },
+                    { text: "Strong experience designing high end dining environments across hospitality." },
+                    { text: "Full collaboration from concept to installation tuning and ongoing support." }
+                ]
+            }
+        ],
+        ctaHeadline: "Ready to Transform Your Cafe or Restaurant",
+        ctaSubheadline: "Let us design a sensory atmosphere your guests will never forget.",
+        ctaButtonText: "Lets Discuss Your Next Project",
+        ctaButtonLink: "/contact"
+    },
+
+    {
+        id: "night-clubs-lounges",
+        headlineText: "Turn Up the Night with Stunning Sound and Lighting",
+        subHeadlineText: "Deliver an electrifying nightlife experience with powerful audio immersive lighting and captivating visuals.",
+        link: "/contact",
+        buttonLabel: "Lets Discuss Your Next Project",
+        backgroundImage: "bg-[url(/club.png)]",
+        bodyContents: [
+            {
+                title: "Why Night Clubs and Lounges Need Professional AV Design",
+                image: "/engineer.png",
+                items: [
+                    { text: "Deliver high impact audio that energizes guests without overwhelming the space." },
+                    { text: "Use dynamic lighting that responds to the music and strengthens the vibe." },
+                    { text: "Transform your space with LED visuals projection and immersive elements." },
+                    { text: "Give staff and DJs effortless centralized control for smooth operation." }
+                ]
+            },
+            {
+                title: "Our Services for Night Clubs and Lounges",
+                image: "/avl.png",
+                items: [
+                    { bold: "Audio Systems", text: "Powerful clean sound for dance floors lounges and VIP rooms." },
+                    { bold: "Lighting Solutions", text: "Intelligent lighting that evolves with the music and energy." },
+                    { bold: "Visual Systems", text: "LED walls screens and immersive visual designs." },
+                    { bold: "Control and Automation", text: "One unified system for lighting sound and visuals." },
+                    { bold: "Event Support", text: "Engineering for themed nights guest DJs and private parties." }
+                ]
+            },
+            {
+                title: "Why Choose Spectra AV",
+                image: "/avl.png",
+                items: [
+                    { text: "Proven expertise building high performance nightlife environments." },
+                    { text: "Designs that align with your brand entertainment style and crowd energy." },
+                    { text: "Premium equipment built for clarity power and durability." },
+                    { text: "Dedicated engineering support to ensure every night runs smoothly." }
+                ]
+            }
+        ],
+        ctaHeadline: "Ready to Elevate Your Night Club or Lounge",
+        ctaSubheadline: "Let us create an experience your guests will always remember.",
+        ctaButtonText: "Lets Discuss Your Next Project",
+        ctaButtonLink: "/contact"
+    },
+
+    {
+        id: "large-congregations",
+        headlineText: "Empower Every Voice Every Message Every Moment",
+        subHeadlineText: "Deliver clarity and emotional impact to thousands with professional audio video and lighting design.",
+        link: "/contact",
+        buttonLabel: "Request a Consultation",
+        backgroundImage: "bg-[url(/congregation.png)]",
+        bodyContents: [
+            {
+                title: "Why Large Congregations Need Advanced AV Systems",
+                image: "/clear.png",
+                items: [
+                    { text: "Deliver the same clarity and impact to every listener from the front row to the balcony." },
+                    { text: "Use large format visuals to bring the message closer to every attendee." },
+                    { text: "Enhance worship with lighting that guides emotion focus and atmosphere." },
+                    { text: "Build scalable systems that grow with your congregation and events." }
+                ]
+            },
+            {
+                title: "Our Services for Large Congregations",
+                image: "/light.png",
+                items: [
+                    { bold: "Audio Systems", text: "High power high fidelity sound for music speech and worship." },
+                    { bold: "LED and Projection", text: "Large scale screens for sermons lyrics and media." },
+                    { bold: "Lighting Systems", text: "Stage and ambient lighting that enhances worship flow." },
+                    { bold: "Control and Automation", text: "Centralized systems for volunteer and technical teams." },
+                    { bold: "Broadcast and Recording", text: "Professional streaming and recording systems." }
+                ]
+            },
+            {
+                title: "Why Choose Spectra AV",
+                image: "/no.png",
+                items: [
+                    { text: "Extensive experience with mega churches and large format worship spaces." },
+                    { text: "Custom acoustic and visual design tailored to your layout and style." },
+                    { text: "Premium equipment that delivers long term performance and reliability." },
+                    { text: "Full support for services events and special programs." }
+                ]
+            }
+        ],
+        ctaHeadline: "Ready to Scale Your Worship Experience",
+        ctaSubheadline: "Let us design a system capable of serving every member of your congregation.",
+        ctaButtonText: "Lets Discuss Your Next Project",
+        ctaButtonLink: "/contact"
+    },
+
+    {
+        id: "hotels-resorts",
+        headlineText: "Elevate Every Guest Experience with World Class AV and Lighting",
+        subHeadlineText: "Create immersive environments that leave a lasting impression throughout your hotel or resort.",
+        link: "/contact",
+        buttonLabel: "Lets Discuss Your Next Project",
+        backgroundImage: "bg-[url(/hotel.png)]",
+        bodyContents: [
+            {
+                title: "Why Hotels and Resorts Need Professional AV Design",
+                image: "/sit-up.png",
+                items: [
+                    { text: "Create memorable first impressions with intentional audio and lighting." },
+                    { text: "Support events conferences and weddings with production ready systems." },
+                    { text: "Use immersive visuals to enhance brand storytelling and ambience." },
+                    { text: "Improve staff efficiency with centralized control of AV and lighting." }
+                ]
+            },
+            {
+                title: "Our Services for Hotels and Resorts",
+                image: "/resorts.png",
+                items: [
+                    { bold: "Audio Systems", text: "Balanced ambient sound for guest areas lounges and restaurants." },
+                    { bold: "Visual Displays", text: "Screens LED walls and signage for branding and events." },
+                    { bold: "Lighting Solutions", text: "Elegant lighting that enhances architecture and guest comfort." },
+                    { bold: "Control and Automation", text: "One touch control for staff convenience and efficiency." },
+                    { bold: "Event Support", text: "Professional AV services for conferences celebrations and gatherings." }
+                ]
+            },
+            {
+                title: "Why Choose Spectra AV",
+                image: "/hotels.png",
+                items: [
+                    { text: "Strong experience designing AV for high end hotels and luxury resorts." },
+                    { text: "Custom solutions aligned with your brand architecture and guest goals." },
+                    { text: "Premium equipment ensuring reliable performance day and night." },
+                    { text: "Dedicated support teams ensuring flawless guest experiences." }
+                ]
+            }
+        ],
+        ctaHeadline: "Ready to Elevate Your Hotel or Resort",
+        ctaSubheadline: "Let us create immersive guest experiences across every space.",
+        ctaButtonText: "Lets Discuss Your Next Project",
+        ctaButtonLink: "/contact"
+    },
+
+    {
+        id: "auditoriums-concert-halls",
+        headlineText: "Deliver Performances with Power and Precision",
+        subHeadlineText: "Create world class audio visual and lighting environments for every performance.",
+        link: "/contact",
+        buttonLabel: "Lets Discuss Your Next Project",
+        backgroundImage: "bg-[url(/aud.png)]",
+        bodyContents: [
+            {
+                title: "Why Auditoriums and Concert Halls Need Professional AV",
+                image: "/blue_aud.png",
+                items: [
+                    { text: "Ensure unmatched clarity for orchestras speeches and live performances." },
+                    { text: "Use high definition visuals for immersive audience engagement." },
+                    { text: "Shape emotion with dynamic stage and architectural lighting." },
+                    { text: "Design scalable production ready systems for any event." }
+                ]
+            },
+            {
+                title: "Our Services for Auditoriums and Halls",
+                image: "/red.png",
+                items: [
+                    { bold: "Audio Systems", text: "High fidelity sound engineered for demanding performances." },
+                    { bold: "Projection and LED", text: "Large visual surfaces for presentations and media." },
+                    { bold: "Lighting Solutions", text: "Precision lighting for stages architecture and ambience." },
+                    { bold: "Control Systems", text: "Streamlined control for technical crews and productions." },
+                    { bold: "Event Support", text: "Engineering assistance for concerts conferences and shows." }
+                ]
+            },
+            {
+                title: "Why Choose Spectra AV",
+                image: "/ligh.png",
+                items: [
+                    { text: "Trusted by high profile venues and production houses." },
+                    { text: "Custom configurations based on acoustic modeling and venue layout." },
+                    { text: "Premium equipment chosen for reliability and performance." },
+                    { text: "Dedicated support for productions and touring events." }
+                ]
+            }
+        ],
+        ctaHeadline: "Ready to Upgrade Your Performance Venue",
+        ctaSubheadline: "Let us design a system that enhances every performance on your stage.",
+        ctaButtonText: "Lets Discuss Your Next Project",
+        ctaButtonLink: "/contact"
+    },
+
+    {
+        id: "concerts-live-events",
+        headlineText: "Make Every Event Unforgettable",
+        subHeadlineText: "Powerful sound immersive lighting and spectacular visuals built for impact.",
+        link: "/contact",
+        buttonLabel: "Lets Discuss Your Next Project",
+        backgroundImage: "bg-[url(/mon.png)]",
+        bodyContents: [
+            {
+                title: "Why Concerts and Live Events Need Advanced AV",
+                image: "/cons.png",
+                items: [
+                    { text: "Deliver powerful clean audio that reaches every attendee clearly." },
+                    { text: "Use dramatic lighting to shape energy and highlight performances." },
+                    { text: "Captivate audiences with large visual canvases and projection." },
+                    { text: "Build flexible systems suited for festivals indoor events and outdoor shows." }
+                ]
+            },
+            {
+                title: "Our Services for Live Events",
+                image: "/the.png",
+                items: [
+                    { bold: "Audio Systems", text: "High output systems for performers and audiences." },
+                    { bold: "Visual and Projection", text: "LED walls screens and projection for impactful visuals." },
+                    { bold: "Lighting Solutions", text: "Intelligent lighting for dynamic stage presence." },
+                    { bold: "Control Systems", text: "Unified control for audio lighting and visuals." },
+                    { bold: "Event Support", text: "Full production engineering streaming and technical support." }
+                ]
+            },
+            {
+                title: "Why Choose Spectra AV",
+                image: "/white.png",
+                items: [
+                    { text: "Extensive experience producing concerts festivals and live shows." },
+                    { text: "Custom solutions tailored to your event scale and audience." },
+                    { text: "Premium equipment built for demanding environments." },
+                    { text: "Experienced teams ensuring flawless execution every time." }
+                ]
+            }
+        ],
+        ctaHeadline: "Ready to Elevate Your Live Event",
+        ctaSubheadline: "Let us design an unforgettable experience for your audience.",
+        ctaButtonText: "Lets Discuss Your Next Project",
+        ctaButtonLink: "/contact"
+    }
+];
+
 
     const content = contents.find((content) => content.id === id);
 
@@ -551,7 +341,7 @@ const Application = () => {
     return (
         <>
             <Hero {...content} />
-            <Body/>
+            <Body contents={content.bodyContents} />
             <CallToAction
                 headline={content.ctaHeadline}
                 subheadline={content.ctaSubheadline}
