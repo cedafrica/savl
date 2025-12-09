@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 interface BodyItem {
   bold?: string;
@@ -15,22 +16,42 @@ interface BodyProps {
   contents?: BodySection[];
 }
 
+// Animation variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+};
+
+const fadeUpDelayed = {
+  hidden: { opacity: 0, y: 55 },
+  visible: { opacity: 1, y: 0, transition: { duration: 1.2 } },
+};
+
+const zoomIn = {
+  hidden: { opacity: 0, scale: 1.08 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 1.4 } },
+};
+
 const Body: React.FC<BodyProps> = ({ contents = [] }) => {
   return (
-    <section className="py-32 bg-[#f7f7f7]">
-      <div className="max-w-[95rem] mx-auto px-6 space-y-48">
+    <section className="py-20 sm:py-28 bg-[#f7f7f7]">
+      <div className="max-w-[95rem] mx-auto px-4 sm:px-6 space-y-40 sm:space-y-48">
 
         {contents.map((section, index) => (
-          <div key={index} className="relative">
+          <div key={index} className="relative flex flex-col items-center">
 
-            {/* CINEMATIC IMAGE */}
-            <div
+            {/* IMAGE */}
+            <motion.div
+              variants={zoomIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
               className="
                 w-full 
-                h-[420px] sm:h-[520px] lg:h-[620px]
-                rounded-[40px] 
+                h-[340px] sm:h-[420px] lg:h-[620px]
+                rounded-[28px] sm:rounded-[36px]
                 overflow-hidden 
-                shadow-[0_30px_90px_rgba(0,0,0,0.20)]
+                shadow-[0_20px_60px_rgba(0,0,0,0.15)]
               "
             >
               <img
@@ -39,44 +60,63 @@ const Body: React.FC<BodyProps> = ({ contents = [] }) => {
                 className="
                   w-full h-full object-cover 
                   transition-all duration-[1500ms]
-                  hover:scale-[1.06]
+                  hover:scale-[1.05]
                 "
               />
-            </div>
+            </motion.div>
 
-            {/* FLOATING GLASS CARD WITH CTA */}
-            <div
+            {/* TEXT CARD */}
+            <motion.div
+              variants={fadeUpDelayed}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
               className={`
-                absolute left-1/2 transform -translate-x-1/2
+                w-full 
+                sm:w-[85%] 
+                lg:w-[65%]
+
+                mt-10
+
+                lg:absolute 
+                lg:left-1/2 lg:-translate-x-1/2
                 ${index % 2 === 0 ? "lg:-bottom-20" : "lg:-bottom-24"}
-                -bottom-12
-                w-[92%] sm:w-[80%] lg:w-[65%]
+
                 bg-white/70 backdrop-blur-[16px]
-                rounded-[32px]
+                rounded-[24px] sm:rounded-[32px]
                 shadow-[0_12px_40px_rgba(0,0,0,0.15)]
-                p-10 sm:p-12 space-y-10
+                p-6 sm:p-10 lg:p-12
+                space-y-8 sm:space-y-10
               `}
             >
               {/* Title */}
-              <h2
+              <motion.h2
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 className="
-                  text-[2.8rem] sm:text-[3.4rem] lg:text-[3.8rem]
-                  font-semibold text-slate-900 
-                  tracking-tight leading-[1.15]
+                  text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem]
+                  font-semibold text-slate-900
+                  leading-[1.2] tracking-tight
                 "
               >
                 {section.title}
-              </h2>
+              </motion.h2>
 
-              {/* Apple-style storytelling paragraphs */}
-              <div className="space-y-6">
+              {/* Paragraphs */}
+              <div className="space-y-5 sm:space-y-6">
                 {section.items.map((itm, i) => (
-                  <p
+                  <motion.p
                     key={i}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.15 }}
                     className="
-                      text-[1.55rem] sm:text-[1.7rem] lg:text-[1.8rem]
+                      text-[1.35rem] sm:text-[1.55rem] lg:text-[1.7rem]
                       text-slate-700 leading-[1.65]
-                      max-w-[60ch]
                     "
                   >
                     {itm.bold && (
@@ -85,28 +125,32 @@ const Body: React.FC<BodyProps> = ({ contents = [] }) => {
                       </span>
                     )}
                     {itm.text}
-                  </p>
+                  </motion.p>
                 ))}
               </div>
 
-              {/* CTA */}
-              <div className="pt-4">
-                <button
-                  className="
-                    px-7 py-3.5
-                    rounded-full
-                    text-[1.5rem]
-                    font-medium
-                    bg-slate-900 text-white
-                    hover:bg-slate-800
-                    transition-all duration-300
-                    shadow-[0_8px_25px_rgba(0,0,0,0.15)]
-                  "
-                >
-                  Discuss This Project →
-                </button>
-              </div>
-            </div>
+              {/* CTA BUTTON */}
+              <motion.button
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                transition={{ duration: 1.2 }}
+                className="
+                  px-6 sm:px-7 py-3 sm:py-3.5
+                  rounded-full
+                  text-[1.35rem] sm:text-[1.45rem]
+                  font-medium
+                  bg-slate-900 text-white
+                  hover:bg-slate-800
+                  transition-all duration-300
+                  shadow-[0_6px_20px_rgba(0,0,0,0.15)]
+                "
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Discuss This Project →
+              </motion.button>
+            </motion.div>
 
           </div>
         ))}
