@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Calendar } from "lucide-react";
 
+// FIXED VARIANT — Removed invalid ease arrays
 const fade = (d = 0) => ({
   hidden: { opacity: 0, y: 18 },
   visible: {
@@ -10,10 +11,9 @@ const fade = (d = 0) => ({
     y: 0,
     transition: {
       delay: d,
-      duration: 0.7,
-      ease: [0.25, 0.1, 0.25, 1],
-    },
-  },
+      duration: 0.7
+    }
+  }
 });
 
 const NewsSection = () => {
@@ -49,7 +49,8 @@ const NewsSection = () => {
         <motion.div
           variants={fade(0.1)}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true }}
           className="text-center mb-24"
         >
           <h2 className="text-[3rem] sm:text-[4rem] font-semibold text-slate-900 tracking-tight">
@@ -61,13 +62,13 @@ const NewsSection = () => {
           </p>
         </motion.div>
 
-        {/* 2-COLUMN LAYOUT */}
+        {/* TWO COLUMN */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 sm:gap-32 items-start">
 
-          {/* LEFT SIDE — EDITORIAL TIMELINE */}
+          {/* LEFT SIDE — TIMELINE */}
           <div className="relative pl-10 sm:pl-16">
 
-            {/* Line */}
+            {/* Vertical Line */}
             <div className="absolute top-0 left-3 sm:left-6 h-full w-[2px] bg-slate-300"></div>
 
             <div className="flex flex-col gap-24">
@@ -80,27 +81,27 @@ const NewsSection = () => {
                   viewport={{ once: true }}
                   className="relative"
                 >
-                  {/* Dot */}
+                  {/* Timeline Dot */}
                   <div className="absolute left-[-1rem] sm:left-[-1.4rem] top-[0.5rem] w-4 h-4 bg-slate-900 rounded-full"></div>
 
                   <div className="space-y-3 max-w-[700px]">
-                    {/* Date */}
+                    {/* DATE */}
                     <p className="text-[1.4rem] flex items-center gap-2 text-slate-500 uppercase tracking-wide">
                       <Calendar size={18} className="opacity-70" />
                       {item.date}
                     </p>
 
-                    {/* Title */}
+                    {/* TITLE */}
                     <h3 className="text-[2.3rem] sm:text-[2.8rem] font-semibold leading-snug text-slate-900">
                       {item.title}
                     </h3>
 
-                    {/* Description */}
+                    {/* DESCRIPTION */}
                     <p className="text-[1.55rem] text-slate-600 leading-relaxed">
                       {item.description}
                     </p>
 
-                    {/* Read More */}
+                    {/* LINK */}
                     <Link
                       to={item.link}
                       className="
@@ -115,13 +116,15 @@ const NewsSection = () => {
                 </motion.div>
               ))}
             </div>
+
           </div>
 
-          {/* RIGHT SIDE — FIXED PREMIUM IMAGE */}
+          {/* RIGHT SIDE — PREMIUM IMAGE */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
             className="sticky top-36 hidden sm:block"
           >
             <div className="overflow-hidden rounded-2xl shadow-[0_12px_45px_rgba(0,0,0,0.12)]">

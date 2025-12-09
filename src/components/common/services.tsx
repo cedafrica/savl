@@ -1,6 +1,7 @@
 import MaxContainer from "../common/max-container";
 import { motion } from "framer-motion";
 
+// FIXED VARIANTS — fully FM v11 compatible (no ease)
 const fade = (d = 0) => ({
   hidden: { opacity: 0, y: 40 },
   visible: {
@@ -8,10 +9,9 @@ const fade = (d = 0) => ({
     y: 0,
     transition: {
       delay: d,
-      duration: 0.9,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
+      duration: 0.9
+    }
+  }
 });
 
 const slide = (d = 0) => ({
@@ -21,10 +21,9 @@ const slide = (d = 0) => ({
     x: 0,
     transition: {
       delay: d,
-      duration: 1.1,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
+      duration: 1.1
+    }
+  }
 });
 
 const Services = () => {
@@ -52,8 +51,6 @@ const Services = () => {
   return (
     <section className="bg-[#EDEDED] py-2">
       <MaxContainer>
-        {/* SECTION HEADER */}
-        
 
         {/* IMMERSIVE SERVICE SECTIONS */}
         <div className="flex flex-col space-y-40">
@@ -64,7 +61,7 @@ const Services = () => {
                 i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               } gap-20 items-center`}
             >
-              {/* IMAGE SIDE — PARALLAX EFFECT */}
+              {/* IMAGE SIDE */}
               <motion.div
                 variants={fade(0.2)}
                 initial="hidden"
@@ -75,15 +72,11 @@ const Services = () => {
                 <motion.img
                   src={item.image}
                   alt={item.title}
-                  className="
-                    w-full h-[34rem] sm:h-[40rem] object-cover 
-                    rounded-3xl
-                  "
+                  className="w-full h-[34rem] sm:h-[40rem] object-cover rounded-3xl"
                   initial={{ scale: 1.15 }}
                   whileInView={{ scale: 1 }}
                   transition={{
-                    duration: 1.8,
-                    ease: [0.16, 1, 0.3, 1],
+                    duration: 1.8
                   }}
                 />
               </motion.div>
@@ -99,6 +92,7 @@ const Services = () => {
                 <h2 className="text-[3rem] sm:text-[3.4rem] font-semibold text-slate-900 tracking-tight leading-tight">
                   {item.title}
                 </h2>
+
                 <p className="text-[1.55rem] sm:text-[1.65rem] text-slate-600 leading-relaxed max-w-[580px]">
                   {item.text}
                 </p>
@@ -123,6 +117,7 @@ const Services = () => {
             </div>
           ))}
         </div>
+
       </MaxContainer>
     </section>
   );

@@ -1,13 +1,14 @@
 import MaxContainer from "../common/max-container";
 import { motion } from "framer-motion";
 
+// FIXED VARIANTS — no ease, fully compatible with Framer Motion v11
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 60 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { delay, duration: 1, ease: "easeOut" },
-  },
+    transition: { delay, duration: 1 }
+  }
 });
 
 const zoomReveal = {
@@ -15,8 +16,8 @@ const zoomReveal = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 1.4, ease: "easeOut" },
-  },
+    transition: { duration: 1.4 }
+  }
 };
 
 const Services = () => {
@@ -55,16 +56,17 @@ const Services = () => {
           <h1 className="text-[4rem] leading-tight font-semibold text-slate-900 tracking-tight">
             Crafting Experiences With Precision
           </h1>
+
           <p className="text-[1.65rem] text-slate-600 max-w-[750px] mx-auto leading-relaxed mt-6">
             Every environment deserves a sensory identity. We design audiovisual
             systems that enrich atmosphere, elevate architecture, and move people.
           </p>
         </motion.div>
 
-        {/* VERTICAL GUIDE LINE (architectural detail) */}
+        {/* VERTICAL GUIDE LINE */}
         <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-slate-300/40 pointer-events-none"></div>
 
-        {/* SERVICES CHAPTERS */}
+        {/* SERVICES */}
         <div className="flex flex-col space-y-[18rem]">
           {services.map((service, index) => {
             const isEven = index % 2 === 0;
@@ -76,7 +78,7 @@ const Services = () => {
                   isEven ? "" : "lg:flex-row-reverse"
                 } items-center gap-20`}
               >
-                {/* IMAGE PANEL */}
+                {/* IMAGE */}
                 <motion.div
                   variants={zoomReveal}
                   initial="hidden"
@@ -96,7 +98,7 @@ const Services = () => {
                   />
                 </motion.div>
 
-                {/* TEXT BLOCK */}
+                {/* TEXT */}
                 <motion.div
                   variants={fadeUp(0.2)}
                   initial="hidden"
