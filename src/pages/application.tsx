@@ -551,7 +551,7 @@ const Application = () => {
     return (
         <>
             <Hero {...content} />
-            <Body contents={content.bodyContents} />
+            <Body/>
             <CallToAction
                 headline={content.ctaHeadline}
                 subheadline={content.ctaSubheadline}
