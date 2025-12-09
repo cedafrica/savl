@@ -152,7 +152,7 @@ const Projects = () => {
       flex-nowrap
       gap-3
       bg-[#0B0B0C] text-white
-      px-4 py-3
+      px-4 py-8
       rounded-xl
       whitespace-nowrap
       overflow-x-auto
@@ -165,7 +165,7 @@ const Projects = () => {
         key={cat.id}
         value={cat.id}
         className="
-          px-5 py-2
+          px-5 py-6
           text-[1.3rem]
           rounded-lg
           text-white
