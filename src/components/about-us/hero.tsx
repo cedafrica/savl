@@ -1,51 +1,72 @@
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-const fadeUp: any = {
+
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: (i = 1) => ({
-    opacity: 1,
+  visible: { 
+    opacity: 1, 
     y: 0,
-    transition: { delay: i * 0.3, duration: 0.8, ease: "easeOut" },
-  }),
+    transition: { 
+      duration: 0.9, 
+      ease: "easeOut" 
+    }
+  }
 };
 
 const Hero = () => {
   return (
-    <section className="flex bg-[url(/hero.png)] bg-cover bg-no-repeat sm:bg-fixed px-10 sm:px-32 flex-col justify-center text-white sm:h-[min(100vh,960px)] h-screen">
-      
-      <motion.h1
-        className="sm:text-[8.1rem] text-[3.2rem] font-bold"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeUp}
-        custom={1}
-      >
-        About Us
-      </motion.h1>
-      
-      <motion.p
-        className="sm:text-[2rem] text-[1.6rem] mt-4 max-w-200 w-full font-normal"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeUp}
-        custom={2}
-      >
-        Spectra AVL is Nigeria's premier provider of audiovisual, video, and lighting solutions, combining global partnerships with deep local market expertise.
-      </motion.p>
-      
-      <motion.img
-        src="/cedia.png"
-        alt="cedia"
-        className="sm:w-[19.6rem] mt-6 w-[14.1rem] sm:mt-8"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeUp}
-        custom={3}
-      />
-      
+    <section
+      className="
+        relative w-full h-screen 
+        flex flex-col justify-center
+        px-10 sm:px-32
+        bg-cover bg-center bg-no-repeat
+      "
+      style={{ backgroundImage: "url(/hero.png)" }}
+    >
+      {/* LUXURY OVERLAY */}
+      <div className="absolute inset-0 bg-black/45 sm:bg-black/55 backdrop-blur-[1px]" />
+
+      {/* CONTENT */}
+      <div className="relative z-10 max-w-[900px] space-y-8">
+
+        {/* TITLE */}
+        <motion.h1
+          className="font-bold text-white leading-[1.08]
+                     text-[3.4rem] sm:text-[7.2rem]"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+        >
+          About Us
+        </motion.h1>
+
+        {/* TEXT */}
+        <motion.p
+          className="
+            text-white/85 font-light leading-relaxed
+            text-[1.55rem] sm:text-[2rem] max-w-[55rem]
+          "
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+        >
+          Spectra AVL is Nigeria's premier provider of audiovisual, video, 
+          and lighting solutions, combining global partnerships with deep 
+          local market expertise.
+        </motion.p>
+
+        {/* LOGO */}
+        <motion.img
+          src="/cedia.png"
+          alt="CEDIA"
+          className="w-[14rem] sm:w-[20rem] opacity-95"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+        />
+      </div>
     </section>
   );
 };

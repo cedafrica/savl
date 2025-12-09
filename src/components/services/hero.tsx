@@ -1,54 +1,90 @@
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-const fadeUp: any = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 1) => ({
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.3, duration: 0.8, ease: "easeOut" },
-  }),
+    transition: { duration: 0.9, ease: "easeOut" }
+  },
 };
 
 const Hero = () => {
   return (
-    <section className="relative flex bg-[url('/uiu.webp')] bg-cover bg-no-repeat px-10 sm:px-32 flex-col justify-center text-white sm:h-[min(100vh,960px)] sm:bg-fixed h-screen">
-      
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/50 z-0"></div>
+    <section
+      className="
+        relative w-full h-screen
+        flex items-center
+        px-10 sm:px-32
+        bg-cover bg-center bg-no-repeat
+        overflow-hidden
+      "
+      style={{ backgroundImage: "url('/restaurant3.webp')" }}
+    >
 
-      {/* Content */}
-      <div className="relative z-10">
-        <motion.h1
-          className="sm:text-[6.1rem] text-[3.2rem] text-start font-bold"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={1}
-        >
-          Premium AV&nbsp;Solutions
-        </motion.h1>
+      {/* Cinematic Luxury Overlay */}
+      <div className="absolute inset-0 bg-black/55 sm:bg-black/60 backdrop-blur-[1px]" />
 
+      {/* Hero Content */}
+      <div className="relative z-10 max-w-[900px]">
+        
+        {/* Subheading */}
         <motion.p
-          className="sm:text-[1.8rem] text-[1.6rem] max-w-250 w-full font-normal mt-2 sm:mt-4"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
           variants={fadeUp}
-          custom={2}
+          initial="hidden"
+          animate="visible"
+          className="
+            text-white/70
+            tracking-[0.22em]
+            uppercase
+            text-[1.2rem] sm:text-[1.4rem]
+            mb-4
+          "
         >
-          Comprehensive audiovisual services backed by global partnerships and unmatched local expertise
+          Our Services
         </motion.p>
 
+        {/* Main Title */}
+        <motion.h1
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.1 }}
+          className="
+            text-white font-bold leading-[1.05]
+            text-[3.4rem] sm:text-[6.4rem]
+          "
+        >
+          Premium&nbsp;AV&nbsp;Solutions
+        </motion.h1>
+
+        {/* Description */}
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.2 }}
+          className="
+            text-white/85 mt-6
+            text-[1.45rem] sm:text-[1.9rem]
+            max-w-[55rem] leading-relaxed
+          "
+        >
+          Comprehensive audiovisual solutions powered by global technology
+          alliances and engineered for exceptional performance across modern
+          commercial environments.
+        </motion.p>
+
+        {/* Certification / Badge */}
         <motion.img
           src="/cedia.png"
-          alt="cedia"
-          className="sm:w-[19.6rem] w-[14.1rem] mt-4 sm:mt-8"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          alt="CEDIA"
           variants={fadeUp}
-          custom={3}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.3 }}
+          className="mt-10 sm:mt-14 w-[14rem] sm:w-[20rem] opacity-95"
         />
       </div>
     </section>

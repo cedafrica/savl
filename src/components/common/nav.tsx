@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 type NavChild = { label: string; link: string };
 type NavItem = { label: string; href?: string; type?: "dropdown"; children?: NavChild[] };
 
 const Nav: React.FC = () => {
   const [open, setOpen] = useState(false);
-  const [openApplication, setOpenApplication] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const NavItems: NavItem[] = [
@@ -33,79 +34,109 @@ const Nav: React.FC = () => {
     { label: "Contact", href: "/contact" },
   ];
 
-  // Navbar background on scroll
+  // Scroll detection for navbar styling
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock scroll when mobile menu is open
+  // Lock scrolling when mobile nav open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
   return (
     <>
-      {/* Navbar */}
-      <nav
-        className={`fixed top-0 left-0 w-full z-[9999] transition-all duration-500 ${
-          scrolled ? "bg-black/90 backdrop-blur-md shadow-lg" : "bg-black/60"
-        }`}
+      {/* NAVBAR */}
+      <motion.nav
+        className={`
+          fixed top-0 left-0 w-full z-[9999]
+          px-6 sm:px-14 
+          transition-all duration-500
+          ${scrolled
+            ? "bg-black/50 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
+            : "bg-black/20 backdrop-blur-[2px]"
+          }
+        `}
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <div className="max-w-[1500px] mx-auto px-8 sm:px-20 py-5 flex items-center justify-between relative">
-          {/* Logo */}
-          <Link to="/" className="block">
-            <img
+        <div className="max-w-[1500px] mx-auto flex justify-between items-center py-5">
+
+          {/* LOGO */}
+          <Link to="/" className="flex items-center">
+            <motion.img
               src="/spectra-logo.svg"
               alt="logo"
-              className="w-40 sm:w-56 transition-all duration-300 hover:scale-105"
+              className="w-40 sm:w-56"
+              animate={{ scale: scrolled ? 0.9 : 1 }}
+              transition={{ duration: 0.4 }}
             />
           </Link>
 
-          {/* Desktop Menu */}
-          <ul className="hidden sm:flex items-center gap-12 text-white tracking-wide">
+          {/* DESKTOP NAV */}
+          <ul className="hidden sm:flex items-center gap-12 text-white/90">
             {NavItems.map((item) =>
               item.type === "dropdown" ? (
                 <li key={item.label} className="relative">
-                  {/* Dropdown Button */}
                   <button
-                    onClick={() => setOpenApplication(!openApplication)}
-                    className="text-[1.5rem] font-medium flex items-center gap-2 hover:text-gray-300 transition duration-300"
+                    onClick={() => setOpenDropdown((prev) => !prev)}
+                    className="text-[1.45rem] font-medium flex items-center gap-2 hover:text-white transition"
                   >
                     {item.label}
                     <ChevronDown
-                      className={`w-5 h-5 transition-transform duration-300 ${
-                        openApplication ? "rotate-180" : ""
-                      }`}
+                      className={`w-4 h-4 transition-all ${openDropdown ? "rotate-180" : ""}`}
                     />
                   </button>
 
-                  {/* Full-width Dropdown with smooth left-to-right animation */}
-                  <div
-                    className={`fixed top-[80px] left-0 w-screen bg-white text-black shadow-xl z-[9998] transform scale-x-0 origin-left transition-transform duration-500 ease-out ${
-                      openApplication ? "scale-x-100" : ""
-                    }`}
-                  >
-                    <div className="max-w-[1500px] mx-auto flex justify-start gap-10 px-10 py-6">
-                      {item.children?.map((child) => (
-                        <Link
-                          key={child.link}
-                          to={child.link}
-                          className="text-[1.4rem] font-semibold hover:text-gray-700 transition-colors duration-300 whitespace-nowrap"
-                          onClick={() => setOpenApplication(false)}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                  {/* DROPDOWN PANEL */}
+                  <AnimatePresence>
+                    {openDropdown && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className="
+                          absolute left-0 top-full mt-4 
+                          w-[26rem]
+                          bg-white/90 backdrop-blur-xl 
+                          rounded-xl shadow-xl 
+                          border border-slate-200/40 
+                          overflow-hidden 
+                          p-4 space-y-2
+                        "
+                      >
+                        {item.children?.map((child) => (
+                          <Link
+                            key={child.link}
+                            to={child.link}
+                            className="
+                              block px-3 py-2 
+                              text-[1.4rem] font-semibold 
+                              text-slate-700 hover:text-black
+                              hover:bg-black/5
+                              rounded-md transition
+                            "
+                            onClick={() => setOpenDropdown(false)}
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </li>
               ) : (
                 <li key={item.label}>
                   <Link
                     to={item.href ?? "#"}
-                    className="text-[1.5rem] font-medium hover:text-gray-300 transition duration-300"
+                    className="
+                      text-[1.45rem] font-medium
+                      hover:text-white transition
+                    "
                   >
                     {item.label}
                   </Link>
@@ -114,93 +145,88 @@ const Nav: React.FC = () => {
             )}
           </ul>
 
-          {/* Mobile Hamburger */}
+          {/* MOBILE HAMBURGER */}
           <button
-            onClick={() => setOpen(!open)}
-            className="sm:hidden z-[10001] relative w-10 h-10 flex flex-col justify-between items-center"
+            onClick={() => setOpen(true)}
+            className="sm:hidden flex flex-col gap-1.5 w-9"
           >
-            <span
-              className={`h-[3px] w-full bg-white block transition-all duration-300 ${
-                open ? "rotate-45 translate-y-2.5" : ""
-              }`}
-            />
-            <span
-              className={`h-[3px] w-full bg-white block transition-all duration-300 ${
-                open ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`h-[3px] w-full bg-white block transition-all duration-300 ${
-                open ? "-rotate-45 -translate-y-2.5" : ""
-              }`}
-            />
+            <span className="w-full h-[3px] bg-white block rounded"></span>
+            <span className="w-full h-[3px] bg-white block rounded"></span>
+            <span className="w-full h-[3px] bg-white block rounded"></span>
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Mobile Fullscreen Menu */}
-      <div
-        className={`sm:hidden fixed top-0 left-0 w-full h-full z-[10000] bg-black/95 backdrop-blur-md transform transition-transform duration-300 ${
-          open ? "translate-x-0" : "-translate-x-full"
-        } flex flex-col`}
-      >
-        {/* X Button */}
-        <button
-          onClick={() => setOpen(false)}
-          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center z-[10001]"
-        >
-          <span className="text-white text-3xl font-bold">&times;</span>
-        </button>
+      {/* MOBILE MENU */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.4 }}
+            className="
+              fixed inset-0 z-[99999]
+              bg-black/95 backdrop-blur-xl 
+              flex flex-col pt-32 px-10
+            "
+          >
+            {/* Close */}
+            <button onClick={() => setOpen(false)} className="absolute top-10 right-10 text-white text-4xl">
+              &times;
+            </button>
 
-        <div className="px-8 pt-32 flex flex-col gap-8 text-white text-2xl">
-          {NavItems.map((item) => (
-            <div key={item.label} className="flex flex-col">
-              {item.type === "dropdown" ? (
-                <>
-                  <button
-                    onClick={() => setOpenApplication(!openApplication)}
-                    className="flex justify-between items-center font-semibold w-full py-2 hover:text-gray-300 transition duration-300"
+            <div className="flex flex-col gap-8 text-white text-3xl">
+              {NavItems.map((item) =>
+                item.type === "dropdown" ? (
+                  <div key={item.label}>
+                    <button
+                      onClick={() => setOpenDropdown((o) => !o)}
+                      className="flex justify-between items-center w-full font-semibold text-[2rem]"
+                    >
+                      {item.label}
+                      <ChevronDown
+                        className={`transition ${openDropdown ? "rotate-180" : ""}`}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {openDropdown && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="mt-3 ml-3 flex flex-col gap-3"
+                        >
+                          {item.children?.map((child) => (
+                            <Link
+                              key={child.link}
+                              to={child.link}
+                              className="text-white/70 text-[1.7rem] hover:text-white"
+                              onClick={() => setOpen(false)}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    key={item.label}
+                    to={item.href ?? "#"}
+                    className="font-semibold text-[2rem] hover:text-white"
+                    onClick={() => setOpen(false)}
                   >
                     {item.label}
-                    <ChevronDown
-                      className={`w-6 h-6 transition-transform ${
-                        openApplication ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ml-2 ${
-                      openApplication ? "max-h-96 mt-2" : "max-h-0"
-                    }`}
-                  >
-                    <div className="flex flex-col gap-2">
-                      {item.children?.map((child) => (
-                        <Link
-                          key={child.link}
-                          to={child.link}
-                          className="text-white/80 hover:text-white py-1 transition duration-200"
-                          onClick={() => setOpen(false)}
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <Link
-                  to={item.href ?? "#"}
-                  className="py-2 font-semibold hover:text-gray-300 transition duration-300"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                  </Link>
+                )
               )}
             </div>
-          ))}
-        </div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

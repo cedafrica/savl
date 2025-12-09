@@ -1,114 +1,147 @@
+import { useState } from "react";
 import MaxContainer from "../common/max-container";
-import { Button } from "../ui/button";
-import { useRef, useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import type { CarouselApi } from "@/components/ui/carousel";
+import { motion, AnimatePresence } from "framer-motion";
+import { Volume2, Video, Lightbulb } from "lucide-react";
+
+type Category = "Audio" | "Video" | "Lighting";
 
 const TrustedByLeaders = () => {
-  const carouselApiRef = useRef<CarouselApi>(undefined);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
+  const categories: Category[] = ["Audio", "Video", "Lighting"];
+  const [active, setActive] = useState<Category>("Audio");
 
-  const scrollPrev = () => carouselApiRef.current?.scrollPrev();
-  const scrollNext = () => carouselApiRef.current?.scrollNext();
-
-  const updateButtonStates = () => {
-    const api = carouselApiRef.current;
-    if (!api) return;
-    setCanScrollPrev(api.canScrollPrev());
-    setCanScrollNext(api.canScrollNext());
+  const partners: Record<Category, { img: string; name: string }[]> = {
+    Audio: [
+      { img: "/ma.png", name: "MA Lighting" },
+      { img: "/crestron.png", name: "Crestron Audio" },
+      { img: "/infiled.png", name: "Infiled Audio Tech" },
+    ],
+    Video: [
+      { img: "/infiled.png", name: "INFILED LED" },
+      { img: "/lgpro.png", name: "LG Pro Display" },
+      { img: "/crestron.png", name: "Crestron Video Systems" },
+    ],
+    Lighting: [
+      { img: "/ma.png", name: "MA Lighting Control" },
+      { img: "/lgpro.png", name: "LG Stage Lighting" },
+    ],
   };
 
-  useEffect(() => {
-    const api = carouselApiRef.current;
-    if (!api) return;
-
-    updateButtonStates();
-    api.on("select", updateButtonStates);
-
-    const autoplay = setInterval(() => {
-      if (api.canScrollNext()) api.scrollNext();
-      else api.scrollTo(0);
-    }, 3000);
-
-    return () => {
-      clearInterval(autoplay);
-      api.off("select", updateButtonStates);
-    };
-  }, []);
-
-  const leaders = [
-    { image: "/ma.png", description: "MA Lighting is a leading provider of professional lighting control solutions." },
-    { image: "/crestron.png", description: "Crestron is a global leader in automation and control solutions." },
-    { image: "/infiled.png", description: "INFILED specializes in high-quality LED display solutions for events and installations." },
-    { image: "/infiled.png", description: "INFILED specializes in high-quality LED display solutions for events and installations." },
-  ];
+  const icons = {
+    Audio: <Volume2 className="w-5 h-5" />,
+    Video: <Video className="w-5 h-5" />,
+    Lighting: <Lightbulb className="w-5 h-5" />,
+  };
 
   return (
-    <section className="sm:px-32 px-6 sm:pt-32 pt-16">
-      {/* Heading */}
-      <div className="text-center space-y-4">
-        <h2 className="sm:text-[3.8rem] text-[2.8rem] font-semibold text-black">
-          Trusted by Industry Leaders
-        </h2>
-        <p className="sm:text-[2rem] text-[1.6rem] max-w-[47.1rem] mx-auto text-center">
-          We partner with the world's most respected audiovisual brands
-        </p>
-      </div>
+    <section className="py-28 bg-gradient-to-b from-[#f3f3f4] to-[#f5f5f5]">
+      <MaxContainer>
+        
+        {/* CENTERED BLOCK */}
+        <div className="w-full flex justify-center">
+          <div className="w-full max-w-[900px] flex flex-col items-center">
 
-      {/* Carousel */}
-      <MaxContainer className="sm:mt-20 mt-12">
-        <Carousel
-          className="w-full"
-          setApi={(api) => {
-            carouselApiRef.current = api;
-            if (api) updateButtonStates();
-          }}
-          opts={{ align: "start", loop: true }}
-        >
-          <CarouselContent className="w-full">
-            {leaders.map((item, index) => (
-              <CarouselItem key={index} className="sm:basis-1/3">
-                <div className="flex flex-col items-center text-center px-6 sm:px-8 py-8 sm:py-12 bg-[#F5F5F5] rounded-xl min-h-[28rem]">
-                  {/* Logo centered */}
-                  <div className="flex justify-center items-center w-70 h-32 sm:h-40 mb-6 sm:mb-8">
-                    <img
-                      src={item.image}
-                      alt="logo"
-                      className="max-h-full max-w-full object-contain"
+            {/* Heading */}
+            <div className="text-center mb-20">
+              <h2 className="text-[3rem] sm:text-[3.8rem] font-semibold text-slate-900 tracking-tight">
+                Technology Partners
+              </h2>
+              <p className="text-[1.6rem] sm:text-[1.9rem] text-slate-600 max-w-[48rem] mx-auto mt-4 leading-relaxed">
+                Brands we trust to power world-class audio, video & lighting experiences.
+              </p>
+            </div>
+
+            {/* TABS */}
+            <div
+              className="
+                bg-white/50 backdrop-blur-xl 
+                border border-white/70 
+                rounded-full px-4 py-3 
+                shadow-[0_10px_28px_rgba(0,0,0,0.06)]
+                flex items-center justify-center gap-2 sm:gap-4
+              "
+            >
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActive(cat)}
+                  className={`
+                    relative flex items-center gap-2 px-6 py-2
+                    rounded-full font-medium transition-all
+                    text-[1.4rem] sm:text-[1.6rem]
+                    ${active === cat ? "text-black" : "text-slate-600"}
+                  `}
+                >
+                  {icons[cat]}
+                  {cat}
+
+                  {active === cat && (
+                    <motion.div
+                      layoutId="tabHighlight"
+                      className="absolute inset-0 bg-white rounded-full -z-10 shadow"
+                      transition={{
+                        type: "spring",
+                        stiffness: 350,
+                        damping: 25
+                      }}
                     />
-                  </div>
-                  {/* Description */}
-                  <p className="sm:text-[1.8rem] text-[1.6rem] text-center flex-1">
-                    {item.description}
-                  </p>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
-      </MaxContainer>
+                  )}
+                </button>
+              ))}
+            </div>
 
-      {/* Navigation Buttons */}
-      <div className="flex justify-center mt-8 sm:mt-12 gap-4 sm:gap-6">
-        <Button
-          variant="outline"
-          className="rounded-full sm:w-14 sm:h-14 w-12 h-12 border-black disabled:opacity-50 disabled:cursor-not-allowed"
-          onClick={scrollPrev}
-          disabled={!canScrollPrev}
-        >
-          <ArrowLeft className="sm:w-6 sm:h-6 w-5 h-5" />
-        </Button>
-        <Button
-          variant="outline"
-          className="rounded-full sm:w-14 sm:h-14 w-12 h-12 border-black disabled:opacity-50 disabled:cursor-not-allowed"
-          onClick={scrollNext}
-          disabled={!canScrollNext}
-        >
-          <ArrowRight className="sm:w-6 sm:h-6 w-5 h-5" />
-        </Button>
-      </div>
+            {/* GRID */}
+            <div className="mt-20 w-full flex justify-center">
+              <div className="w-full max-w-[780px]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active}
+                    initial={{ opacity: 0, y: 25 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -25 }}
+                    transition={{ duration: 0.45 }}
+                    className="
+                      grid grid-cols-2 sm:grid-cols-3
+                      gap-12 sm:gap-14 justify-items-center
+                    "
+                  >
+                    {partners[active].map((brand, i) => (
+                      <motion.div
+                        key={brand.name}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.15, duration: 0.45 }}
+                        className="
+                          bg-white/60 backdrop-blur-xl border border-white/60
+                          rounded-xl py-10 px-6
+                          flex flex-col items-center justify-center text-center
+                          shadow-[0_8px_25px_rgba(0,0,0,0.05)]
+                          hover:shadow-[0_12px_35px_rgba(0,0,0,0.10)]
+                          hover:-translate-y-1 transition-all duration-500
+                          w-full
+                        "
+                      >
+                        <img
+                          src={brand.img}
+                          className="
+                            h-12 sm:h-14 object-contain 
+                            grayscale group-hover:grayscale-0
+                            opacity-70 hover:opacity-100 transition-all duration-500
+                          "
+                        />
+
+                        <p className="mt-4 text-[1.35rem] sm:text-[1.45rem] text-slate-700 opacity-70 hover:opacity-100 transition">
+                          {brand.name}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </MaxContainer>
     </section>
   );
 };

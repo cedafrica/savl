@@ -12,7 +12,7 @@ const Application = () => {
             id: "house-of-worship",
             headlineText: "Transform Your Worship Experience with Cutting-Edge AV & Lighting",
             subHeadlineText: "Engage your congregation like never before with immersive sound, crystal-clear visuals, and inspiring lighting.",
-            link: "./contact",
+            link: "/contact",
             buttonLabel: "Let's Discuss Your Next Project",
             backgroundImage: "bg-[url(/Church.webp)]",
             bodyContents: [

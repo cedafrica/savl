@@ -1,64 +1,130 @@
 import MaxContainer from "../common/max-container";
 import { motion } from "framer-motion";
 
+const fade = (d = 0) => ({
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: d,
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+});
+
+const slide = (d = 0) => ({
+  hidden: { opacity: 0, x: 80 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: d,
+      duration: 1.1,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+});
+
 const Services = () => {
-  const Solutions = [
+  const data = [
     {
-      name: "Video & Projection",
-      text: "From large-scale LED walls to ultra-high-definition projection, we deliver stunning visual experiences that captivate audiences and enhance engagement.",
-      image: "/video_projection.png",
+      title: "Audio Architecture",
+      text:
+        "We design audio as an architectural layer — shaping space, mood, and experience with precision-calibrated sound fields engineered for luxury environments.",
+      image: "/aud.webp",
     },
     {
-      name: "Audio Systems",
-      text: "Our expertly tuned sound systems bring unparalleled clarity to worship halls, stadiums, and event venues, ensuring every voice and note is heard as intended.",
-      image: "/audio_system.png",
+      title: "Visual Experiences",
+      text:
+        "Ultra-high-definition LED walls and projection canvases crafted to complement architecture. Our systems transform hospitality and commercial spaces into immersive visual stories.",
+      image: "/the.png",
     },
     {
-      name: "Lighting Solutions",
-      text: "Lighting is more than illumination—it’s an experience. Our intelligent lighting solutions set the mood, enhance performances, and create unforgettable atmospheres.",
+      title: "Lighting Design",
+      text:
+        "Light that sculpts atmosphere. Our integrative lighting ecosystems merge function and emotion — elevating how guests feel, move, and connect within the space.",
       image: "/lightning_solution.png",
     },
   ];
 
   return (
-    <MaxContainer className="w-full">
-      {Solutions.map((solution, index) => {
-        const isEven = (index + 1) % 2 === 0;
-        const delay = index * 0.3;
+    <section className="bg-[#EDEDED] py-2">
+      <MaxContainer>
+        {/* SECTION HEADER */}
+        
 
-        return (
-          <div
-            key={index}
-            className="grid w-full gap-[2.1rem] sm:gap-0 sm:grid-cols-2 items-center my-16"
-          >
-            {/* Image first on mobile */}
-            <motion.img
-              src={solution.image}
-              alt={solution.name}
-              className={`${isEven ? "sm:order-1 order-1" : "sm:order-2 order-1"}`}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: delay + 0.15, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-              viewport={{ once: true }}
-            />
-
-            {/* Text */}
-            <motion.div
-              className={`self-center max-w-220 ${isEven ? "sm:order-2 sm:pl-16 order-2" : "sm:order-1 sm:pl-32 order-2"}`}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-              viewport={{ once: true }}
+        {/* IMMERSIVE SERVICE SECTIONS */}
+        <div className="flex flex-col space-y-40">
+          {data.map((item, i) => (
+            <div
+              key={i}
+              className={`flex flex-col ${
+                i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              } gap-20 items-center`}
             >
-              <h2 className="sm:text-[6.2rem] mt-[2.1rem] sm:mt-0 text-[2.4rem] font-semibold sm:font-bold sm:leading-[120%]">
-                {solution.name}
-              </h2>
-              <p className="sm:text-[1.8rem] text-[1.6rem] mt-2 sm:mt-[2.8rem]">{solution.text}</p>
-            </motion.div>
-          </div>
-        );
-      })}
-    </MaxContainer>
+              {/* IMAGE SIDE — PARALLAX EFFECT */}
+              <motion.div
+                variants={fade(0.2)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="relative w-full lg:w-[55%] overflow-hidden rounded-3xl"
+              >
+                <motion.img
+                  src={item.image}
+                  alt={item.title}
+                  className="
+                    w-full h-[34rem] sm:h-[40rem] object-cover 
+                    rounded-3xl
+                  "
+                  initial={{ scale: 1.15 }}
+                  whileInView={{ scale: 1 }}
+                  transition={{
+                    duration: 1.8,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                />
+              </motion.div>
+
+              {/* TEXT SIDE */}
+              <motion.div
+                variants={slide(0.3)}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="w-full lg:w-[45%] space-y-6"
+              >
+                <h2 className="text-[3rem] sm:text-[3.4rem] font-semibold text-slate-900 tracking-tight leading-tight">
+                  {item.title}
+                </h2>
+                <p className="text-[1.55rem] sm:text-[1.65rem] text-slate-600 leading-relaxed max-w-[580px]">
+                  {item.text}
+                </p>
+
+                <button
+                  className="
+                    mt-6 inline-flex items-center
+                    text-[1.45rem] font-medium
+                    text-slate-900
+                    border border-slate-300
+                    px-6 py-3 rounded-full
+                    transition-all duration-300
+                    hover:bg-slate-900 hover:text-white hover:border-slate-900
+                  "
+                >
+                  Discuss Your Project
+                  <span className="ml-2 text-[1.9rem] translate-y-[1px]">
+                    →
+                  </span>
+                </button>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+      </MaxContainer>
+    </section>
   );
 };
 

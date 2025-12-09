@@ -1,124 +1,141 @@
 import MaxContainer from "../common/max-container";
-import type { BodyContent } from "@/types"; // or wherever you store types
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
-interface BodyProps {
-  contents: BodyContent[];
-}
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { delay, duration: 1, ease: "easeOut" },
+  },
+});
 
-const Body = ({ contents }: BodyProps) => {
-  const sectionRefs = useRef<HTMLDivElement[]>([]);
+const zoomReveal = {
+  hidden: { opacity: 0, scale: 1.15 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1.4, ease: "easeOut" },
+  },
+};
 
-  useEffect(() => {
-    sectionRefs.current.forEach((el) => {
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-            observer.unobserve(el);
-          }
-        },
-        { threshold: 0.2 }
-      );
-      observer.observe(el);
-    });
-  }, []);
+const Services = () => {
+  const services = [
+    {
+      title: "Audio Architecture",
+      text:
+        "We engineer audio environments that blend into the architectural narrative—creating rich tonal spaces calibrated for intimacy, clarity, and emotional depth.",
+      image: "/aud.webp",
+    },
+    {
+      title: "Visual Immersion",
+      text:
+        "From LED walls to projection landscapes, our visual systems elevate ambience, storytelling, and commercial presentation into immersive sensory moments.",
+      image: "/the.png",
+    },
+    {
+      title: "Atmospheric Lighting",
+      text:
+        "Lighting is emotion. We sculpt ambience, highlight architecture, and enhance the human experience through refined, programmable lighting ecosystems.",
+      image: "/lightning_solution.png",
+    },
+  ];
 
   return (
-    <section className="relative sm:px-32 sm:py-28 py-20 px-10 overflow-hidden bg-white">
-      <MaxContainer className="flex flex-col gap-32 max-w-[1400px] mx-auto">
-        {contents.map((content, index) => (
-          <div
-            key={index}
-            ref={(el) => {
-              if (el) sectionRefs.current[index] = el;
-            }}
-            className={`flex flex-col sm:flex-row items-center gap-12 opacity-0 transform translate-y-8 ${
-              index % 2 ? "sm:flex-row-reverse" : ""
-            }`}
-          >
-            {/* IMAGE */}
-            <div className="relative w-full sm:w-[45%] overflow-hidden shadow-[0_6px_16px_rgba(0,0,0,0.18)] group">
-              <img
-                src={content.image}
-                alt=""
-                className="w-full h-auto object-cover transform transition-transform duration-700 ease-out hover:scale-105"
-              />
-            </div>
+    <section className="bg-[#F7F7F7] py-32 relative">
+      <MaxContainer>
+        {/* TOP HEADING */}
+        <motion.div
+          variants={fadeUp(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-center mb-40"
+        >
+          <h1 className="text-[4rem] leading-tight font-semibold text-slate-900 tracking-tight">
+            Crafting Experiences With Precision
+          </h1>
+          <p className="text-[1.65rem] text-slate-600 max-w-[750px] mx-auto leading-relaxed mt-6">
+            Every environment deserves a sensory identity. We design audiovisual
+            systems that enrich atmosphere, elevate architecture, and move people.
+          </p>
+        </motion.div>
 
-            {/* TEXT */}
-            <div className="sm:w-[55%] flex flex-col gap-6">
-              {/* Title */}
-              <h2 className="text-[1.8rem] sm:text-[2rem] lg:text-[2.2rem] font-medium leading-snug text-black">
-                {content.title}
-              </h2>
+        {/* VERTICAL GUIDE LINE (architectural detail) */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-slate-300/40 pointer-events-none"></div>
 
-              {/* Feature items */}
-              <div className="flex flex-col gap-4">
-                {content.items.map((item, itemIndex) => (
-                  <div
-                    key={itemIndex}
-                    className="flex items-start gap-4 opacity-0 transform translate-y-6"
-                    style={{
-                      transition: `opacity 0.8s ease ${
-                        itemIndex * 150
-                      }ms, transform 0.8s ease ${itemIndex * 150}ms`,
-                    }}
-                    ref={(el) => {
-                      if (el) {
-                        const observer = new IntersectionObserver(
-                          ([entry]) => {
-                            if (entry.isIntersecting) {
-                              el.style.opacity = "1";
-                              el.style.transform = "translateY(0)";
-                              observer.unobserve(el);
-                            }
-                          },
-                          { threshold: 0.2 }
-                        );
-                        observer.observe(el);
-                      }
-                    }}
+        {/* SERVICES CHAPTERS */}
+        <div className="flex flex-col space-y-[18rem]">
+          {services.map((service, index) => {
+            const isEven = index % 2 === 0;
+
+            return (
+              <div
+                key={index}
+                className={`relative flex flex-col lg:flex-row ${
+                  isEven ? "" : "lg:flex-row-reverse"
+                } items-center gap-20`}
+              >
+                {/* IMAGE PANEL */}
+                <motion.div
+                  variants={zoomReveal}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="
+                    w-full lg:w-1/2 
+                    h-[38rem] sm:h-[46rem] 
+                    overflow-hidden rounded-[36px] 
+                    shadow-[0_20px_60px_rgba(0,0,0,0.09)]
+                  "
+                >
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+
+                {/* TEXT BLOCK */}
+                <motion.div
+                  variants={fadeUp(0.2)}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className={`
+                    w-full lg:w-1/2 
+                    space-y-6 
+                    ${isEven ? "text-left pr-10" : "text-left lg:pl-10"}
+                  `}
+                >
+                  <h2 className="text-[3.2rem] leading-tight font-semibold text-slate-900">
+                    {service.title}
+                  </h2>
+
+                  <p className="text-[1.55rem] text-slate-600 leading-relaxed max-w-[600px]">
+                    {service.text}
+                  </p>
+
+                  <button
+                    className="
+                      inline-flex items-center
+                      text-[1.45rem] font-medium
+                      border border-slate-300
+                      px-6 py-3 rounded-full
+                      hover:bg-slate-900 hover:text-white transition-all duration-300
+                      mt-6
+                    "
                   >
-                    {/* Gradient Arrow */}
-                    <div className="flex-shrink-0 mt-1">
-                      <svg
-                        className="w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1"
-                        viewBox="0 0 24 24"
-                        fill="url(#arrowGradient)"
-                      >
-                        <defs>
-                          <linearGradient
-                            id="arrowGradient"
-                            x1="0"
-                            y1="0"
-                            x2="1"
-                            y2="1"
-                          >
-                            <stop offset="0%" stopColor="black" />
-                            <stop offset="100%" stopColor="silver" />
-                          </linearGradient>
-                        </defs>
-                        <path d="M5 12h14m0 0l-4-4m4 4l-4 4" stroke="url(#arrowGradient)" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-
-                    <p className="text-[1.5rem] sm:text-[1.6rem] leading-snug text-black">
-                      {item.bold && <span className="font-semibold">{item.bold}: </span>}
-                      {item.text}
-                    </p>
-                  </div>
-                ))}
+                    Discuss Your Project →
+                  </button>
+                </motion.div>
               </div>
-            </div>
-          </div>
-        ))}
+            );
+          })}
+        </div>
       </MaxContainer>
     </section>
   );
 };
 
-export default Body;
+export default Services;

@@ -2,187 +2,202 @@ import { useState } from "react";
 import MaxContainer from "../common/max-container";
 import { Button } from "../ui/button";
 import { MoveRight, ArrowRight, ArrowLeft } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Hero = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-const slides = [
-  {
-    caption: "SPACES WE TRANSFORM",
-    title: "Welcome to Spectra AVL",
-    description: "World-class audio, video, and lighting that elevate every environment.",
-    maxWidth: "max-w-300",
-    ctaText: "Explore Our Services",
-    ctaLink: "/services"
-  },
-  {
-    caption: "HOUSES OF WORSHIP",
-    title: "Where Every Word Feels Divine.",
-    description: "Immersive AVL that deepens worship.",
-    maxWidth: "max-w-300",
-    ctaText: "Explore Houses of Worship",
-    ctaLink: "/application/house-of-worship"
-  },
-  {
-    caption: "CAFÉS & RESTAURANTS",
-    title: "Design the Mood. Elevate Every Moment.",
-    description: "Atmosphere that keeps guests connected.",
-    maxWidth: "max-w-300",
-    ctaText: "Explore Cafes & Restaurants",
-    ctaLink: "/application/cafes-restaurants"
-  },
-  {
-    caption: "NIGHTCLUBS & LOUNGES",
-    title: "Energy You Can Feel.",
-    description: "High-impact AVL that brings the night to life.",
-    maxWidth: "max-w-300",
-    ctaText: "Explore Nihtclubs & Lounges",
-    ctaLink: "/application/night-clubs-lounges"
-  },
-  {
-    caption: "LARGE CONGREGATIONS",
-    title: "Clarity That Unites Thousands.",
-    description: "Powerful AVL that carries every message.",
-    maxWidth: "max-w-300",
-    ctaText: "Explore Large Congregations",
-    ctaLink: "/application/large-congregations"
-  },
-  {
-    caption: "HOTELS & RESORTS",
-    title: "Luxury Experiences, Seamlessly Delivered.",
-    description: "Elegant AVL that enhances every guest moment.",
-    maxWidth: "max-w-300",
-    ctaText: "Explore Hotels & Resorts",
-    ctaLink: "/application/hotels-resorts"
-  },
-  {
-    caption: "AUDITORIUMS & CONCERT HALLS",
-    title: "Pure Performance for Every Seat.",
-    description: "Precision sound and lighting for perfect acoustics.",
-    maxWidth: "max-w-300",
-    ctaText: "Explore",
-    ctaLink: "/application/auditoriums-concert-halls"
-  },
-  {
-    caption: "CONCERTS & LIVE EVENTS",
-    title: "Power the Moment. Move the Crowd.",
-    description: "Concert-grade AVL for unforgettable experiences.",
-    maxWidth: "max-w-300",
-    ctaText: "Explore",
-    ctaLink: "/application/concerts-live-events"
-  }
-];
+  const slides = [
+    {
+      caption: "SPACES WE TRANSFORM",
+      title: "Welcome to Spectra AVL",
+      description: "World-class audio, video, and lighting engineered to transform every environment.",
+      ctaText: "Explore Our Services",
+      ctaLink: "/services"
+    },
+    {
+      caption: "HOUSES OF WORSHIP",
+      title: "Where Every Word Feels Divine.",
+      description: "Immersive AVL that deepens worship.",
+      ctaText: "Explore Houses of Worship",
+      ctaLink: "/application/house-of-worship"
+    },
+    {
+      caption: "CAFÉS & RESTAURANTS",
+      title: "Design the Mood. Elevate Every Moment.",
+      description: "Atmosphere that keeps guests connected.",
+      ctaText: "Explore Cafes & Restaurants",
+      ctaLink: "/application/cafes-restaurants"
+    },
+    {
+      caption: "NIGHTCLUBS & LOUNGES",
+      name: "NIGHTCLUBS & LOUNGES",
+      title: "Energy You Can Feel.",
+      description: "High-impact AVL that brings the night to life.",
+      ctaText: "Explore Nightclubs & Lounges",
+      ctaLink: "/application/night-clubs-lounges"
+    },
+    {
+      caption: "LARGE CONGREGATIONS",
+      title: "Clarity That Unites Thousands.",
+      description: "Powerful AVL that carries every message.",
+      ctaText: "Explore Large Congregations",
+      ctaLink: "/application/large-congregations"
+    },
+    {
+      caption: "HOTELS & RESORTS",
+      title: "Luxury Experiences, Seamlessly Delivered.",
+      description: "Elegant AVL that enhances every guest moment.",
+      ctaText: "Explore Hotels & Resorts",
+      ctaLink: "/application/hotels-resorts"
+    },
+    {
+      caption: "AUDITORIUMS & CONCERT HALLS",
+      title: "Pure Performance for Every Seat.",
+      description: "Precision sound and lighting for perfect acoustics.",
+      ctaText: "Explore",
+      ctaLink: "/application/auditoriums-concert-halls"
+    },
+    {
+      caption: "CONCERTS & LIVE EVENTS",
+      title: "Power the Moment. Move the Crowd.",
+      description: "Concert-grade AVL for unforgettable experiences.",
+      ctaText: "Explore",
+      ctaLink: "/application/concerts-live-events"
+    }
+  ];
 
+  const nextSlide = () => setCurrentSlide((p) => (p === slides.length - 1 ? 0 : p + 1));
+  const prevSlide = () => setCurrentSlide((p) => (p === 0 ? slides.length - 1 : p - 1));
 
-
-    const scrollPrev = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-      setTimeout(() => setIsAnimating(false), 500);
-    }, 300);
-  };
-
-  const scrollNext = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setTimeout(() => {
-      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-      setTimeout(() => setIsAnimating(false), 500);
-    }, 300);
-  };
-
-  const currentSlideData = slides[currentSlide];
+  const slide = slides[currentSlide];
 
   return (
-    <section className="relative bg-[#000000] min-h-screen flex items-center sm:items-end overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 w-full h-full">
+    <section className="relative min-h-screen flex items-center bg-black overflow-hidden">
+
+      {/* PREMIUM VIDEO BACKGROUND */}
+      <div className="absolute inset-0">
         <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-60"
+          autoPlay loop muted playsInline
+          className="w-full h-full object-cover brightness-[0.55] contrast-[1.1]"
         >
           <source src="./bgv.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
-        <div className="absolute inset-0 bg-black/40"></div>
+
+        {/* Glass gradient overlay */}
+        <div className="
+          absolute inset-0 
+          bg-gradient-to-b from-black/40 via-black/55 to-black/85
+          backdrop-blur-[2px]
+        "></div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full px-10 sm:px-32 py-12 sm:py-32 flex flex-col justify-center">
-        <MaxContainer className="flex flex-col">
-          <div
-            className={`${currentSlideData.maxWidth} w-full transition-opacity duration-300 ${
-              isAnimating ? "opacity-0" : "opacity-100"
-            }`}
+      {/* CONTENT */}
+      <MaxContainer className="relative z-20 w-full pt-32 pb-20 px-10 sm:px-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -25 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-[65rem]"
           >
-            {currentSlideData.caption && (
-              <p className="text-white/60 tracking-[0.2em] text-[1.2rem] sm:text-[1.6rem] mb-6 uppercase">
-                {currentSlideData.caption}
-              </p>
+            {/* CAPTION */}
+            {slide.caption && (
+              <motion.p
+                className="text-white/60 tracking-[0.25em] text-[1.2rem] sm:text-[1.6rem] mb-6 uppercase"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                {slide.caption}
+              </motion.p>
             )}
 
-            <h1 className="text-white text-[3.2rem] sm:text-[4.2rem] leading-[120%] font-bold mb-6">
-              {currentSlideData.title}
-            </h1>
+            {/* TITLE */}
+            <motion.h1
+              className="text-white text-[3.4rem] sm:text-[5rem] font-bold leading-[110%] mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              {slide.title}
+            </motion.h1>
 
-            <p className="text-white/60 sm:w-[90%] text-[1.4rem] sm:text-[2rem] mb-6">
-              {currentSlideData.description}
-            </p>
+            {/* DESCRIPTION */}
+            <motion.p
+              className="text-white/70 text-[1.4rem] sm:text-[2rem] leading-relaxed mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {slide.description}
+            </motion.p>
 
-            <a href={currentSlideData.ctaLink}>
-  <Button
-    className="
-  sm:text-[1.6rem] text-[1.4rem]
-  px-12 py-9 sm:px-16 sm:py-9
-  rounded-[3rem]
-  border border-white
-  bg-transparent
-  text-white
-  font-semibold
-  shadow-lg
-  transition-all duration-500 ease-in-out
-  hover:bg-white hover:text-black hover:scale-105
-  flex items-center gap-3
-"
+            {/* CTA BUTTON */}
+            <motion.a
+              href={slide.ctaLink}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.45 }}
+            >
+              <Button className="
+                px-14 py-7 rounded-full
+                text-[1.45rem] sm:text-[1.7rem]
+                font-semibold
+                border border-white/50
+                bg-white/10 text-white
+                backdrop-blur-md
+                hover:bg-white hover:text-black
+                hover:shadow-[0_10px_45px_rgba(255,255,255,0.25)]
+                transition-all duration-500
+                flex items-center gap-3
+              ">
+                {slide.ctaText}
+                <MoveRight className="size-[1.9rem]" />
+              </Button>
+            </motion.a>
 
-  >
-    {currentSlideData.ctaText}
-    <MoveRight className="size-[1.9rem]" />
-  </Button>
-</a>
-
-            <img
+            {/* CEDIA BADGE */}
+            <motion.img
               src="/cedia.png"
               alt="CEDIA"
-              className="sm:mt-12 mt-8 sm:w-[22.6rem] w-[15.1rem] h-auto"
+              className="w-[13rem] sm:w-[20rem] mt-10 opacity-80"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 0.9, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.55 }}
             />
-          </div>
+          </motion.div>
+        </AnimatePresence>
 
-          <div className="flex w-fit ml-auto mt-8 sm:mt-12 gap-[1.6rem]">
-            <Button
-              variant="outline"
-              className="rounded-full cursor-pointer bg-transparent border-white hover:[&_svg]:text-black hover:bg-white size-[3.8rem] sm:size-[5.8rem]"
-              onClick={scrollPrev}
-            >
-              <ArrowLeft className="sm:size-[1.4rem] size-[1.4rem] text-white" />
-            </Button>
+        {/* NAV BUTTONS */}
+        <div className="flex gap-5 mt-12">
+          <button
+            onClick={prevSlide}
+            className="
+              w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 
+              flex items-center justify-center 
+              hover:bg-white hover:text-black
+              transition-all duration-300
+            "
+          >
+            <ArrowLeft className="text-white" />
+          </button>
 
-            <Button
-              variant="outline"
-              className="rounded-full cursor-pointer hover:[&_svg]:text-black hover:bg-white bg-transparent border-white size-[3.8rem] sm:size-[5.8rem]"
-              onClick={scrollNext}
-            >
-              <ArrowRight className="sm:size-[1.4rem] size-[1.4rem] text-white" />
-            </Button>
-          </div>
-        </MaxContainer>
-      </div>
+          <button
+            onClick={nextSlide}
+            className="
+              w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 
+              flex items-center justify-center 
+              hover:bg-white hover:text-black
+              transition-all duration-300
+            "
+          >
+            <ArrowRight className="text-white" />
+          </button>
+        </div>
+      </MaxContainer>
     </section>
   );
 };

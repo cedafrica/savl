@@ -1,100 +1,147 @@
 import MaxContainer from "../common/max-container";
-import { UserRound, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Button } from "../ui/button";
+import { Calendar } from "lucide-react";
 
-const ReadTheLatestNews = () => {
+const fade = (d = 0) => ({
+  hidden: { opacity: 0, y: 18 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: d,
+      duration: 0.7,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+});
+
+const NewsSection = () => {
   const News = [
     {
-      image: "/restaurant2.webp",
-      name: "Stephen",
-      date: "January 27th, 2025",
+      date: "January 27, 2025",
+      title: "Spectra AVL Secures Partnership with INFILED",
       description:
-        "We are proud to announce that Infiled has entrusted us as their official partner for LED installation.",
-      title: "Spectra AVL Secures Partnership with Infiled for LED Installation",
+        "A milestone collaboration reinforcing our position as leaders in LED engineering and visual technology.",
       link: "#",
     },
     {
-      image: "/Church.webp",
-      name: "Stephen",
-      date: "January 27th, 2025",
-      title: "Spectra AVL X Audio Technology",
+      date: "January 27, 2025",
+      title: "Engineering Immersive Worship Experiences",
       description:
-        "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
+        "How we design acoustically powerful, emotionally resonant worship environments for thousands.",
       link: "#",
     },
     {
-      image: "/restaurant.webp",
-      name: "Stephen",
-      date: "January 27th, 2025",
-      title: "Spectra AVL X Audio Technology",
+      date: "January 27, 2025",
+      title: "Inside Spectra AVL’s Hospitality Experience Workflow",
       description:
-        "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
+        "A curated look at our premium audio-video-lighting philosophy for restaurants and lounges.",
       link: "#",
     },
   ];
 
   return (
-    <section className="sm:pt-28 sm:pb-32 pb-20 px-10 sm:px-32 bg-white">
-      {/* Heading */}
-      <div className="text-center space-y-4">
-        <h2 className="text-[2.6rem] sm:text-[4rem] font-semibold tracking-tight text-black">
-          Read The Latest News
-        </h2>
-        <p className="text-[1.8rem] sm:text-[2rem] text-black/70 max-w-[50rem] mx-auto">
-          Stay informed with insights, trends, and top stories shaping the industry today.
-        </p>
-      </div>
+    <section className="py-28 sm:py-40 bg-[#F5F5F5]">
+      <MaxContainer>
 
-      {/* News Cards */}
-      <MaxContainer className="grid sm:grid-cols-3 gap-12 mt-20">
-        {News.map((item, index) => (
-          <div
-            key={index}
-            className="group max-w-160 w-full rounded-2xl overflow-hidden bg-white shadow-[0px_10px_40px_rgba(0,0,0,0.06)] hover:shadow-[0px_20px_50px_rgba(0,0,0,0.10)] transition-all duration-500"
-          >
-            <div className="overflow-hidden">
-              <img
-                src={item.image}
-                alt="news"
-                className="w-full h-auto group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
+        {/* HEADER */}
+        <motion.div
+          variants={fade(0.1)}
+          initial="hidden"
+          animate="visible"
+          className="text-center mb-24"
+        >
+          <h2 className="text-[3rem] sm:text-[4rem] font-semibold text-slate-900 tracking-tight">
+            Latest Insights
+          </h2>
+          <p className="text-[1.55rem] sm:text-[1.8rem] text-slate-600 max-w-[55rem] mx-auto mt-4 leading-relaxed">
+            A curated collection of engineering stories, thought pieces, and
+            updates from Spectra AVL.
+          </p>
+        </motion.div>
 
-            <div className="sm:p-10 p-6 bg-[#FAFAFA] space-y-6">
-              <div className="flex items-center justify-between text-black/60 text-[1.5rem]">
-                <p className="flex items-center gap-2">
-                  <UserRound size={18} />
-                  {item.name}
-                </p>
+        {/* 2-COLUMN LAYOUT */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 sm:gap-32 items-start">
 
-                <p className="flex items-center gap-2">
-                  <Calendar size={18} />
-                  {item.date}
-                </p>
-              </div>
+          {/* LEFT SIDE — EDITORIAL TIMELINE */}
+          <div className="relative pl-10 sm:pl-16">
 
-              <h3 className="text-[1.9rem] sm:text-[2.2rem] font-semibold leading-tight text-black group-hover:text-neutral-800 transition-colors duration-300">
-                {item.title}
-              </h3>
+            {/* Line */}
+            <div className="absolute top-0 left-3 sm:left-6 h-full w-[2px] bg-slate-300"></div>
 
-              <p className="text-[1.6rem] sm:text-[1.8rem] text-black/70 leading-relaxed">
-                {item.description}
-              </p>
+            <div className="flex flex-col gap-24">
+              {News.map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={fade(0.15 + index * 0.15)}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="relative"
+                >
+                  {/* Dot */}
+                  <div className="absolute left-[-1rem] sm:left-[-1.4rem] top-[0.5rem] w-4 h-4 bg-slate-900 rounded-full"></div>
 
-              <Button
-                asChild
-                variant="ghost"
-                className="ml-auto mt-4 w-fit text-[1.6rem] font-medium text-black hover:text-neutral-900 transition-colors"
-              >
-                <Link to={item.link}>Read More →</Link>
-              </Button>
+                  <div className="space-y-3 max-w-[700px]">
+                    {/* Date */}
+                    <p className="text-[1.4rem] flex items-center gap-2 text-slate-500 uppercase tracking-wide">
+                      <Calendar size={18} className="opacity-70" />
+                      {item.date}
+                    </p>
+
+                    {/* Title */}
+                    <h3 className="text-[2.3rem] sm:text-[2.8rem] font-semibold leading-snug text-slate-900">
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-[1.55rem] text-slate-600 leading-relaxed">
+                      {item.description}
+                    </p>
+
+                    {/* Read More */}
+                    <Link
+                      to={item.link}
+                      className="
+                        text-[1.55rem] font-medium text-slate-900
+                        inline-flex items-center gap-2 pt-1
+                        hover:translate-x-1 transition-all duration-300
+                      "
+                    >
+                      Read More →
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
-        ))}
+
+          {/* RIGHT SIDE — FIXED PREMIUM IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="sticky top-36 hidden sm:block"
+          >
+            <div className="overflow-hidden rounded-2xl shadow-[0_12px_45px_rgba(0,0,0,0.12)]">
+              <img
+                src="/restaurant2.webp"
+                alt="Editorial Visual"
+                className="
+                  w-full h-[580px] object-cover
+                  transition-all duration-[1400ms]
+                  hover:scale-[1.04]
+                "
+              />
+            </div>
+          </motion.div>
+
+        </div>
+
       </MaxContainer>
     </section>
   );
 };
 
-export default ReadTheLatestNews;
+export default NewsSection;
