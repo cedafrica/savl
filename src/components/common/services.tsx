@@ -29,21 +29,21 @@ const slide = (d = 0) => ({
 const Services = () => {
   const data = [
     {
-      title: "Audio Architecture",
+      title: "Audio",
       text:
-        "We design audio as an architectural layer — shaping space, mood, and experience with precision-calibrated sound fields engineered for luxury environments.",
+        "Our expertly tuned sound systems bring unparalleled clarity to worship halls, stadiums, and event venues, ensuring every voice and note is heard as intended.",
+      image: "/li.webp",
+    },
+    {
+      title: "Video",
+      text:
+        "From large-scale LED walls to ultra-high-definition projection, we deliver stunning visual experiences that captivate audiences and enhance engagement.",
       image: "/aud.webp",
     },
     {
-      title: "Visual Experiences",
+      title: "Lighting",
       text:
-        "Ultra-high-definition LED walls and projection canvases crafted to complement architecture. Our systems transform hospitality and commercial spaces into immersive visual stories.",
-      image: "/the.png",
-    },
-    {
-      title: "Lighting Design",
-      text:
-        "Light that sculpts atmosphere. Our integrative lighting ecosystems merge function and emotion — elevating how guests feel, move, and connect within the space.",
+        "Lighting is more than illumination—it’s an experience. Our intelligent lighting solutions set the mood, enhance performances, and create unforgettable atmospheres.",
       image: "/lightning_solution.png",
     },
   ];

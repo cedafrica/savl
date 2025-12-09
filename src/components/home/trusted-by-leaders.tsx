@@ -11,18 +11,29 @@ const TrustedByLeaders = () => {
 
   const partners: Record<Category, { img: string; name: string }[]> = {
     Audio: [
-      { img: "/ma.png", name: "MA Lighting" },
-      { img: "/crestron.png", name: "Crestron Audio" },
-      { img: "/infiled.png", name: "Infiled Audio Tech" },
+      { img: "/ma.png", name: "MA Lighting is a leading provider of professional lighting control solutions, renowned for its grandMA consoles and innovative stage light technology" },
+      { img: "/shure.png", name: "Leading manufacturer of microphones for live, touring and studio applications." },
+      { img: "/christie.png", name: "Christie is a global audio visual solutions company. They create innovative AV solutions and display products that inspire exceptional experiences." },
+      { img: "/L-Acoustics.png", name: "L-Acoustics sets the benchmark for the concert sound system and professional sound system innovations; redefining the future of audio." },
+        { img: "/avpro.png", name: "AVPro is an electronics manufacture of AVPro Edge & Murideo. They manufacture cutting edge Audio Video distribution & testing equipment, specializing in high bandwidth signal flow." },
+        { img: "/jbl.png", name: "JBL is an American audio equipment manufacturer headquartered in Los Angeles, California. The company was founded in 1946" },
+ 
     ],
     Video: [
-      { img: "/infiled.png", name: "INFILED LED" },
-      { img: "/lgpro.png", name: "LG Pro Display" },
-      { img: "/crestron.png", name: "Crestron Video Systems" },
+      { img: "/infiled.png", name: "INFILED specializes in high quality LED display solutions, offering innovative screens for events, retail, broadcasting, and large-scale installations" },
+      { img: "/unilumin.png", name: "Leading LED display manufacturer and supplier offering innovative solutions for indoor and outdoor applications" },
+      
+      { img: "/christie.png", name: "Christie is a global audio visual solutions company. They create innovative AV solutions and display products that inspire exceptional experiences." },
+      { img: "/avpro.png", name: "AVPro is an electronics manufacture of AVPro Edge & Murideo. They manufacture cutting edge Audio Video distribution & testing equipment, specializing in high bandwidth signal flow." },
+       { img: "/samsung.png", name: "Samsung is a global technology powerhouse known for cutting-edge displays, consumer electronics, and professional visual solutions for businesses." },
+       { img: "/si.png", name: "Screen Innovations (SI) designs innovative projection screens and shades, delivering immersive viewing experiences in homes, offices, and cinemas." },
+   
+      { img: "/barco.png", name: "Barco NV is a Belgian technology company that specializes in digital projection and imaging technology, focusing on three core markets: entertainment, enterprise, and healthcare" },
     ],
     Lighting: [
-      { img: "/ma.png", name: "MA Lighting Control" },
-      { img: "/lgpro.png", name: "LG Stage Lighting" },
+      { img: "/ma.png", name: "MA Lighting is a leading provider of professional lighting control solutions, renowned for its grandMA consoles and innovative stage light technology" },
+      { img: "/crestron.png", name: "Crestron is a global leader in automation and control solutions, delivering advanced technologies for smart homes, offices, and AV Integration." },
+     
     ],
   };
 
@@ -43,10 +54,10 @@ const TrustedByLeaders = () => {
             {/* Heading */}
             <div className="text-center mb-20">
               <h2 className="text-[3rem] sm:text-[3.8rem] font-semibold text-slate-900 tracking-tight">
-                Technology Partners
+                Strategic Partners & Subsidiaries
               </h2>
               <p className="text-[1.6rem] sm:text-[1.9rem] text-slate-600 max-w-[48rem] mx-auto mt-4 leading-relaxed">
-                Brands we trust to power world-class audio, video & lighting experiences.
+               Our commitment to excellence is reinforced through key partnerships
               </p>
             </div>
 

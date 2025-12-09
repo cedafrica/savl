@@ -31,47 +31,58 @@ const Content = () => {
             title: "All",
             value: "all",
             content: [
-                "/infiled.svg",
-                "/cci.svg",
-                "/bargo.svg",
-                "/avpro.svg",
-                "/sr.svg",
-                "/samsung.svg",
-                "/christic.svg"
+                "/ma.png",
+                "/shure.png",
+                "/christie.png",
+                "/L-Acoustics.png",
+                "/avpro.png",
+                "/jbl.png",
+                "/infiled.png",
+                "/samsung.png",
+                "/si.png",
+                 "/barco.png",
+                 "/crestron.png",
+                "/unilumin.png"
             ]
         },
         {
             title: "Video",
             value: "Video",
             content: [
-                "/infiled.svg",
-                "/cci.svg",
-                "/bargo.svg",
-                "/avpro.svg",
-                "/sr.svg",
-                "/samsung.svg",
-                "/christic.svg"
+               
+                
+                "/christie.png",
+               
+                "/avpro.png",
+               
+                "/infiled.png",
+                "/samsung.png",
+                "/si.png",
+                 "/barco.png",
+              
+                "/unilumin.png"
             ]
         },
         {
             title: "Audio",
             value: "Audio",
             content: [
-                "/infiled.svg",
-                "/cci.svg",
-                "/bargo.svg",
-                "/avpro.svg",
-                "/sr.svg",
+               "/ma.png",
+                "/shure.png",
+                "/christie.png",
+                "/L-Acoustics.png",
+                "/avpro.png",
+                "/jbl.png"
             ]
         },
         {
             title: "Lighting",
             value: "Lighting",
             content: [
-                "/infiled.svg",
-                "/cci.svg",
-                "/samsung.svg",
-                "/christic.svg"
+                "/ma.png",
+               
+                 "/crestron.png"
+                
             ]
         },
     ];

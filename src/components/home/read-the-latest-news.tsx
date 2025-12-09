@@ -20,23 +20,23 @@ const NewsSection = () => {
   const News = [
     {
       date: "January 27, 2025",
-      title: "Spectra AVL Secures Partnership with INFILED",
+      title: "Spectra AVL Secures Partnership with Infiled for LED Installation",
       description:
-        "A milestone collaboration reinforcing our position as leaders in LED engineering and visual technology.",
+        "We are proud to announce that Infiled has entrusted us as their official partner for LED installation.",
       link: "#",
     },
     {
       date: "January 27, 2025",
-      title: "Engineering Immersive Worship Experiences",
+      title: "Spectra AVL X Audio Technology",
       description:
-        "How we design acoustically powerful, emotionally resonant worship environments for thousands.",
+        "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
       link: "#",
     },
     {
       date: "January 27, 2025",
-      title: "Inside Spectra AVL’s Hospitality Experience Workflow",
+      title: "Booth Night Club, South Africa Trust Spectra for Immersive Sound Experience",
       description:
-        "A curated look at our premium audio-video-lighting philosophy for restaurants and lounges.",
+        "The new Booth Night Club & Kilala Restaurant & Lounge in Pretoria will set the new standard to Sound Experience in the SA entertainment industry.",
       link: "#",
     },
   ];
