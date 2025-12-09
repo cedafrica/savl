@@ -144,38 +144,42 @@ const Projects = () => {
         {/* Tabs root */}
         <Tabs defaultValue={categories[0].id} className="w-full">
           {/* ---------- MOBILE TAB BAR (HORIZONTAL SCROLL) ---------- */}
-          <div className="sm:hidden mb-6">
-            <TabsList
-              className="
-                flex flex-nowrap
-                overflow-x-auto overflow-y-hidden
-                gap-3
-                bg-[#0B0B0C] text-white
-                px-4 py-3
-                rounded-xl
-                whitespace-nowrap
-              "
-            >
-              {categories.map((cat) => (
-                <TabsTrigger
-                  key={cat.id}
-                  value={cat.id}
-                  className="
-                    px-5 py-2
-                    text-[1.3rem]
-                    rounded-lg
-                    flex-shrink-0
-                    whitespace-nowrap
-                    border border-white/20
-                    data-[state=active]:bg-white data-[state=active]:text-black
-                    text-white
-                  "
-                >
-                  {cat.label}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </div>
+          {/* MOBILE TAB LIST CONTAINER (REQUIRED FOR SCROLL) */}
+<div className="sm:hidden mb-6 w-full overflow-x-auto overflow-y-visible">
+  <TabsList
+    className="
+      inline-flex
+      flex-nowrap
+      gap-3
+      bg-[#0B0B0C] text-white
+      px-4 py-3
+      rounded-xl
+      whitespace-nowrap
+      overflow-x-auto
+      scrollbar-none
+      w-max
+    "
+  >
+    {categories.map((cat) => (
+      <TabsTrigger
+        key={cat.id}
+        value={cat.id}
+        className="
+          px-5 py-2
+          text-[1.3rem]
+          rounded-lg
+          text-white
+          flex-shrink-0
+          border border-white/20
+          whitespace-nowrap
+          data-[state=active]:bg-white data-[state=active]:text-black
+        "
+      >
+        {cat.label}
+      </TabsTrigger>
+    ))}
+  </TabsList>
+</div>
 
           {/* ---------- DESKTOP SPLIT LAYOUT ---------- */}
           <div className="hidden sm:flex flex-row w-full rounded-3xl border border-black/5 overflow-hidden bg-[#0B0B0C]">
