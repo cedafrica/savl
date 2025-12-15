@@ -30,3 +30,134 @@ body {
 ::-webkit-scrollbar {
   width: 0rem;
 }
+/* ===============================
+   PREMIUM ARTICLE STYLES (WIDE)
+================================ */
+
+.article-content {
+  width: 100%;
+  max-width: 100%;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* HEADINGS */
+
+.article-content h1 {
+  font-size: 3rem;
+  line-height: 1.15;
+  font-weight: 700;
+  margin: 5rem 0 2rem;
+  color: #111;
+}
+
+.article-content h2 {
+  font-size: 2.2rem;
+  line-height: 1.25;
+  font-weight: 600;
+  margin: 4rem 0 1.5rem;
+  color: #111;
+}
+
+.article-content h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 3.5rem 0 1.2rem;
+  color: #222;
+}
+
+.article-content h4 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 3rem 0 1rem;
+  color: #333;
+}
+
+/* PARAGRAPHS */
+
+.article-content p {
+  font-size: 1.25rem;       /* ⬅ bigger */
+  line-height: 1.85;
+  margin-bottom: 2rem;
+  color: #444;
+  max-width: 100%;          /* ⬅ no artificial slimming */
+}
+
+/* LISTS */
+
+.article-content ul {
+  margin: 2.5rem 0;
+  padding-left: 1.8rem;
+}
+
+.article-content li {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+  color: #444;
+  list-style-type: disc;
+}
+
+/* IMAGES */
+
+.article-content img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 16px;
+  margin: 4rem auto;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
+}
+
+/* IMAGE CAPTIONS */
+
+.article-content img + em {
+  display: block;
+  text-align: center;
+  font-size: 1rem;
+  color: #777;
+  margin-top: -3rem;
+  margin-bottom: 4rem;
+}
+
+/* SECTIONS */
+
+.article-content section {
+  margin-bottom: 5rem;
+}
+
+/* DIVIDER */
+
+.article-content hr {
+  border: none;
+  height: 1px;
+  background: #e6e6e6;
+  margin: 5rem 0;
+}
+
+/* QUOTES */
+
+.article-content blockquote {
+  margin: 4rem 0;
+  padding-left: 2rem;
+  border-left: 4px solid #000;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* MOBILE OPTIMIZATION */
+
+@media (max-width: 768px) {
+  .article-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .article-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .article-content p,
+  .article-content li {
+    font-size: 1.1rem;
+  }
+}

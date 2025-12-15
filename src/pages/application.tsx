@@ -25,6 +25,7 @@ const Application = () => {
                     { text: "Use purposeful lighting to shape emotion highlight moments and elevate the worship atmosphere." },
                     { text: "Reach members anywhere with seamless live streaming and broadcast ready systems." }
                 ]
+                
             },
             {
                 title: "Our Services for Houses of Worship",

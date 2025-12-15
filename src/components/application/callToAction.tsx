@@ -18,32 +18,29 @@ const CallToAction = ({
     <section className="bg-black text-white py-20 sm:py-32 px-6 sm:px-16 lg:px-32">
       <MaxContainer>
         <div className="w-full text-center">
-          {/* Headline */}
           <h2 className="w-full text-[2.2rem] sm:text-[3rem] lg:text-[3.5rem] font-bold mb-6 leading-tight">
             {headline}
           </h2>
 
-          {/* Subheadline */}
           <p className="text-[1.4rem] sm:text-[1.8rem] lg:text-[2rem] mb-10 text-white/80">
             {subheadline}
           </p>
 
-          {/* Button */}
           <CustomButton
             link={buttonLink}
             className="
-              px-5 py-5 sm:py-6 lg:py-7
-              text-sm sm:text-base lg:text-base
-              font-semibold
+              px-10 sm:px-12 lg:px-14
+              py-6 sm:py-7 lg:py-8
+              text-base sm:text-lg
+              font-semibold tracking-wide
               bg-transparent
               text-white
               rounded-full
-              border border-white/30
+              border-2 border-white/40
               transition-all duration-300
               hover:scale-105
-              hover:shadow-[0_14px_40px_rgba(255,165,0,0.6)]
-              hover:bg-gradient-to-r hover:from-orange-500 hover:to-yellow-400
-              hover:text-black
+              hover:bg-gradient-to-r hover:from-silver-500 hover:to-black-400
+              hover:text-gray-200
             "
           >
             {buttonText}

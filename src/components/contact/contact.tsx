@@ -30,53 +30,82 @@ const ContactForm = () => {
           </motion.div>
 
           <motion.form
-            action=""
-            className="flex sm:w-[50%] flex-col gap-8"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-between">
-              <Input
-                className="h-30 border-black pl-8 border rounded-4xl placeholder:text-[1.4rem]"
-                placeholder="Enter Full Name"
-              />
-              <Input
-                className="h-30 border-black pl-8 border rounded-4xl placeholder:text-[1.4rem]"
-                placeholder="Enter Email"
-              />
-            </div>
+  action="mailto:adediranstephen2000@gmail.com"
+  method="POST"
+  encType="text/plain"
+  className="flex sm:w-[50%] flex-col gap-8"
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+>
+  {/* NAME + EMAIL */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+    <Input
+      name="Full Name"
+      required
+      className="h-30 border-black pl-8 border rounded-4xl placeholder:text-[1.4rem]"
+      placeholder="Enter Full Name"
+    />
 
-            <Input
-              className="h-30 border-black pl-8 border rounded-4xl placeholder:text-[1.4rem]"
-              placeholder="Enter Phone"
-            />
+    <Input
+      name="Email"
+      type="email"
+      required
+      className="h-30 border-black pl-8 border rounded-4xl placeholder:text-[1.4rem]"
+      placeholder="Enter Email"
+    />
+  </div>
 
-            <Textarea
-              rows={4}
-              className="h-80 pt-8 border-black pl-8 border rounded-4xl placeholder:text-[1.4rem]"
-              placeholder="Enter Your Message"
-            />
+  {/* PHONE */}
+  <Input
+    name="Phone"
+    className="h-30 border-black pl-8 border rounded-4xl placeholder:text-[1.4rem]"
+    placeholder="Enter Phone"
+  />
 
-            <Select>
-              <SelectTrigger className="h-30! w-full border-black pl-8 border rounded-4xl text-[1.4rem]">
-                <SelectValue placeholder="Select Your Next Project" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="house-of-worship">Houses of Worship</SelectItem>
-                <SelectItem value="cafes-restaurants">Cafés & Restaurants</SelectItem>
-                <SelectItem value="night-clubs-lounges">Night Clubs & Lounges</SelectItem>
-                <SelectItem value="large-congregations">Large Congregations</SelectItem>
-                <SelectItem value="hotels-resorts">Hotels & Resorts</SelectItem>
-                <SelectItem value="auditoriums-concert-halls">Auditoriums & Concert Halls</SelectItem>
-                <SelectItem value="concerts-live-events">Concerts & Live Events</SelectItem>
-              </SelectContent>
-            </Select>
+  {/* MESSAGE */}
+  <Textarea
+    name="Message"
+    rows={4}
+    className="h-80 pt-8 border-black pl-8 border rounded-4xl placeholder:text-[1.4rem]"
+    placeholder="Enter Your Message"
+  />
 
-            <CustomButton className="text-black border mt-8 h-25 px-[3.1rem]! border-black">
-              Submit
-            </CustomButton>
-          </motion.form>
+  {/* PROJECT TYPE */}
+  <Select name="Project Type">
+    <SelectTrigger className="h-30 w-full border-black pl-8 border rounded-4xl text-[1.4rem]">
+      <SelectValue placeholder="Select Your Next Project" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="Houses of Worship">Houses of Worship</SelectItem>
+      <SelectItem value="Cafés & Restaurants">Cafés & Restaurants</SelectItem>
+      <SelectItem value="Night Clubs & Lounges">Night Clubs & Lounges</SelectItem>
+      <SelectItem value="Large Congregations">Large Congregations</SelectItem>
+      <SelectItem value="Hotels & Resorts">Hotels & Resorts</SelectItem>
+      <SelectItem value="Auditoriums & Concert Halls">Auditoriums & Concert Halls</SelectItem>
+      <SelectItem value="Concerts & Live Events">Concerts & Live Events</SelectItem>
+    </SelectContent>
+  </Select>
+
+  {/* SUBMIT */}
+  <button
+    type="submit"
+    className="
+      mt-8
+      h-25
+      px-[3.1rem]
+      rounded-full
+      border border-black
+      text-black
+      font-semibold
+      hover:bg-black hover:text-white
+      transition-all duration-300
+    "
+  >
+    Submit
+  </button>
+</motion.form>
+
         </div>
 
         {/* Join Our Team Section */}

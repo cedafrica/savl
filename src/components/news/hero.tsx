@@ -12,7 +12,7 @@ const fadeUp: any = {
 
 const Hero = () => {
     return (
-        <section className="relative flex sm:bg-fixed bg-[url('/banner.png')] bg-cover bg-no-repeat px-10 sm:px-32 flex-col justify-center text-white sm:h-[min(100vh,960px)] h-screen">
+        <section className="relative flex  bg-[url('/led.webp')] bg-cover bg-position bg-no-repeat px-10 sm:px-32 flex-col justify-center text-white sm:h-[min(100vh,960px)] h-screen">
             
             {/* Dark overlay */}
             <div className="absolute inset-0 bg-black/50"></div>

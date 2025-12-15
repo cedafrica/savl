@@ -6,6 +6,8 @@ import Nav from "@/components/common/nav";
 import Preloader from "@/components/TEMP_preloader";
 import { usePageLoader } from "@/hooks/usePageLoader"; 
 import { motion } from "framer-motion";
+import Projects from "./components/our-project/projects";
+import ProjectInfo from "./components/our-project/project-info";
 
 import NavLayout from "@/layout/nav-layout";
 import Home from "./pages/home";
@@ -45,6 +47,8 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/projects" element={<Project />} />
             <Route path="/partnership" element={<Partnership />} />
+            <Route path="/projects" element={<Projects />} />
+<Route path="/projects/:slug" element={<ProjectInfo />} />
 
             {/* News */}
             <Route element={<NewsLayout />}>
