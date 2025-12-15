@@ -44,7 +44,7 @@ const TrustedByLeaders = () => {
   };
 
   return (
-    <section className="py-28 bg-gradient-to-b from-[#f3f3f4] to-[#f5f5f5]">
+    <section className="py-28 px-10 bg-gradient-to-b from-[#f3f3f4] to-[#f5f5f5]">
       <MaxContainer>
         
         {/* CENTERED BLOCK */}
@@ -66,7 +66,7 @@ const TrustedByLeaders = () => {
               className="
                 bg-white/50 backdrop-blur-xl 
                 border border-white/70 
-                rounded-full px-4 py-3 
+                rounded-full  py-3 
                 shadow-[0_10px_28px_rgba(0,0,0,0.06)]
                 flex items-center justify-center gap-2 sm:gap-4
               "
@@ -128,17 +128,22 @@ const TrustedByLeaders = () => {
                           shadow-[0_8px_25px_rgba(0,0,0,0.05)]
                           hover:shadow-[0_12px_35px_rgba(0,0,0,0.10)]
                           hover:-translate-y-1 transition-all duration-500
-                          w-full
+                          w-[110%]
                         "
                       >
-                        <img
-                          src={brand.img}
-                          className="
-                            h-12 sm:h-14 object-contain 
-                            grayscale group-hover:grayscale-0
-                            opacity-70 hover:opacity-100 transition-all duration-500
-                          "
-                        />
+                        <div className="grid place-items-center">
+  <img
+    src={brand.img}
+    alt={brand.name}
+    className="
+      h-12 sm:h-14
+      object-contain
+      grayscale group-hover:grayscale-0
+      opacity-70 hover:opacity-100
+      transition-all duration-500
+    "
+  />
+</div>
 
                         <p className="mt-4 text-[1.35rem] sm:text-[1.45rem] text-slate-700 opacity-70 hover:opacity-100 transition">
                           {brand.name}

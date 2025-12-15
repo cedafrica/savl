@@ -1,5 +1,6 @@
 import MaxContainer from "../common/max-container";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 // FIXED VARIANTS — fully FM v11 compatible (no ease)
 const fade = (d = 0) => ({
@@ -97,22 +98,22 @@ const Services = () => {
                   {item.text}
                 </p>
 
-                <button
-                  className="
-                    mt-6 inline-flex items-center
-                    text-[1.45rem] font-medium
-                    text-slate-900
-                    border border-slate-300
-                    px-6 py-3 rounded-full
-                    transition-all duration-300
-                    hover:bg-slate-900 hover:text-white hover:border-slate-900
-                  "
-                >
-                  Discuss Your Project
-                  <span className="ml-2 text-[1.9rem] translate-y-[1px]">
-                    →
-                  </span>
-                </button>
+                <Link to="/contact">
+  <button
+    className="
+      mt-6 inline-flex items-center
+      text-[1.45rem] font-medium
+      text-slate-900
+      border border-slate-300
+      px-6 py-3 rounded-full
+      transition-all duration-300
+      hover:bg-slate-900 hover:text-white hover:border-slate-900
+    "
+  >
+    Discuss Your Project
+    <span className="ml-2 text-[1.9rem] translate-y-[1px]">→</span>
+  </button>
+</Link>
               </motion.div>
             </div>
           ))}

@@ -23,26 +23,26 @@ const NewsSection = () => {
       title: "Spectra AVL Secures Partnership with Infiled for LED Installation",
       description:
         "We are proud to announce that Infiled has entrusted us as their official partner for LED installation.",
-      link: "#",
+      link: "/news/infiled-led-partnership",
     },
     {
       date: "January 27, 2025",
       title: "Spectra AVL X Audio Technology",
       description:
         "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
-      link: "#",
+      link: "/news/audio-technology-partnership",
     },
     {
       date: "January 27, 2025",
       title: "Booth Night Club, South Africa Trust Spectra for Immersive Sound Experience",
       description:
         "The new Booth Night Club & Kilala Restaurant & Lounge in Pretoria will set the new standard to Sound Experience in the SA entertainment industry.",
-      link: "#",
+      link: "/news/booth-nightclub-south-africa",
     },
   ];
 
   return (
-    <section className="py-28 sm:py-40 bg-[#F5F5F5]">
+    <section className="py-28 px-15 sm:py-40 bg-[#F5F5F5]">
       <MaxContainer>
 
         {/* HEADER */}
