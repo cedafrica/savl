@@ -30,21 +30,21 @@ const Services = () => {
   const data = [
     {
       title: "Audio",
-      text:
-        "Our expertly tuned sound systems bring unparalleled clarity to worship halls, stadiums, and event venues, ensuring every voice and note is heard as intended.",
-      image: "/li.webp",
+  text:
+    "We implement and finely tune professional audio systems that deliver clear, balanced, and immersive sound, creating spaces where audiences feel connected, comfortable, and fully engaged, and where every voice and note is heard exactly as intended.",
+  image: "/audser.png",
     },
     {
       title: "Video",
       text:
         "From large-scale LED walls to ultra-high-definition projection, we deliver stunning visual experiences that captivate audiences and enhance engagement.",
-      image: "/aud.webp",
+      image: "/led.webp",
     },
     {
       title: "Lighting",
       text:
         "Lighting is more than illumination—it’s an experience. Our intelligent lighting solutions set the mood, enhance performances, and create unforgettable atmospheres.",
-      image: "/lightning_solution.png",
+      image: "/malight.webp",
     },
   ];
 

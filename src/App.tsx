@@ -49,7 +49,7 @@ function App() {
             {/* News */}
             <Route element={<NewsLayout />}>
               <Route path="/news" element={<News />} />
-              <Route path="/news/:id" element={<NewsInfo />} />
+              <Route path="/news/:slug" element={<NewsInfo />} />
             </Route>
 
             <Route path="/contact" element={<Contact />} />

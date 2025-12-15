@@ -1,171 +1,130 @@
-import { Calendar } from "lucide-react";
-import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-const fadeUp: any = {
-    hidden: { opacity: 0, y: 40 },
-    visible: (i = 1) => ({
-        opacity: 1,
-        y: 0,
-        transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
-    }),
-};
+const tabs = ["All", "Audio", "Video", "Lighting"];
 
-const News = () => {
-    const news = [
-        {
-            name: "Audio",
-            image: "/dance.png",
-            date: "January 27th, 2025",
-            time: "8",
-            title: "Spectra AVL Secures Partnership with Infiled for LED Installation",
-            decription: "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
-            link: "/news/123"
-        },
-        {
-            name: "Audio",
-            image: "/dance.png",
-            date: "January 27th, 2025",
-            time: "8",
-            title: "Spectra AVL Secures Partnership with Infiled for LED Installation",
-            decription: "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
-            link: "/news/123"
-        },
-        {
-            name: "Audio",
-            image: "/dance.png",
-            date: "January 27th, 2025",
-            time: "8",
-            title: "Spectra AVL Secures Partnership with Infiled for LED Installation",
-            decription: "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
-            link: "/news/123"
-        },
-        {
-            name: "Audio",
-            image: "/dance.png",
-            date: "January 27th, 2025",
-            time: "8",
-            title: "Spectra AVL Secures Partnership with Infiled for LED Installation",
-            decription: "Spectra AVL is proud to announce a groundbreaking Audio Engineering Partnership aimed at revolutionizing sound experiences across various industries.",
-            link: "/news/123"
-        },
-    ];
+const newsData = [
+  {
+    title: "Spectra AVL Secures Partnership with Infiled for LED Installation",
+    excerpt:
+      "We are proud to announce that Infiled has entrusted Spectra AVL as their official partner for LED installation.",
+    date: "January 27, 2025",
+    category: ["Video"],
+    image: "/infiled.webp",
+    link: "/news/infiled-led-partnership",
+  },
+  {
+    title: "Spectra AVL X Audio Technology",
+    excerpt:
+      "Spectra AVL announces a groundbreaking audio engineering partnership aimed at redefining sound experiences across industries.",
+    date: "January 27, 2025",
+    category: ["Audio"],
+    image: "/at.png",
+    link: "/news/audio-technology-partnership",
+  },
+  {
+    title:
+      "Booth Night Club, South Africa Trusts Spectra for Immersive Sound Experience",
+    excerpt:
+      "The new Booth Night Club & Kilala Restaurant & Lounge sets a new benchmark for immersive sound experiences in South Africa.",
+    date: "January 27, 2025",
+    category: ["Audio", "Video"],
+    image: "/booths.webp",
+    link: "/news/booth-nightclub-south-africa",
+  },
+];
 
-    return (
-        <div>
-            <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-            >
-                <div className="flex flex-col sm:flex-row">
-                    <div className="relative w-full h-80 mt-11 sm:mt-0 sm:w-[32.1rem] sm:h-[30.1rem] shrink-0">
-                        <img
-                            src="/dance.png"
-                            alt="dance"
-                            className="absolute inset-0 w-full h-full object-cover"
-                        />
-                        <span className="text-[1.4rem] absolute left-4 top-4 p-2 bg-[#FFFFFF] rounded-[.4rem]">
-                            Featured
-                        </span>
-                    </div>
+const NewsPage = () => {
+  const [activeTab, setActiveTab] = useState("All");
 
-                    <div className="flex-1 shadow sm:p-8 p-4 bg-[#F5F5F5]">
-                        <div className="flex items-center justify-between">
-                            <span className="p-2 sm:text-[1.4rem] text-[1.2rem] text-white shrink-0 bg-[#000000] rounded-[.4rem]">
-                                Industry Insight
-                            </span>
+  const filteredNews =
+    activeTab === "All"
+      ? newsData
+      : newsData.filter(item => item.category.includes(activeTab));
 
-                            <div className="flex items-center gap-2">
-                                <Calendar className="inline size-[1.6rem]" />
-                                <span className="sm:text-[1.5rem] text-[1.2rem]">March 15, 2025</span>
-                                <span className="sm:text-[1.5rem] text-[1.2rem]">8 mins read</span>
-                            </div>
-                        </div>
+  return (
+    <section className="w-full bg-white">
+      <div className="max-w-[1600px] mx-auto px-10 py-32">
 
-                        <div className="flex flex-col">
-                            <h3 className="mt-[1.8rem] sm:text-[2rem] w-full text-[1.8rem] font-bold max-w-[35.1rem]">
-                                The Future of Stadium AV: Trends Reshaping Live Entertainment
-                            </h3>
-
-                            <p className="text-[1.4rem] mt-4 w-full sm:max-w-[25.2rem]">
-                                Explore how emerging technologies in audio, video, and lighting are transforming the stadium experience for millions of fans worldwide.
-                            </p>
-
-                            <Button
-                                className="p-0 text-[1.4rem] w-fit underline font-normal mt-12"
-                                variant={"ghost"}
-                            >
-                                Read Full Article
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
-
-            <h2 className="sm:text-[3rem] text-[2.8rem] my-8 sm:mt-20 font-semibold">Latest Articles</h2>
-
-            <motion.div
-                className="grid sm:gap-8 gap-12 sm:mt-20 sm:grid-cols-2"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-            >
-                {news.map((item, index) => (
-                    <Card key={index} {...item} index={index} />
-                ))}
-            </motion.div>
+        {/* PAGE HEADER */}
+        <div className="mb-20">
+          <h1 className="text-5xl lg:text-6xl font-semibold text-black mb-6">
+            News & Insights
+          </h1>
+          <p className="text-3xl text-gray-500 max-w-3xl leading-relaxed">
+            Industry announcements, partnerships, and project highlights from
+            Spectra AVL.
+          </p>
         </div>
-    );
+
+        {/* TABS */}
+        <div className="flex gap-12 mb-20 border-b border-gray-200">
+          {tabs.map(tab => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`pb-6 text-2xl tracking-wide transition-all ${
+                activeTab === tab
+                  ? "border-b-2 border-black text-black"
+                  : "text-gray-400 hover:text-black"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* NEWS GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-20">
+          {filteredNews.map((item, index) => (
+            <motion.article
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.08 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              {/* IMAGE */}
+              <div className="overflow-hidden mb-8 rounded-xl">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-[320px] object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              {/* META */}
+              <div className="flex items-center gap-4 text-sm uppercase tracking-widest text-gray-400 mb-4">
+                <span>{item.date}</span>
+                <span>•</span>
+                <span>{item.category.join(" / ")}</span>
+              </div>
+
+              {/* TITLE */}
+              <h2 className="text-3xl lg:text-3xl font-semibold text-black leading-snug mb-5 group-hover:underline">
+                {item.title}
+              </h2>
+
+              {/* EXCERPT */}
+              <p className="text-2xl text-gray-600 leading-relaxed mb-8">
+                {item.excerpt}
+              </p>
+
+              {/* READ MORE */}
+              <Link
+                to={item.link}
+                className="inline-block text-2xl font-medium underline underline-offset-8 hover:text-black transition"
+              >
+                Read More →
+              </Link>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
-const Card = ({ image, name, date, time, title, decription, link, index }: {
-    image: string;
-    name: string;
-    date: string;
-    time: string;
-    title: string;
-    decription: string;
-    link: string;
-    index?: number;
-}) => {
-    return (
-        <motion.div
-            className="w-full shadow-xl"
-            custom={index}
-            variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: (i = 1) => ({
-                    opacity: 1,
-                    y: 0,
-                    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
-                }),
-            }}
-        >
-            <img
-                src={image}
-                alt=""
-                className="w-full h-auto"
-            />
-            <div className="bg-[#F5F5F5] flex flex-col py-[1.5rem] sm:px-8 px-4">
-                <div className="flex items-center justify-between">
-                    <span className="p-2 text-[1.2rem] rounded-[.3rem] bg-black text-white">{name}</span>
-                    <div className="flex gap-2 items-center">
-                        <Calendar className="size-[1.4rem]" />
-                        <span className="text-[1.2rem]">{date}</span>
-                        <span className="text-[1.2rem]">{time} mins read</span>
-                    </div>
-                </div>
-                <h2 className="text-[2rem] mt-2 font-bold">{title}</h2>
-                <p className="text-[1.4rem] mt-2">{decription}</p>
-                <Button asChild className="ml-auto p-0 text-[1.4rem] sm:mt-[1.5rem]" variant={"ghost"}>
-                    <Link to={link}>Read More</Link>
-                </Button>
-            </div>
-        </motion.div>
-    )
-};
-
-export default News;
+export default NewsPage;
