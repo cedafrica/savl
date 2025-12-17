@@ -64,11 +64,11 @@ const Hero = () => {
           animate="visible"
           transition={{ delay: 0.2 }}
           className="
-            text-white/85 mt-5 sm:mt-6
-            text-[1.05rem] sm:text-[1.3rem] lg:text-[1.9rem]
-            max-w-[42rem]
-            leading-relaxed
-          "
+          text-white/85 mt-6
+          text-[1.45rem] sm:text-[1.65rem] lg:text-[1.9rem]
+          max-w-[44rem]
+          leading-[1.75]
+        "
         >
           Comprehensive audiovisual solutions powered by global technology
           alliances and engineered for exceptional performance across modern
