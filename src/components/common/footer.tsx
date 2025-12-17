@@ -65,10 +65,10 @@ const Footer = () => {
               {[
                 { name: "Home", link: "#" },
                 { name: "About Us", link: "/about" },
-                { name: "Services", link: "#" },
-                { name: "Projects", link: "#" },
-                { name: "Brands", link: "#" },
-                { name: "Contact", link: "#" },
+                { name: "Services", link: "/services" },
+                { name: "Projects", link: "/projects" },
+                
+                { name: "Contact", link: "contact" },
               ].map((item, idx) => (
                 <li key={idx}>
                   <Link
