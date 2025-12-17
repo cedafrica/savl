@@ -9,7 +9,8 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0D0D0D] to-black" />
       <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_30%_20%,white,transparent_40%)]" />
 
-      <MaxContainer className="relative z-10 pt-28 pb-16">
+      <MaxContainer className="relative z-10 pt-28 pb-16 px-6 sm:px-8 lg:px-0">
+
 
         {/* TOP GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-20 mb-24">
