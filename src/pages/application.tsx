@@ -10,7 +10,7 @@ const Application = () => {
     const contents: ApplicationContent[] = [
     {
         id: "house-of-worship",
-        headlineText: "Transform Your Worship Experience with Cutting Edge AV and Lighting",
+        headlineText: "Transform Your Worship Experience",
         subHeadlineText: "Engage your congregation in a deeper and more meaningful way with immersive sound clear visuals and inspiring lighting.",
         link: "/contact",
         buttonLabel: "Lets Discuss Your Next Project",

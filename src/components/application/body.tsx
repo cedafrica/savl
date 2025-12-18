@@ -5,30 +5,55 @@ import { Link } from "react-router-dom";
 
 /* ---------------- TYPES ---------------- */
 
-interface ExperienceItem {
+interface BodyItem {
+  bold?: string;
+  text?: string;
+}
+
+interface BodySection {
   title: string;
-  description: string;
   image: string;
+  items: BodyItem[];
 }
 
-interface ExperienceProps {
-  items: ExperienceItem[];
+interface BodyProps {
+  contents: BodySection[];
 }
 
-/* ---------------- PREMIUM MOTION ---------------- */
+/* ---------------- PREMIUM EASING ---------------- */
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const fadeIn: Variants = {
-  hidden: { opacity: 0 },
+/* ---------------- MOTION SYSTEM ---------------- */
+
+/* Headline container controls staggering */
+const headlineContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.22, // Succession / Canva timing
+    },
+  },
+};
+
+/* Each line flies in independently */
+const headlineLine: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 60,
+  },
   visible: {
     opacity: 1,
-    transition: { duration: 1.6, ease },
+    y: 0,
+    transition: {
+      duration: 1.2,
+      ease,
+    },
   },
 };
 
 const rise: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 48 },
   visible: {
     opacity: 1,
     y: 0,
@@ -36,43 +61,49 @@ const rise: Variants = {
   },
 };
 
-const floatImage: Variants = {
-  hidden: { opacity: 0, y: 80, scale: 1.02 },
+const fade: Variants = {
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
+    transition: { duration: 1.6, ease },
+  },
+};
+
+const imageReveal: Variants = {
+  hidden: { opacity: 0, scale: 1.03 },
+  visible: {
+    opacity: 1,
     scale: 1,
-    transition: { duration: 2, ease },
+    transition: { duration: 1.8, ease },
   },
 };
 
 /* ---------------- COMPONENT ---------------- */
 
-const Experience: React.FC<ExperienceProps> = ({ items }) => {
+const Body: React.FC<BodyProps> = ({ contents }) => {
   return (
     <section
       className="
         relative
-        min-h-screen
         bg-gradient-to-b
-        from-[#f5f6f7]
+        from-[#f4f5f6]
         via-[#ededee]
-        to-[#e4e5e7]
+        to-[#e2e3e5]
         overflow-hidden
       "
     >
-      {/* AMBIENT DEPTH */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.04] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:28px_28px]" />
+      {/* AMBIENT TEXTURE */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.035] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:28px_28px]" />
 
-      {/* INTRO STATEMENT */}
-      <div className="relative max-w-[110rem] mx-auto px-10 pt-40 pb-60">
+      {/* ================= INTRO STATEMENT ================= */}
+      <div className="relative max-w-[110rem] mx-auto px-10 pt-40 pb-52">
         <motion.h1
-          variants={rise}
+          variants={headlineContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           className="
-            text-[4.2rem] sm:text-[6rem] lg:text-[8.5rem]
+            text-[4rem] sm:text-[6rem] lg:text-[8.2rem]
             font-semibold
             leading-[1.05]
             tracking-tight
@@ -80,123 +111,176 @@ const Experience: React.FC<ExperienceProps> = ({ items }) => {
             max-w-[90rem]
           "
         >
-          We don’t install systems.
-          <br />
-          <span className="text-slate-500">
+          <motion.span
+            variants={headlineLine}
+            className="block"
+          >
+            We don’t install systems.
+          </motion.span>
+
+          <motion.span
+            variants={headlineLine}
+            className="block text-slate-500"
+          >
             We choreograph experiences.
-          </span>
+          </motion.span>
         </motion.h1>
 
         <motion.p
-          variants={fadeIn}
+          variants={fade}
           initial="hidden"
           whileInView="visible"
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.6 }} // lets headline finish first
           className="
             mt-16
             text-[1.8rem] sm:text-[2rem]
             text-slate-600
-            max-w-[48rem]
-            leading-[1.7]
+            max-w-[52rem]
+            leading-[1.75]
           "
         >
           Every space has a voice.  
-          Our work ensures it is heard — with clarity, emotion, and intent.
+          Our role is to shape how it speaks — with clarity, emotion,
+          and intention.
         </motion.p>
       </div>
 
-      {/* FLOATING GALLERY */}
-      <div className="relative space-y-[28rem] pb-[30rem]">
-        {items.map((item, index) => (
+      {/* ================= DYNAMIC EXPERIENCE SECTIONS ================= */}
+      <div className="relative max-w-[120rem] mx-auto px-10 space-y-[28rem] pb-[28rem]">
+        {contents.map((section, index) => (
           <div
             key={index}
             className="
               relative
-              max-w-[120rem]
-              mx-auto
-              px-10
               flex
               flex-col
               lg:flex-row
-              gap-28
+              gap-24
               items-center
             "
           >
             {/* IMAGE */}
             <motion.div
-              variants={floatImage}
+              variants={imageReveal}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-120px" }}
               className="
                 w-full lg:w-[55%]
                 h-[420px] sm:h-[520px] lg:h-[680px]
-                rounded-[40px]
+                rounded-[42px]
                 overflow-hidden
                 shadow-[0_40px_140px_rgba(0,0,0,0.22)]
               "
             >
               <img
-                src={item.image}
-                alt={item.title}
+                src={section.image}
+                alt={section.title}
                 className="w-full h-full object-cover"
               />
             </motion.div>
 
             {/* TEXT */}
-            <motion.div
-              variants={rise}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="lg:w-[45%] space-y-10"
-            >
-              <h2
+            <div className="lg:w-[45%] space-y-12">
+              <motion.h2
+                variants={rise}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
                 className="
                   text-[3.2rem] sm:text-[3.8rem] lg:text-[4.6rem]
                   font-medium
                   text-slate-900
                   leading-[1.15]
+                  tracking-tight
                 "
               >
-                {item.title}
-              </h2>
+                {section.title}
+              </motion.h2>
 
-              <p
-                className="
-                  text-[1.6rem] sm:text-[1.8rem]
-                  text-slate-600
-                  leading-[1.75]
-                  max-w-[36rem]
-                "
-              >
-                {item.description}
-              </p>
-
-              <Link
-                to="/contact"
-                className="
-                  inline-flex
-                  items-center
-                  gap-4
-                  text-[1.5rem]
-                  font-medium
-                  text-slate-900
-                  border-b border-slate-900/40
-                  pb-1
-                  hover:border-slate-900
-                  transition-all
-                "
-              >
-                Begin a conversation
-                <span className="text-[1.7rem]">→</span>
-              </Link>
-            </motion.div>
+              <div className="space-y-8">
+                {section.items.map((itm, i) => (
+                  <motion.p
+                    key={i}
+                    variants={fade}
+                    initial="hidden"
+                    whileInView="visible"
+                    transition={{ delay: i * 0.15 }}
+                    className="
+                      text-[1.6rem] sm:text-[1.75rem]
+                      text-slate-600
+                      leading-[1.75]
+                    "
+                  >
+                    {itm.bold && (
+                      <span className="font-semibold text-slate-900">
+                        {itm.bold}:{" "}
+                      </span>
+                    )}
+                    {itm.text}
+                  </motion.p>
+                ))}
+              </div>
+            </div>
           </div>
         ))}
+      </div>
+
+      {/* ================= BOTTOM CTA ================= */}
+      <div className="relative max-w-[110rem] mx-auto px-10 pb-48">
+        <motion.div
+          variants={rise}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="
+            flex
+            flex-col
+            lg:flex-row
+            items-start
+            lg:items-center
+            justify-between
+            gap-16
+            border-t
+            border-slate-300/60
+            pt-24
+          "
+        >
+          <h3
+            className="
+              text-[3rem] sm:text-[3.6rem] lg:text-[4.2rem]
+              font-medium
+              text-slate-900
+              max-w-[52rem]
+              leading-[1.2]
+            "
+          >
+            Ready to design an experience
+            that truly belongs to your space?
+          </h3>
+
+          <Link
+            to="/contact"
+            className="
+              inline-flex
+              items-center
+              gap-5
+              text-[1.6rem]
+              font-medium
+              text-slate-900
+              border-b border-slate-900/40
+              pb-2
+              hover:border-slate-900
+              transition-all
+            "
+          >
+            Begin the conversation
+            <span className="text-[1.8rem]">→</span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
 };
 
-export default Experience;
+export default Body;
