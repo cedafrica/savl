@@ -39,7 +39,7 @@ const Services = () => {
       title: "Video",
       text:
         "From large-scale LED walls to ultra-high-definition projection, we deliver stunning visual experiences that captivate audiences and enhance engagement.",
-      image: "/led.webp",
+      image: "/champ.webp",
     },
     {
       title: "Lighting",
