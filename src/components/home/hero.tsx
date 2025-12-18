@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MaxContainer from "../common/max-container";
 import { Button } from "../ui/button";
 import { MoveRight, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const AUTOPLAY_DELAY = 5000;
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -47,7 +49,7 @@ const Hero = () => {
       description: "Powerful AVL that carries every message.",
       ctaText: "Explore Large Congregations",
       ctaLink: "/application/large-congregations",
-      bg: "aud.webp",
+      bg: "/aud.webp",
     },
     {
       caption: "HOTELS & RESORTS",
@@ -57,26 +59,20 @@ const Hero = () => {
       ctaLink: "/application/hotels-resorts",
       bg: "/resorts.png",
     },
-    {
-      caption: "AUDITORIUMS & CONCERT HALLS",
-      title: "Pure Performance for Every Seat.",
-      description: "Precision sound and lighting for perfect acoustics.",
-      ctaText: "Explore",
-      ctaLink: "/application/auditoriums-concert-halls",
-      bg: "/aud.png",
-    },
-    {
-      caption: "CONCERTS & LIVE EVENTS",
-      title: "Power the Moment. Move the Crowd.",
-      description: "Concert-grade AVL for unforgettable experiences.",
-      ctaText: "Explore",
-      ctaLink: "/application/concerts-live-events",
-      bg: "/at.png",
-    },
   ];
 
+  // ▶ AUTOPLAY
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((p) => (p + 1) % slides.length);
+    }, AUTOPLAY_DELAY);
+
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   const nextSlide = () =>
-    setCurrentSlide((p) => (p === slides.length - 1 ? 0 : p + 1));
+    setCurrentSlide((p) => (p + 1) % slides.length);
+
   const prevSlide = () =>
     setCurrentSlide((p) => (p === 0 ? slides.length - 1 : p - 1));
 
@@ -84,8 +80,7 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center bg-black overflow-hidden">
-
-      {/* BACKGROUND IMAGE WITH KEN BURNS EFFECT */}
+      {/* BACKGROUND FADE (NO SHARP MOTION) */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -93,26 +88,17 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
         >
           <motion.div
             className="w-full h-full bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.bg})` }}
             initial={{ scale: 1 }}
-            animate={{ scale: 1.12 }}
+            animate={{ scale: 1.1 }}
             transition={{ duration: 14, ease: "easeInOut" }}
           />
 
-          {/* DARK LUXURY OVERLAY */}
-          <div
-            className="
-              absolute inset-0
-              bg-gradient-to-b
-              from-black/40
-              via-black/60
-              to-black/85
-            "
-          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/85" />
         </motion.div>
       </AnimatePresence>
 
@@ -121,74 +107,30 @@ const Hero = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -25 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
             className="max-w-[65rem]"
           >
-            {slide.caption && (
-              <motion.p
-                className="text-white/60 tracking-[0.25em] text-[1.2rem] sm:text-[1.6rem] mb-6 uppercase"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                {slide.caption}
-              </motion.p>
-            )}
+            <p className="text-white/60 tracking-[0.25em] text-[1.1rem] sm:text-[1.6rem] mb-6 uppercase">
+              {slide.caption}
+            </p>
 
-            <motion.h1
-              className="text-white text-[3.4rem] sm:text-[5rem] font-bold leading-[110%] mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
+            <h1 className="text-white text-[3rem] sm:text-[5rem] font-bold leading-[110%] mb-6">
               {slide.title}
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              className="text-white/70 text-[1.4rem] sm:text-[2rem] leading-relaxed mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
+            <p className="text-white/70 text-[1.3rem] sm:text-[2rem] leading-relaxed mb-8">
               {slide.description}
-            </motion.p>
+            </p>
 
-            <motion.a
-              href={slide.ctaLink}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.45 }}
-            >
-              <Button
-                className="
-                  px-14 py-7 rounded-full
-                  text-[1.45rem] sm:text-[1.7rem]
-                  font-semibold
-                  border border-white/50
-                  bg-white/10 text-white
-                  backdrop-blur-md
-                  hover:bg-white hover:text-black
-                  hover:shadow-[0_10px_45px_rgba(255,255,255,0.25)]
-                  transition-all duration-500
-                  flex items-center gap-3
-                "
-              >
+            <a href={slide.ctaLink}>
+              <Button className="px-14 py-7 rounded-full text-[1.45rem] sm:text-[1.7rem] font-semibold border border-white/50 bg-white/10 text-white backdrop-blur-md hover:bg-white hover:text-black transition-all duration-500 flex items-center gap-3">
                 {slide.ctaText}
                 <MoveRight className="size-[1.9rem]" />
               </Button>
-            </motion.a>
-
-            <motion.img
-              src="/cedia.png"
-              alt="CEDIA"
-              className="w-[13rem] sm:w-[20rem] mt-10 opacity-80"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 0.9, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.55 }}
-            />
+            </a>
           </motion.div>
         </AnimatePresence>
 
@@ -196,26 +138,16 @@ const Hero = () => {
         <div className="flex gap-5 mt-12">
           <button
             onClick={prevSlide}
-            className="
-              w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 
-              flex items-center justify-center 
-              hover:bg-white hover:text-black
-              transition-all duration-300
-            "
+            className="group w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 flex items-center justify-center bg-transparent hover:bg-white transition-all duration-300"
           >
-            <ArrowLeft className="text-white" />
+            <ArrowLeft className="text-white group-hover:text-black transition-colors" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="
-              w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 
-              flex items-center justify-center 
-              hover:bg-white hover:text-black
-              transition-all duration-300
-            "
+            className="group w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 flex items-center justify-center bg-transparent hover:bg-white transition-all duration-300"
           >
-            <ArrowRight className="text-white" />
+            <ArrowRight className="text-white group-hover:text-black transition-colors" />
           </button>
         </div>
       </MaxContainer>
