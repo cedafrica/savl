@@ -1,154 +1,196 @@
 import React from "react";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 
-interface BodyItem {
-  bold?: string;
-  text?: string;
-}
+/* ---------------- TYPES ---------------- */
 
-interface BodySection {
+interface ExperienceItem {
   title: string;
+  description: string;
   image: string;
-  items: BodyItem[];
 }
 
-interface BodyProps {
-  contents?: BodySection[];
+interface ExperienceProps {
+  items: ExperienceItem[];
 }
 
-/* ---------------- ANIMATIONS ---------------- */
+/* ---------------- PREMIUM MOTION ---------------- */
 
-const fadeUp = {
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const fadeIn: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 1.6, ease },
+  },
+};
+
+const rise: Variants = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.4, ease },
+  },
 };
 
-const fadeUpDelayed = {
-  hidden: { opacity: 0, y: 55 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1.2 } },
+const floatImage: Variants = {
+  hidden: { opacity: 0, y: 80, scale: 1.02 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 2, ease },
+  },
 };
 
-const zoomIn = {
-  hidden: { opacity: 0, scale: 1.08 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 1.4 } },
-};
+/* ---------------- COMPONENT ---------------- */
 
-/* ✅ CREATE MOTION LINK */
-const MotionLink = motion(Link);
-
-const Body: React.FC<BodyProps> = ({ contents = [] }) => {
+const Experience: React.FC<ExperienceProps> = ({ items }) => {
   return (
-    <section className="py-20 sm:py-28 bg-[#f7f7f7]">
-      <div className="max-w-[95rem] mx-auto px-4 sm:px-6 space-y-40 sm:space-y-48">
-        {contents.map((section, index) => (
-          <div key={index} className="relative flex flex-col items-center">
+    <section
+      className="
+        relative
+        min-h-screen
+        bg-gradient-to-b
+        from-[#f5f6f7]
+        via-[#ededee]
+        to-[#e4e5e7]
+        overflow-hidden
+      "
+    >
+      {/* AMBIENT DEPTH */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.04] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:28px_28px]" />
+
+      {/* INTRO STATEMENT */}
+      <div className="relative max-w-[110rem] mx-auto px-10 pt-40 pb-60">
+        <motion.h1
+          variants={rise}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="
+            text-[4.2rem] sm:text-[6rem] lg:text-[8.5rem]
+            font-semibold
+            leading-[1.05]
+            tracking-tight
+            text-slate-900
+            max-w-[90rem]
+          "
+        >
+          We don’t install systems.
+          <br />
+          <span className="text-slate-500">
+            We choreograph experiences.
+          </span>
+        </motion.h1>
+
+        <motion.p
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ delay: 0.3 }}
+          className="
+            mt-16
+            text-[1.8rem] sm:text-[2rem]
+            text-slate-600
+            max-w-[48rem]
+            leading-[1.7]
+          "
+        >
+          Every space has a voice.  
+          Our work ensures it is heard — with clarity, emotion, and intent.
+        </motion.p>
+      </div>
+
+      {/* FLOATING GALLERY */}
+      <div className="relative space-y-[28rem] pb-[30rem]">
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className="
+              relative
+              max-w-[120rem]
+              mx-auto
+              px-10
+              flex
+              flex-col
+              lg:flex-row
+              gap-28
+              items-center
+            "
+          >
             {/* IMAGE */}
             <motion.div
-              variants={zoomIn}
+              variants={floatImage}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               className="
-                w-full 
-                h-[340px] sm:h-[420px] lg:h-[620px]
-                rounded-[28px] sm:rounded-[36px]
-                overflow-hidden 
-                shadow-[0_20px_60px_rgba(0,0,0,0.15)]
+                w-full lg:w-[55%]
+                h-[420px] sm:h-[520px] lg:h-[680px]
+                rounded-[40px]
+                overflow-hidden
+                shadow-[0_40px_140px_rgba(0,0,0,0.22)]
               "
             >
               <img
-                src={section.image}
-                alt={section.title}
-                className="
-                  w-full h-full object-cover 
-                  transition-all duration-[1500ms]
-                  hover:scale-[1.05]
-                "
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
               />
             </motion.div>
 
-            {/* TEXT CARD */}
+            {/* TEXT */}
             <motion.div
-              variants={fadeUpDelayed}
+              variants={rise}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className={`
-                w-full sm:w-[85%] lg:w-[65%]
-                mt-10
-                lg:absolute lg:left-1/2 lg:-translate-x-1/2
-                ${index % 2 === 0 ? "lg:-bottom-20" : "lg:-bottom-24"}
-                bg-white/70 backdrop-blur-[16px]
-                rounded-[24px] sm:rounded-[32px]
-                shadow-[0_12px_40px_rgba(0,0,0,0.15)]
-                p-6 sm:p-10 lg:p-12
-                space-y-8 sm:space-y-10
-              `}
+              className="lg:w-[45%] space-y-10"
             >
-              {/* TITLE */}
-              <motion.h2
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
+              <h2
                 className="
-                  text-[2.2rem] sm:text-[2.8rem] lg:text-[3.6rem]
-                  font-semibold text-slate-900
-                  leading-[1.2] tracking-tight
-                "
-              >
-                {section.title}
-              </motion.h2>
-
-              {/* PARAGRAPHS */}
-              <div className="space-y-5 sm:space-y-6">
-                {section.items.map((itm, i) => (
-                  <motion.p
-                    key={i}
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.15 }}
-                    className="
-                      text-[1.35rem] sm:text-[1.55rem] lg:text-[1.7rem]
-                      text-slate-700 leading-[1.65]
-                    "
-                  >
-                    {itm.bold && (
-                      <span className="font-semibold text-slate-900">
-                        {itm.bold}:{" "}
-                      </span>
-                    )}
-                    {itm.text}
-                  </motion.p>
-                ))}
-              </div>
-
-              {/* ✅ CTA BUTTON (WORKING + ANIMATED) */}
-              <MotionLink
-                to="/contact"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                transition={{ duration: 1.2 }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="
-                  inline-flex items-center justify-center
-                  px-6 sm:px-7 py-3 sm:py-3.5
-                  rounded-full
-                  text-[1.35rem] sm:text-[1.45rem]
+                  text-[3.2rem] sm:text-[3.8rem] lg:text-[4.6rem]
                   font-medium
-                  bg-slate-900 text-white
-                  hover:bg-slate-800
-                  transition-all duration-300
-                  shadow-[0_6px_20px_rgba(0,0,0,0.15)]
+                  text-slate-900
+                  leading-[1.15]
                 "
               >
-                Discuss This Project →
-              </MotionLink>
+                {item.title}
+              </h2>
+
+              <p
+                className="
+                  text-[1.6rem] sm:text-[1.8rem]
+                  text-slate-600
+                  leading-[1.75]
+                  max-w-[36rem]
+                "
+              >
+                {item.description}
+              </p>
+
+              <Link
+                to="/contact"
+                className="
+                  inline-flex
+                  items-center
+                  gap-4
+                  text-[1.5rem]
+                  font-medium
+                  text-slate-900
+                  border-b border-slate-900/40
+                  pb-1
+                  hover:border-slate-900
+                  transition-all
+                "
+              >
+                Begin a conversation
+                <span className="text-[1.7rem]">→</span>
+              </Link>
             </motion.div>
           </div>
         ))}
@@ -157,4 +199,4 @@ const Body: React.FC<BodyProps> = ({ contents = [] }) => {
   );
 };
 
-export default Body;
+export default Experience;
