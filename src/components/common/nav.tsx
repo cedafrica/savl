@@ -11,7 +11,7 @@ type NavItem = {
   children?: NavChild[];
 };
 
-const BRAND_BLUE = "#00569e";
+
 
 const Nav: React.FC = () => {
   const [open, setOpen] = useState(false);
