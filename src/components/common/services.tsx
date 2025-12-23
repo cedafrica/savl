@@ -56,11 +56,15 @@ const Services = () => {
     <section className="relative py-24 sm:py-32 bg-white overflow-hidden">
 
       {/* SUBTLE BRAND BLUE BACKGROUND TOUCH */}
-      <div className="
-        absolute inset-0
-        bg-[radial-gradient(circle_at_15%_30%,rgba(0,86,158,0.06),transparent_45%)]
-        pointer-events-none
-      " />
+      <div
+  className="
+    absolute inset-0
+    bg-[radial-gradient(circle_at_15%_30%,rgba(0,86,158,0.04),transparent_55%)]
+    sm:bg-[radial-gradient(circle_at_15%_30%,rgba(0,86,158,0.06),transparent_45%)]
+    pointer-events-none
+  "
+/>
+
 
       <MaxContainer className="relative z-10">
 
