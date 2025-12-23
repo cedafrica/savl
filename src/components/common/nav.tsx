@@ -75,20 +75,13 @@ const Nav: React.FC = () => {
 
           {/* LOGO */}
           <Link to="/" className="flex items-center">
-           <motion.img
-  src="/spectra-logo.svg"
-  alt="Spectra AVL"
-  className={`
-    w-[140px] sm:w-[200px]
-    transition-[width] duration-300
-    ${scrolled ? "sm:w-[180px]" : ""}
-  `}
-  style={{
-    imageRendering: "auto",
-    shapeRendering: "geometricPrecision",
-  }}
-/>
-
+            <motion.img
+              src="/spectra-logo.svg"
+              alt="Spectra AVL"
+              className="w-70 sm:w-86"
+              animate={{ scale: scrolled ? 0.9 : 1 }}
+              transition={{ duration: 0.4 }}
+            />
           </Link>
 
           {/* DESKTOP NAV */}
