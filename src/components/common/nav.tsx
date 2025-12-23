@@ -78,7 +78,7 @@ const Nav: React.FC = () => {
             <motion.img
               src="/spectra-logo.svg"
               alt="Spectra AVL"
-              className="w-40 sm:w-56"
+              className="w-70 sm:w-86"
               animate={{ scale: scrolled ? 0.9 : 1 }}
               transition={{ duration: 0.4 }}
             />

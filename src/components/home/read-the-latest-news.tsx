@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Calendar } from "lucide-react";
 
-// FIXED VARIANT — Removed invalid ease arrays
+/* ---------------- MOTION ---------------- */
+
 const fade = (d = 0) => ({
   hidden: { opacity: 0, y: 18 },
   visible: {
@@ -11,10 +12,12 @@ const fade = (d = 0) => ({
     y: 0,
     transition: {
       delay: d,
-      duration: 0.7
-    }
-  }
+      duration: 0.7,
+    },
+  },
 });
+
+/* ---------------- COMPONENT ---------------- */
 
 const NewsSection = () => {
   const News = [
@@ -42,7 +45,7 @@ const NewsSection = () => {
   ];
 
   return (
-    <section className="py-28 px-15 sm:py-40 bg-[#F5F5F5]">
+    <section className="py-28 px-6 sm:py-40 bg-[#F5F5F5]">
       <MaxContainer>
 
         {/* HEADER */}
@@ -65,11 +68,11 @@ const NewsSection = () => {
         {/* TWO COLUMN */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-20 sm:gap-32 items-start">
 
-          {/* LEFT SIDE — TIMELINE */}
+          {/* LEFT — TIMELINE */}
           <div className="relative pl-10 sm:pl-16">
 
-            {/* Vertical Line */}
-            <div className="absolute top-0 left-3 sm:left-6 h-full w-[2px] bg-slate-300"></div>
+            {/* VERTICAL LINE — BRAND BLUE */}
+            <div className="absolute top-0 left-3 sm:left-6 h-full w-[2px] bg-[#00569e]/40" />
 
             <div className="flex flex-col gap-24">
               {News.map((item, index) => (
@@ -81,13 +84,23 @@ const NewsSection = () => {
                   viewport={{ once: true }}
                   className="relative"
                 >
-                  {/* Timeline Dot */}
-                  <div className="absolute left-[-1rem] sm:left-[-1.4rem] top-[0.5rem] w-4 h-4 bg-slate-900 rounded-full"></div>
+                  {/* TIMELINE DOT */}
+                  <div className="
+                    absolute left-[-1rem] sm:left-[-1.4rem] top-[0.5rem]
+                    w-4 h-4 rounded-full
+                    bg-[#00569e]
+                    shadow-[0_0_0_6px_rgba(0,86,158,0.12)]
+                  " />
 
                   <div className="space-y-3 max-w-[700px]">
-                    {/* DATE */}
-                    <p className="text-[1.4rem] flex items-center gap-2 text-slate-500 uppercase tracking-wide">
-                      <Calendar size={18} className="opacity-70" />
+
+                    {/* DATE — BRAND BLUE */}
+                    <p className="
+                      text-[1.4rem] flex items-center gap-2
+                      text-[#00569e]
+                      uppercase tracking-wide
+                    ">
+                      <Calendar size={18} className="opacity-80" />
                       {item.date}
                     </p>
 
@@ -101,25 +114,28 @@ const NewsSection = () => {
                       {item.description}
                     </p>
 
-                    {/* LINK */}
+                    {/* READ MORE — BRAND BLUE */}
                     <Link
                       to={item.link}
                       className="
-                        text-[1.55rem] font-medium text-slate-900
                         inline-flex items-center gap-2 pt-1
-                        hover:translate-x-1 transition-all duration-300
+                        text-[1.55rem] font-medium
+                        text-[#00569e]
+                        transition-all duration-300
+                        hover:gap-3
+                        hover:underline
                       "
                     >
                       Read More →
                     </Link>
+
                   </div>
                 </motion.div>
               ))}
             </div>
-
           </div>
 
-          {/* RIGHT SIDE — PREMIUM IMAGE */}
+          {/* RIGHT — IMAGE */}
           <motion.div
             initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}

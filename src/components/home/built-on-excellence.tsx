@@ -109,13 +109,12 @@ const BuiltOnExcellence = () => {
   return (
     <>
       {/* =====================================================
-          SECTION 1 — BUILT ON EXCELLENCE (FULL-WIDTH INTRO)
+          SECTION 1 — BUILT ON EXCELLENCE
       ====================================================== */}
       <section className="px-6 sm:px-10 lg:px-24 pt-[7rem] sm:pt-[10rem] pb-[9rem] bg-white">
 
-        {/* ---------- FULL WIDTH INTRO ---------- */}
+        {/* FULL-WIDTH INTRO */}
         <div className="w-full">
-
           <motion.span
             className="block text-sm tracking-[0.35em] uppercase text-slate-400 mb-6"
             variants={fadeUp}
@@ -139,11 +138,10 @@ const BuiltOnExcellence = () => {
             custom={1}
           >
             Built on Excellence.
-            
-           <span className="text-[#00569e]">
-  Designed to Withstand Demand.
-</span>
-
+            <br />
+            <span className="text-[#00569e]">
+              Designed to Withstand Demand.
+            </span>
           </motion.h2>
 
           <motion.p
@@ -163,10 +161,9 @@ const BuiltOnExcellence = () => {
             option and performance is expected to remain consistent, day after
             day.
           </motion.p>
-
         </div>
 
-        {/* ---------- CONTAINED CONTENT ---------- */}
+        {/* PARTNERS */}
         <MaxContainer>
           <div className="mt-20 grid sm:grid-cols-3 gap-14">
             {partners.map((partner, index) => (
@@ -179,14 +176,25 @@ const BuiltOnExcellence = () => {
                 viewport={{ once: true }}
                 custom={index + 3}
               >
-                <div className="
-                  mb-6 inline-flex items-center justify-center
-                  rounded-2xl border border-slate-200/70
-                  bg-slate-50/80 p-5
-                  shadow-[0_14px_40px_rgba(15,23,42,0.06)]
-                  transition-transform group-hover:scale-[1.04]
-                ">
-                  <img src={partner.image} alt={partner.name} className="h-10 w-auto" />
+                {/* ICON WITH BRAND BLUE BORDER */}
+                <div
+                  className="
+                    mb-6 inline-flex items-center justify-center
+                    rounded-2xl
+                    border border-[#00569e]/30
+                    bg-white p-5
+                    shadow-[0_14px_40px_rgba(15,23,42,0.06)]
+                    transition-all duration-300
+                    group-hover:scale-[1.04]
+                    group-hover:border-[#00569e]/70
+                    group-hover:shadow-[0_18px_45px_rgba(0,86,158,0.18)]
+                  "
+                >
+                  <img
+                    src={partner.image}
+                    alt={partner.name}
+                    className="h-10 w-auto opacity-90 group-hover:opacity-100 transition"
+                  />
                 </div>
 
                 <h3 className="text-[1.9rem] font-semibold text-slate-900">
@@ -207,12 +215,10 @@ const BuiltOnExcellence = () => {
       ====================================================== */}
       <section className="px-6 sm:px-10 lg:px-24 py-[9rem] sm:py-[11rem] bg-slate-50">
         <MaxContainer>
-
           <div className="flex flex-col-reverse sm:flex-row gap-16 lg:gap-24 items-center">
 
             {/* LEFT */}
             <div className="sm:w-1/2 space-y-10">
-
               <motion.span
                 className="block text-sm tracking-[0.35em] uppercase text-slate-400"
                 variants={fadeUp}
@@ -237,7 +243,7 @@ const BuiltOnExcellence = () => {
               >
                 Seamless AV for
                 <br />
-                High-Value Commercial Projects.
+                <span className="text-[#00569e]">High-Value Commercial Projects. </span>
               </motion.h2>
 
               <motion.p
@@ -252,7 +258,7 @@ const BuiltOnExcellence = () => {
                 custom={2}
               >
                 From concept to commissioning, Spectra AVL delivers complete AV
-                ecosystems — audio, video, control, and acoustics — engineered
+                ecosystems. Audio, video, lighing, and control, engineered
                 for reliability, scalability, and longevity.
               </motion.p>
 
@@ -262,7 +268,7 @@ const BuiltOnExcellence = () => {
                     key={project.text}
                     className="
                       rounded-2xl bg-white
-                      border border-slate-200/70
+                      border border-[#00569e]
                       px-7 py-6
                       shadow-[0_18px_45px_rgba(15,23,42,0.08)]
                     "
@@ -273,7 +279,7 @@ const BuiltOnExcellence = () => {
                     custom={index + 3}
                   >
                     <div className="mb-4">{project.icon}</div>
-                    <h3 className="text-[3rem] font-bold text-slate-900">
+                    <h3 className="text-[3rem] font-bold text-[#00569e]">
                       {project.no}
                     </h3>
                     <p className="mt-1 text-[1.4rem] text-slate-600">
@@ -284,46 +290,29 @@ const BuiltOnExcellence = () => {
               </div>
             </div>
 
-            {/* RIGHT */}
-           <motion.div
-  className="sm:w-1/2 relative"
-  variants={fadeUp}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  custom={7}
->
-  <div
-    className="
-      relative w-full overflow-hidden
-      rounded-[2.6rem]
-      border border-slate-200/80
-      shadow-[0_32px_90px_rgba(15,23,42,0.35)]
-    "
-  >
-    {/* Ratio box */}
-    <div
-      className="
-        w-full
-        pt-[75%]        /* mobile 4:3 */
-        sm:pt-[66.66%]  /* tablet 3:2 */
-        lg:pt-[62.5%]   /* desktop 16:10 */
-      "
-    />
-
-    {/* Image */}
-    <img
-      src="/booth.webp"
-      alt="Premium commercial AV integration"
-      className="
-        absolute inset-0
-        w-full h-full
-        object-cover
-      "
-    />
-  </div>
-</motion.div>
-
+            {/* RIGHT IMAGE */}
+            <motion.div
+              className="sm:w-1/2 relative"
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={7}
+            >
+              <div className="
+                relative w-full overflow-hidden
+                rounded-[2.6rem]
+                border border-slate-200/80
+                shadow-[0_32px_90px_rgba(15,23,42,0.35)]
+              ">
+                <div className="w-full pt-[75%] sm:pt-[66.66%] lg:pt-[62.5%]" />
+                <img
+                  src="/booth.webp"
+                  alt="Premium commercial AV integration"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
 
           </div>
         </MaxContainer>

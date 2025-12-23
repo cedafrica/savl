@@ -4,13 +4,21 @@ import { Mail, Instagram, Linkedin, Youtube, ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-black text-white overflow-hidden">
-      {/* SUBTLE LUXURY BACKGROUND */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0D0D0D] to-black" />
-      <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_30%_20%,white,transparent_40%)]" />
+    <footer className="relative text-white overflow-hidden">
+
+      {/* RESPONSIVE GRADIENT BACKGROUND */}
+      <div
+        className="
+          absolute inset-0
+          bg-gradient-to-b from-black to-black
+          sm:bg-gradient-to-r sm:from-black sm:to-black
+        "
+      />
+
+      {/* OPTIONAL SOFT TEXTURE (VERY SUBTLE) */}
+      <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_20%_20%,white,transparent_45%)]" />
 
       <MaxContainer className="relative z-10 pt-28 pb-16 px-6 sm:px-8 lg:px-0">
-
 
         {/* TOP GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-20 mb-24">
@@ -18,12 +26,18 @@ const Footer = () => {
           {/* BRAND BLOCK */}
           <div className="lg:col-span-2">
             <img
-              src="/spectra-logo.svg"
-              alt="Spectra AVL"
-              className="w-[18rem] mb-8 opacity-90"
-            />
+  src="/spectra-logo.svg"
+  alt="Spectra AVL"
+  className="
+    w-[22rem] sm:w-[26rem]
+    mb-10
+    opacity-100
+    invert brightness-0
+  "
+/>
 
-            <p className="text-gray-400 text-[1.6rem] leading-relaxed max-w-[42rem]">
+
+            <p className="text-gray-200 text-[1.6rem] leading-relaxed max-w-[42rem]">
               Spectra AVL designs and delivers refined audiovisual environments
               through precision engineering, world-class technology, and a deep
               understanding of space, sound, and experience.
@@ -37,13 +51,13 @@ const Footer = () => {
                   to="#"
                   className="
                     group w-12 h-12 rounded-full
-                    border border-white/15
+                    border border-white/20
                     flex items-center justify-center
-                    hover:border-white/40
+                    hover:border-white/50
                     transition-all duration-300
                   "
                 >
-                  <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                  <Icon className="w-5 h-5 text-gray-200 group-hover:text-white transition-colors" />
                 </Link>
               ))}
             </div>
@@ -51,7 +65,7 @@ const Footer = () => {
 
           {/* NAVIGATION */}
           <div>
-            <h3 className="text-[1.6rem] tracking-wider uppercase text-white/80 mb-6">
+            <h3 className="text-[1.6rem] tracking-wider uppercase text-white/90 mb-6">
               Navigation
             </h3>
             <ul className="space-y-4">
@@ -66,7 +80,7 @@ const Footer = () => {
                   <Link
                     to={item.link}
                     className="
-                      text-gray-400 text-[1.5rem]
+                      text-gray-300 text-[1.5rem]
                       hover:text-white
                       inline-flex items-center gap-2
                       transition-colors
@@ -82,7 +96,7 @@ const Footer = () => {
 
           {/* SERVICES */}
           <div>
-            <h3 className="text-[1.6rem] tracking-wider uppercase text-white/80 mb-6">
+            <h3 className="text-[1.6rem] tracking-wider uppercase text-white/90 mb-6">
               Expertise
             </h3>
             <ul className="space-y-4">
@@ -95,7 +109,7 @@ const Footer = () => {
               ].map((service, i) => (
                 <li
                   key={i}
-                  className="text-gray-400 text-[1.5rem] hover:text-white transition-colors"
+                  className="text-gray-300 text-[1.5rem] hover:text-white transition-colors"
                 >
                   {service}
                 </li>
@@ -105,7 +119,7 @@ const Footer = () => {
 
           {/* CONTACT */}
           <div>
-            <h3 className="text-[1.6rem] tracking-wider uppercase text-white/80 mb-6">
+            <h3 className="text-[1.6rem] tracking-wider uppercase text-white/90 mb-6">
               Contact
             </h3>
 
@@ -121,17 +135,17 @@ const Footer = () => {
               projects@savl.pro
             </Link>
 
-            <p className="mt-6 text-gray-500 text-[1.4rem] max-w-[26rem] leading-relaxed">
+            <p className="mt-6 text-gray-400 text-[1.4rem] max-w-[26rem] leading-relaxed">
               Available for select projects, partnerships, and consultations.
             </p>
           </div>
         </div>
 
         {/* DIVIDER */}
-        <div className="w-full h-px bg-white/10 mb-8" />
+        <div className="w-full h-px bg-white/15 mb-8" />
 
         {/* BOTTOM BAR */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-gray-500 text-[1.4rem]">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-gray-400 text-[1.4rem]">
           <p>
             © {new Date().getFullYear()} Spectra AVL. All rights reserved.
           </p>
@@ -145,6 +159,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
+
       </MaxContainer>
     </footer>
   );

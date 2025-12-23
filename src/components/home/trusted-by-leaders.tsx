@@ -17,7 +17,6 @@ const TrustedByLeaders = () => {
       { img: "/avpro.png", name: "High-bandwidth AV distribution and signal testing solutions." },
       { img: "/jbl.png", name: "Iconic American audio equipment manufacturer founded in 1946." },
     ],
-
     Video: [
       { img: "/infiled.png", name: "High-quality LED display solutions for large-scale installations." },
       { img: "/unilumin.png", name: "Advanced LED display technology for indoor and outdoor environments." },
@@ -27,14 +26,8 @@ const TrustedByLeaders = () => {
       { img: "/si.png", name: "Innovative projection screens and shading systems." },
       { img: "/barco.png", name: "Visualization and projection solutions for enterprise and entertainment." },
     ],
-
-    Lighting: [
-      { img: "/ma.png", name: "grandMA lighting control consoles and stage lighting technology." },
-    ],
-
-    Control: [
-      { img: "/crestron.png", name: "Global leader in automation and control systems for AV and smart environments." },
-    ],
+    Lighting: [{ img: "/ma.png", name: "grandMA lighting control consoles and stage lighting technology." }],
+    Control: [{ img: "/crestron.png", name: "Global leader in automation and control systems for AV and smart environments." }],
   };
 
   const icons = {
@@ -45,9 +38,40 @@ const TrustedByLeaders = () => {
   };
 
   return (
-    <section className="py-28 px-6 sm:px-10 bg-gradient-to-b from-[#f3f3f4] to-[#f5f5f5]">
-      <MaxContainer>
+    <section className="relative py-28 px-6 sm:px-10 overflow-hidden bg-[#f4f6f8]">
 
+      {/* 🌐 ORBIT RING */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+        <div className="relative w-[900px] h-[900px] sm:w-[1200px] sm:h-[1200px]">
+
+          {/* Outer orbit */}
+          <div className="
+            absolute inset-0 rounded-full
+            border border-[#00569e]/25
+            blur-[0.5px]
+            animate-orbitSlow
+          " />
+
+          {/* Inner orbit */}
+          <div className="
+            absolute inset-[12%] rounded-full
+            border border-[#00569e]/15
+            blur-[0.5px]
+            animate-orbitReverse
+          " />
+
+          {/* Orbit particle */}
+          <div className="
+            absolute top-1/2 left-1/2
+            w-2 h-2 rounded-full
+            bg-[#00569e]
+            shadow-[0_0_20px_rgba(0,86,158,0.8)]
+            animate-orbitParticle
+          " />
+        </div>
+      </div>
+
+      <MaxContainer className="relative z-10">
         <div className="w-full flex justify-center">
           <div className="w-full max-w-[900px] flex flex-col items-center">
 
@@ -63,34 +87,34 @@ const TrustedByLeaders = () => {
             </div>
 
             {/* FILTER TABS */}
-            <div
-              className="
-                bg-white/50 backdrop-blur-xl
-                border border-white/70
-                rounded-2xl sm:rounded-full
-                py-3 px-3
-                shadow-[0_10px_28px_rgba(0,0,0,0.06)]
-                flex flex-wrap justify-center gap-2 sm:gap-4
-              "
-            >
+            <div className="bg-white/70 backdrop-blur-xl rounded-full py-3 px-4 shadow-lg flex flex-wrap justify-center gap-3">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActive(cat)}
                   className={`
-                    relative flex items-center gap-2 px-5 sm:px-6 py-2
-                    rounded-full font-medium transition-all
+                    relative px-6 py-2 rounded-full font-medium transition-all
                     text-[1.35rem] sm:text-[1.6rem]
-                    ${active === cat ? "text-black" : "text-slate-600"}
+                    ${
+                      active === cat
+                        ? "text-[#00569e]"
+                        : "text-slate-600 hover:text-[#00569e]"
+                    }
                   `}
                 >
-                  {icons[cat]}
-                  {cat}
+                  <span className="flex items-center gap-2">
+                    {icons[cat]}
+                    {cat}
+                  </span>
 
                   {active === cat && (
                     <motion.div
                       layoutId="tabHighlight"
-                      className="absolute inset-0 bg-white rounded-full -z-10 shadow"
+                      className="
+                        absolute inset-0 -z-10 rounded-full
+                        ring-2 ring-[#00569e]/40
+                        shadow-[0_0_30px_rgba(0,86,158,0.35)]
+                      "
                       transition={{ type: "spring", stiffness: 350, damping: 25 }}
                     />
                   )}
@@ -99,67 +123,81 @@ const TrustedByLeaders = () => {
             </div>
 
             {/* BRAND GRID */}
-            <div className="mt-20 w-full flex justify-center">
-              <div className="w-full max-w-[780px]">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={active}
-                    initial={{ opacity: 0, y: 25 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -25 }}
-                    transition={{ duration: 0.45 }}
-                    className="
-                      grid
-                      grid-cols-1
-                      sm:grid-cols-2
-                      lg:grid-cols-3
-                      gap-8 sm:gap-14
-                      justify-items-center
-                    "
-                  >
-                    {partners[active].map((brand, i) => (
-                      <motion.div
-                        key={brand.name}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.12, duration: 0.45 }}
+            <div className="mt-20 w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -30 }}
+                  transition={{ duration: 0.45 }}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center"
+                >
+                  {partners[active].map((brand, i) => (
+                    <motion.div
+                      key={brand.name}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.12 }}
+                      className="
+                        bg-white/85 backdrop-blur-xl
+                        rounded-xl px-6 py-8
+                        shadow-[0_10px_35px_rgba(0,0,0,0.08)]
+                        hover:shadow-[0_18px_45px_rgba(0,86,158,0.25)]
+                        hover:-translate-y-1
+                        transition-all duration-500
+                        w-full max-w-[260px]
+                      "
+                    >
+                      <img
+                        src={brand.img}
+                        alt={brand.name}
                         className="
-                          bg-white/60 backdrop-blur-xl border border-white/60
-                          rounded-xl
-                          py-7 px-4 sm:py-10 sm:px-6
-                          flex flex-col items-center justify-center text-center
-                          shadow-[0_8px_25px_rgba(0,0,0,0.05)]
-                          hover:shadow-[0_12px_35px_rgba(0,0,0,0.10)]
-                          hover:-translate-y-1 transition-all duration-500
-                          w-full max-w-[260px]
+                          h-12 mx-auto
+                          grayscale opacity-70
+                          hover:opacity-100 hover:grayscale-0
+                          transition-all duration-500
                         "
-                      >
-                        <img
-                          src={brand.img}
-                          alt={brand.name}
-                          className="
-                            h-10 sm:h-14
-                            object-contain
-                            grayscale opacity-70
-                            hover:grayscale-0 hover:opacity-100
-                            transition-all duration-500
-                          "
-                        />
+                      />
 
-                        <p className="mt-4 text-[1.3rem] sm:text-[1.45rem] text-slate-700 opacity-70 hover:opacity-100 transition">
-                          {brand.name}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                      <p className="mt-4 text-center text-slate-700 text-[1.35rem]">
+                        {brand.name}
+                      </p>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
             </div>
 
           </div>
         </div>
-
       </MaxContainer>
+
+      {/* ORBIT KEYFRAMES */}
+      <style>{`
+        @keyframes orbitSlow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes orbitReverse {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+        @keyframes orbitParticle {
+          from { transform: rotate(0deg) translateX(450px); }
+          to { transform: rotate(360deg) translateX(450px); }
+        }
+        .animate-orbitSlow {
+          animation: orbitSlow 90s linear infinite;
+        }
+        .animate-orbitReverse {
+          animation: orbitReverse 140s linear infinite;
+        }
+        .animate-orbitParticle {
+          animation: orbitParticle 60s linear infinite;
+        }
+      `}</style>
+
     </section>
   );
 };

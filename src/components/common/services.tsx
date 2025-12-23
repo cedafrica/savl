@@ -2,7 +2,8 @@ import MaxContainer from "../common/max-container";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-// FIXED VARIANTS — fully FM v11 compatible (no ease)
+/* ---------------- MOTION VARIANTS ---------------- */
+
 const fade = (d = 0) => ({
   hidden: { opacity: 0, y: 40 },
   visible: {
@@ -10,9 +11,9 @@ const fade = (d = 0) => ({
     y: 0,
     transition: {
       delay: d,
-      duration: 0.9
-    }
-  }
+      duration: 0.9,
+    },
+  },
 });
 
 const slide = (d = 0) => ({
@@ -22,18 +23,20 @@ const slide = (d = 0) => ({
     x: 0,
     transition: {
       delay: d,
-      duration: 1.1
-    }
-  }
+      duration: 1.1,
+    },
+  },
 });
+
+/* ---------------- COMPONENT ---------------- */
 
 const Services = () => {
   const data = [
     {
       title: "Audio",
-  text:
-    "We implement and finely tune professional audio systems that deliver clear, balanced, and immersive sound, creating spaces where audiences feel connected, comfortable, and fully engaged, and where every voice and note is heard exactly as intended.",
-  image: "/audser.png",
+      text:
+        "We implement and finely tune professional audio systems that deliver clear, balanced, and immersive sound, creating spaces where audiences feel connected, comfortable, and fully engaged, and where every voice and note is heard exactly as intended.",
+      image: "/audser.png",
     },
     {
       title: "Video",
@@ -50,8 +53,16 @@ const Services = () => {
   ];
 
   return (
-    <section className="bg-[#fff] py-2">
-      <MaxContainer>
+    <section className="relative py-24 sm:py-32 bg-white overflow-hidden">
+
+      {/* SUBTLE BRAND BLUE BACKGROUND TOUCH */}
+      <div className="
+        absolute inset-0
+        bg-[radial-gradient(circle_at_15%_30%,rgba(0,86,158,0.06),transparent_45%)]
+        pointer-events-none
+      " />
+
+      <MaxContainer className="relative z-10">
 
         {/* IMMERSIVE SERVICE SECTIONS */}
         <div className="flex flex-col space-y-40">
@@ -68,7 +79,11 @@ const Services = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="relative w-full lg:w-[55%] overflow-hidden rounded-3xl"
+                className="
+                  relative w-full lg:w-[55%]
+                  overflow-hidden rounded-3xl
+                  ring-1 ring-[#00569e]/10
+                "
               >
                 <motion.img
                   src={item.image}
@@ -76,9 +91,7 @@ const Services = () => {
                   className="w-full h-[34rem] sm:h-[40rem] object-cover rounded-3xl"
                   initial={{ scale: 1.15 }}
                   whileInView={{ scale: 1 }}
-                  transition={{
-                    duration: 1.8
-                  }}
+                  transition={{ duration: 1.8 }}
                 />
               </motion.div>
 
@@ -88,32 +101,43 @@ const Services = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                className="w-full lg:w-[45%] space-y-6"
+                className="w-full lg:w-[45%] space-y-7"
               >
-                <h2 className="text-[3rem] sm:text-[3.4rem] font-semibold text-slate-900 tracking-tight leading-tight">
-                  {item.title}
-                </h2>
+                {/* TITLE WITH BLUE ACCENT */}
+                <div className="relative inline-block">
+                  <h2 className="text-[3rem] sm:text-[3.4rem] font-semibold text-slate-900 tracking-tight leading-tight">
+                    {item.title}
+                  </h2>
+                  <span className="
+                    absolute -bottom-2 left-0
+                    h-[2px] w-12
+                    bg-[#00569e]
+                  " />
+                </div>
 
                 <p className="text-[1.55rem] sm:text-[1.65rem] text-slate-600 leading-relaxed max-w-[580px]">
                   {item.text}
                 </p>
 
+                {/* CTA WITH BLUE TOUCH */}
                 <Link to="/contact">
-  <button
-    className="
-      mt-6 inline-flex items-center
-      text-[1.45rem] font-medium
-      text-slate-900
-      border border-slate-300
-      px-6 py-3 rounded-full
-      transition-all duration-300
-      hover:bg-slate-900 hover:text-white hover:border-slate-900
-    "
-  >
-    Discuss Your Project
-    <span className="ml-2 text-[1.9rem] translate-y-[1px]">→</span>
-  </button>
-</Link>
+                  <button
+                    className="
+                      mt-6 inline-flex items-center
+                      text-[1.45rem] font-medium
+                      text-slate-900
+                      border border-[#00569e]/30
+                      px-6 py-3 rounded-full
+                      transition-all duration-300
+                      hover:text-[#00569e]
+                      hover:border-[#00569e]
+                      hover:shadow-[0_8px_25px_rgba(0,86,158,0.18)]
+                    "
+                  >
+                    Discuss Your Project
+                    <span className="ml-2 text-[1.9rem] translate-y-[1px]">→</span>
+                  </button>
+                </Link>
               </motion.div>
             </div>
           ))}
