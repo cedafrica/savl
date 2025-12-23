@@ -4,7 +4,14 @@ import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type NavChild = { label: string; link: string };
-type NavItem = { label: string; href?: string; type?: "dropdown"; children?: NavChild[] };
+type NavItem = {
+  label: string;
+  href?: string;
+  type?: "dropdown";
+  children?: NavChild[];
+};
+
+const BRAND_BLUE = "#00569e";
 
 const Nav: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -34,14 +41,14 @@ const Nav: React.FC = () => {
     { label: "Contact", href: "/contact" },
   ];
 
-  // Scroll detection for navbar styling
+  /* Scroll detection */
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock scrolling when mobile nav open
+  /* Lock scroll on mobile menu */
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
@@ -52,11 +59,12 @@ const Nav: React.FC = () => {
       <motion.nav
         className={`
           fixed top-0 left-0 w-full z-[9999]
-          px-6 sm:px-14 
+          px-6 sm:px-14
           transition-all duration-500
-          ${scrolled
-            ? "bg-black/50 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.25)]"
-            : "bg-black/20 backdrop-blur-[2px]"
+          ${
+            scrolled
+              ? "bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
+              : "bg-white"
           }
         `}
         initial={{ y: -80 }}
@@ -69,7 +77,7 @@ const Nav: React.FC = () => {
           <Link to="/" className="flex items-center">
             <motion.img
               src="/spectra-logo.svg"
-              alt="logo"
+              alt="Spectra AVL"
               className="w-40 sm:w-56"
               animate={{ scale: scrolled ? 0.9 : 1 }}
               transition={{ duration: 0.4 }}
@@ -77,21 +85,28 @@ const Nav: React.FC = () => {
           </Link>
 
           {/* DESKTOP NAV */}
-          <ul className="hidden sm:flex items-center gap-12 text-white/90">
+          <ul className="hidden sm:flex items-center gap-12 text-black">
             {NavItems.map((item) =>
               item.type === "dropdown" ? (
                 <li key={item.label} className="relative">
                   <button
                     onClick={() => setOpenDropdown((prev) => !prev)}
-                    className="text-[1.45rem] font-medium flex items-center gap-2 hover:text-white transition"
+                    className="
+                      text-[1.45rem] font-medium
+                      flex items-center gap-2
+                      transition-colors
+                      hover:text-[#00569e]
+                    "
                   >
                     {item.label}
                     <ChevronDown
-                      className={`w-4 h-4 transition-all ${openDropdown ? "rotate-180" : ""}`}
+                      className={`w-4 h-4 transition-transform ${
+                        openDropdown ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
 
-                  {/* DROPDOWN PANEL */}
+                  {/* DROPDOWN */}
                   <AnimatePresence>
                     {openDropdown && (
                       <motion.div
@@ -100,12 +115,12 @@ const Nav: React.FC = () => {
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.3 }}
                         className="
-                          absolute left-0 top-full mt-4 
+                          absolute left-0 top-full mt-4
                           w-[26rem]
-                          bg-white/90 backdrop-blur-xl 
-                          rounded-xl shadow-xl 
-                          border border-slate-200/40 
-                          overflow-hidden 
+                          bg-white
+                          rounded-xl shadow-xl
+                          border border-slate-200
+                          overflow-hidden
                           p-4 space-y-2
                         "
                       >
@@ -114,10 +129,11 @@ const Nav: React.FC = () => {
                             key={child.link}
                             to={child.link}
                             className="
-                              block px-3 py-2 
-                              text-[1.4rem] font-semibold 
-                              text-slate-700 hover:text-black
-                              hover:bg-black/5
+                              block px-3 py-2
+                              text-[1.4rem] font-medium
+                              text-slate-700
+                              hover:text-[#00569e]
+                              hover:bg-slate-100
                               rounded-md transition
                             "
                             onClick={() => setOpenDropdown(false)}
@@ -135,7 +151,8 @@ const Nav: React.FC = () => {
                     to={item.href ?? "#"}
                     className="
                       text-[1.45rem] font-medium
-                      hover:text-white transition
+                      transition-colors
+                      hover:text-[#00569e]
                     "
                   >
                     {item.label}
@@ -150,9 +167,9 @@ const Nav: React.FC = () => {
             onClick={() => setOpen(true)}
             className="sm:hidden flex flex-col gap-1.5 w-9"
           >
-            <span className="w-full h-[3px] bg-white block rounded"></span>
-            <span className="w-full h-[3px] bg-white block rounded"></span>
-            <span className="w-full h-[3px] bg-white block rounded"></span>
+            <span className="w-full h-[3px] bg-black block rounded"></span>
+            <span className="w-full h-[3px] bg-black block rounded"></span>
+            <span className="w-full h-[3px] bg-black block rounded"></span>
           </button>
         </div>
       </motion.nav>
@@ -167,26 +184,36 @@ const Nav: React.FC = () => {
             transition={{ duration: 0.4 }}
             className="
               fixed inset-0 z-[99999]
-              bg-black/95 backdrop-blur-xl 
+              bg-white
               flex flex-col pt-32 px-10
             "
           >
-            {/* Close */}
-            <button onClick={() => setOpen(false)} className="absolute top-10 right-10 text-white text-4xl">
+            {/* CLOSE */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-10 right-10 text-black text-4xl"
+            >
               &times;
             </button>
 
-            <div className="flex flex-col gap-8 text-white text-3xl">
+            <div className="flex flex-col gap-8 text-black text-3xl">
               {NavItems.map((item) =>
                 item.type === "dropdown" ? (
                   <div key={item.label}>
                     <button
                       onClick={() => setOpenDropdown((o) => !o)}
-                      className="flex justify-between items-center w-full font-semibold text-[2rem]"
+                      className="
+                        flex justify-between items-center w-full
+                        font-semibold text-[2rem]
+                        hover:text-[#00569e]
+                        transition
+                      "
                     >
                       {item.label}
                       <ChevronDown
-                        className={`transition ${openDropdown ? "rotate-180" : ""}`}
+                        className={`transition-transform ${
+                          openDropdown ? "rotate-180" : ""
+                        }`}
                       />
                     </button>
 
@@ -202,7 +229,11 @@ const Nav: React.FC = () => {
                             <Link
                               key={child.link}
                               to={child.link}
-                              className="text-white/70 text-[1.7rem] hover:text-white"
+                              className="
+                                text-slate-600 text-[1.7rem]
+                                hover:text-[#00569e]
+                                transition
+                              "
                               onClick={() => setOpen(false)}
                             >
                               {child.label}
@@ -216,7 +247,11 @@ const Nav: React.FC = () => {
                   <Link
                     key={item.label}
                     to={item.href ?? "#"}
-                    className="font-semibold text-[2rem] hover:text-white"
+                    className="
+                      font-semibold text-[2rem]
+                      hover:text-[#00569e]
+                      transition
+                    "
                     onClick={() => setOpen(false)}
                   >
                     {item.label}
