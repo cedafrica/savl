@@ -59,9 +59,7 @@ const Services = () => {
       <div
   className="
     absolute inset-0
-    bg-[radial-gradient(circle_at_15%_30%,rgba(0,86,158,0.04),transparent_55%)]
-    sm:bg-[radial-gradient(circle_at_15%_30%,rgba(0,86,158,0.06),transparent_45%)]
-    pointer-events-none
+   
   "
 />
 
