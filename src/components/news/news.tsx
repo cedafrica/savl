@@ -44,14 +44,37 @@ const NewsPage = () => {
       : newsData.filter(item => item.category.includes(activeTab));
 
   return (
-    <section className="w-full bg-white">
-      <div className="max-w-[1600px] mx-auto px-10 py-32">
+    <section className="relative w-full bg-white overflow-hidden">
+
+      {/* ================= BLUE BACKGROUND PARTICLES ================= */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="
+            absolute -top-40 -left-40
+            w-[700px] h-[700px]
+            bg-[radial-gradient(circle,rgba(0,86,158,0.10),transparent_65%)]
+          "
+        />
+        <div
+          className="
+            absolute bottom-[-300px] right-[-200px]
+            w-[800px] h-[800px]
+            bg-[radial-gradient(circle,rgba(0,86,158,0.08),transparent_70%)]
+          "
+        />
+      </div>
+
+      <div className="relative z-10 max-w-[1600px] mx-auto px-10 py-32">
 
         {/* PAGE HEADER */}
         <div className="mb-20">
           <h1 className="text-5xl lg:text-6xl font-semibold text-black mb-6">
-            News & Insights
+            News & <span className="text-[#00569e]">Insights</span>
           </h1>
+
+          {/* subtle divider */}
+          <div className="mb-8 h-[2px] w-20 bg-[#00569e]/70 rounded-full" />
+
           <p className="text-3xl text-gray-500 max-w-3xl leading-relaxed">
             Industry announcements, partnerships, and project highlights from
             Spectra AVL.
@@ -66,8 +89,8 @@ const NewsPage = () => {
               onClick={() => setActiveTab(tab)}
               className={`pb-6 text-2xl tracking-wide transition-all ${
                 activeTab === tab
-                  ? "border-b-2 border-black text-black"
-                  : "text-gray-400 hover:text-black"
+                  ? "border-b-2 border-[#00569e] text-[#00569e]"
+                  : "text-gray-400 hover:text-[#00569e]"
               }`}
             >
               {tab}
@@ -84,10 +107,14 @@ const NewsPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.08 }}
               viewport={{ once: true }}
-              className="group"
+              className="
+                group
+                
+                transition
+              "
             >
               {/* IMAGE */}
-              <div className="overflow-hidden mb-8 rounded-xl">
+              <div className="overflow-hidden mb-8 rounded-xl ring-1 ring-[#00569e]/10">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -96,14 +123,14 @@ const NewsPage = () => {
               </div>
 
               {/* META */}
-              <div className="flex items-center gap-4 text-sm uppercase tracking-widest text-gray-400 mb-4">
+              <div className="flex items-center gap-4 text-sm uppercase tracking-widest text-[#00569e]/80 mb-4">
                 <span>{item.date}</span>
                 <span>•</span>
                 <span>{item.category.join(" / ")}</span>
               </div>
 
               {/* TITLE */}
-              <h2 className="text-3xl lg:text-3xl font-semibold text-black leading-snug mb-5 group-hover:underline">
+              <h2 className="text-3xl lg:text-3xl font-semibold text-black leading-snug mb-5 group-hover:underline decoration-[#00569e]">
                 {item.title}
               </h2>
 
@@ -115,7 +142,13 @@ const NewsPage = () => {
               {/* READ MORE */}
               <Link
                 to={item.link}
-                className="inline-block text-2xl font-medium underline underline-offset-8 hover:text-black transition"
+                className="
+                  inline-block text-2xl font-medium
+                  text-[#00569e]
+                  underline underline-offset-8
+                  hover:text-[#003f73]
+                  transition
+                "
               >
                 Read More →
               </Link>

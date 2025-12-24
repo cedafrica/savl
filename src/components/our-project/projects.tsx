@@ -26,7 +26,7 @@ type Category = {
 };
 
 /* =======================
-   PROJECT DATA (FOCUSED)
+   PROJECT DATA
 ======================= */
 
 const worshipProjects: Project[] = [
@@ -58,10 +58,6 @@ const nightclubProjects: Project[] = [
     link: "/projects/booth-nightclub",
   },
 ];
-
-/* =======================
-   CATEGORIES (ONLY 3)
-======================= */
 
 const categories: Category[] = [
   {
@@ -109,6 +105,7 @@ const Projects = () => {
   return (
     <section className="px-6 sm:px-10 lg:px-24 pt-16 sm:pt-24">
       <MaxContainer>
+
         {/* HEADER */}
         <div className="mb-10 sm:mb-14 max-w-3xl">
           <p className="text-sm uppercase tracking-[0.25em] text-neutral-500 mb-3">
@@ -119,7 +116,10 @@ const Projects = () => {
             Spaces where sound defines the experience.
           </h2>
 
-          <p className="mt-3 text-[1.45rem] text-neutral-600 leading-relaxed">
+          {/* subtle blue divider */}
+          <div className="mt-4 h-[2px] w-16 bg-[#00569e]/70 rounded-full" />
+
+          <p className="mt-4 text-[1.45rem] text-neutral-600 leading-relaxed">
             We focus exclusively on environments where audio quality directly shapes
             emotion, engagement, and impact — worship spaces, restaurants, and
             high-energy nightlife venues.
@@ -128,6 +128,7 @@ const Projects = () => {
 
         {/* TABS */}
         <Tabs defaultValue={categories[0].id} className="w-full">
+
           {/* MOBILE TAB BAR */}
           <div className="sm:hidden mb-6 w-full overflow-x-auto">
             <TabsList className="inline-flex gap-3 bg-[#0B0B0C] px-4 py-6 rounded-xl w-max">
@@ -135,8 +136,12 @@ const Projects = () => {
                 <TabsTrigger
                   key={cat.id}
                   value={cat.id}
-                  className="px-5 py-4 text-[1.3rem] rounded-lg text-white border border-white/20
-                  data-[state=active]:bg-white data-[state=active]:text-black"
+                  className="
+                    px-5 py-4 text-[1.3rem] rounded-lg text-white
+                    border border-white/20
+                    data-[state=active]:bg-white
+                    data-[state=active]:text-[#00569e]
+                  "
                 >
                   {cat.label}
                 </TabsTrigger>
@@ -144,51 +149,49 @@ const Projects = () => {
             </TabsList>
           </div>
 
-          {/* DESKTOP LAYOUT */}
-          <div className="hidden sm:flex rounded-3xl py[100px] border border-black/5 overflow-hidden bg-[#0B0B0C]">
+          {/* DESKTOP */}
+          <div className="hidden sm:flex rounded-3xl border border-black/5 overflow-hidden bg-[#0B0B0C]">
+
             {/* LEFT SIDEBAR */}
             <aside className="w-[300px] lg:w-[340px] border-r border-white/10 bg-[#0B0B0C]">
-  <div className="flex flex-col h-full px-8">
+              <div className="flex flex-col h-full px-8">
 
-    {/* Top label */}
-    <div className="pt-10 pb-6">
-      <p className="text-xs uppercase tracking-[0.3em] text-neutral-400">
-        Project Types
-      </p>
-    </div>
+                <div className="pt-10 pb-6">
+                  <p className="text-xs uppercase tracking-[0.3em] text-neutral-400">
+                    Project Types
+                  </p>
+                </div>
 
-    {/* CENTERED TAB LIST */}
-    {/* CENTERED / LOWERED TAB LIST */}
-<div className="flex-1 flex justify-start pt-12">
-  <TabsList className="flex flex-col gap-2 bg-transparent p-0 w-full">
-    {categories.map((cat) => (
-      <TabsTrigger
-        key={cat.id}
-        value={cat.id}
-        className="
-          w-full text-left
-          px-4 py-3 rounded-xl
-          text-[1.35rem] font-medium tracking-tight
-          text-neutral-300 hover:text-white
-          data-[state=active]:bg-white data-[state=active]:text-black
-          transition-all
-        "
-      >
-        {cat.label}
-      </TabsTrigger>
-    ))}
-  </TabsList>
-</div>
+                <div className="flex-1 flex justify-start pt-12">
+                  <TabsList className="flex flex-col gap-2 bg-transparent p-0 w-full">
+                    {categories.map((cat) => (
+                      <TabsTrigger
+                        key={cat.id}
+                        value={cat.id}
+                        className="
+                          w-full text-left
+                          px-4 py-3 rounded-xl
+                          text-[1.35rem] font-medium
+                          text-neutral-300 hover:text-white
+                          data-[state=active]:bg-white
+                          data-[state=active]:text-[#00569e]
+                          transition-all
+                        "
+                      >
+                        {cat.label}
+                      </TabsTrigger>
+                    ))}
+                  </TabsList>
+                </div>
 
-    {/* Footer text */}
-    <div className="pb-10 pt-6 border-t border-white/10">
-      <p className="text-[1.25rem] leading-relaxed text-neutral-400">
-        Every system is designed to be invisible — yet unforgettable.
-      </p>
-    </div>
+                <div className="pb-10 pt-6 border-t border-white/10">
+                  <p className="text-[1.25rem] leading-relaxed text-neutral-400">
+                    Every system is designed to be invisible — yet unforgettable.
+                  </p>
+                </div>
 
-  </div>
-</aside>
+              </div>
+            </aside>
 
             {/* RIGHT CONTENT */}
             <div className="flex-1 bg-[#F6F6F7]">
@@ -208,6 +211,7 @@ const Projects = () => {
               </TabsContent>
             ))}
           </div>
+
         </Tabs>
       </MaxContainer>
     </section>
@@ -235,7 +239,10 @@ const CategoryContent = ({ category }: { category: Category }) => (
         {category.subtitle}
       </h3>
 
-      <p className="mt-2 text-[1.4rem] text-neutral-600">
+      {/* blue accent */}
+      <div className="mt-3 h-[2px] w-12 bg-[#00569e]/60 rounded-full" />
+
+      <p className="mt-3 text-[1.4rem] text-neutral-600">
         A curated selection of projects where we led the AV consulting,
         acoustic strategy, and system engineering.
       </p>
@@ -266,8 +273,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const { image, location, date, title, link } = project;
 
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden shadow-[0_18px_40px_rgba(15,15,15,0.12)]
-      hover:shadow-[0_22px_55px_rgba(15,15,15,0.16)] transition-all">
+    <div
+      className="
+        group bg-white rounded-2xl overflow-hidden
+        shadow-[0_18px_40px_rgba(15,15,15,0.12)]
+        hover:shadow-[0_22px_55px_rgba(0,86,158,0.22)]
+        transition-all
+      "
+    >
       <div className="relative h-[210px] overflow-hidden">
         <img
           src={image}
@@ -287,15 +300,19 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
       <div className="p-6 bg-[#F6F6F9]">
         <div className="flex justify-between text-[1.25rem] text-neutral-600 mb-4">
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 text-[#00569e]">
             <UserRound size={17} /> {location}
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 text-[#00569e]">
             <Calendar size={17} /> {date}
           </span>
         </div>
 
-        <Button asChild variant="ghost" className="px-0 text-[1.35rem]">
+        <Button
+          asChild
+          variant="ghost"
+          className="px-0 text-[1.35rem] text-[#00569e] hover:text-[#003f73]"
+        >
           <Link to={link}>View Case Study →</Link>
         </Button>
       </div>

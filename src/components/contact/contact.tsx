@@ -15,7 +15,7 @@ const ContactForm = () => {
   return (
     <section
       className="
-        w-full
+        relative w-full overflow-hidden
         bg-gradient-to-br
         from-[#f6f7f8]
         via-[#eef0f2]
@@ -24,7 +24,25 @@ const ContactForm = () => {
         py-24 sm:py-44
       "
     >
-      <MaxContainer className="max-w-[980px]">
+      {/* ================= BLUE BACKGROUND PARTICLES ================= */}
+      <div className="pointer-events-none absolute inset-0">
+        <div
+          className="
+            absolute -top-40 -left-40
+            w-[700px] h-[700px]
+            bg-[radial-gradient(circle,rgba(0,86,158,0.10),transparent_65%)]
+          "
+        />
+        <div
+          className="
+            absolute bottom-[-300px] right-[-200px]
+            w-[800px] h-[800px]
+            bg-[radial-gradient(circle,rgba(0,86,158,0.08),transparent_70%)]
+          "
+        />
+      </div>
+
+      <MaxContainer className="relative z-10 max-w-[980px]">
 
         {/* HEADER */}
         <div className="flex flex-col sm:flex-row justify-between gap-12 mb-28">
@@ -34,10 +52,14 @@ const ContactForm = () => {
             transition={{ duration: 0.9, ease: "easeOut" }}
           >
             <h2 className="text-[2.6rem] sm:text-[3.4rem] font-semibold text-black leading-tight">
-              Let’s Discuss Your Project
+              Let’s Discuss Your{" "}
+              <span className="text-[#00569e]">Project</span>
             </h2>
 
-            <p className="mt-4 text-[1.5rem] sm:text-[1.7rem] text-black/60 max-w-[34rem] leading-relaxed">
+            {/* subtle divider */}
+            <div className="mt-4 h-[2px] w-16 bg-[#00569e]/70 rounded-full" />
+
+            <p className="mt-5 text-[1.5rem] sm:text-[1.7rem] text-black/60 max-w-[34rem] leading-relaxed">
               Engage with Spectra AVL to design and deliver world-class
               audio-visual experiences tailored to your space.
             </p>
@@ -56,8 +78,8 @@ const ContactForm = () => {
             bg-white/80
             backdrop-blur-xl
             rounded-[3.2rem]
-            border border-black/10
-            shadow-[0_40px_120px_rgba(0,0,0,0.06)]
+            border border-[#00569e]/15
+            shadow-[0_40px_120px_rgba(0,86,158,0.10)]
             px-10 sm:px-16
             py-16
             flex flex-col gap-10
@@ -76,7 +98,8 @@ const ContactForm = () => {
                 pl-8
                 text-[1.5rem]
                 placeholder:text-black/40
-                focus:border-black
+                focus:border-[#00569e]
+                focus:ring-[#00569e]/20
               "
             />
 
@@ -92,7 +115,8 @@ const ContactForm = () => {
                 pl-8
                 text-[1.5rem]
                 placeholder:text-black/40
-                focus:border-black
+                focus:border-[#00569e]
+                focus:ring-[#00569e]/20
               "
             />
           </div>
@@ -108,7 +132,8 @@ const ContactForm = () => {
               pl-8
               text-[1.5rem]
               placeholder:text-black/40
-              focus:border-black
+              focus:border-[#00569e]
+              focus:ring-[#00569e]/20
             "
           />
 
@@ -122,6 +147,8 @@ const ContactForm = () => {
                 pl-8
                 text-[1.5rem]
                 text-black/70
+                focus:border-[#00569e]
+                focus:ring-[#00569e]/20
               "
             >
               <SelectValue placeholder="Select Project Type" />
@@ -154,7 +181,8 @@ const ContactForm = () => {
               pt-6
               text-[1.5rem]
               placeholder:text-black/40
-              focus:border-black
+              focus:border-[#00569e]
+              focus:ring-[#00569e]/20
             "
           />
 
@@ -166,11 +194,13 @@ const ContactForm = () => {
                 h-22
                 px-20
                 rounded-full
-                border border-black
-                text-black
+                border border-[#00569e]
+                text-[#00569e]
                 font-semibold
                 text-[1.4rem]
-                hover:bg-black hover:text-white
+                hover:bg-[#00569e]
+                hover:text-white
+                hover:shadow-[0_12px_35px_rgba(0,86,158,0.25)]
                 transition-all duration-400
               "
             >

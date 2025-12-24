@@ -73,11 +73,19 @@ const imageReveal: Variants = {
 const Body: React.FC<BodyProps> = ({ contents }) => {
   return (
     <section className="relative bg-gradient-to-b from-[#f4f5f6] via-[#ededee] to-[#e2e3e5] overflow-hidden">
+
+      {/* ================= ORBIT RIPPLE BACKGROUND ================= */}
+      <div className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center">
+        <div className="absolute w-[1200px] h-[1200px] rounded-full border border-[#00569e]/20 animate-orbitSlow" />
+        <div className="absolute w-[900px] h-[900px] rounded-full border-2 border-[#00569e]/25 animate-orbitMedium" />
+        <div className="absolute w-[600px] h-[600px] rounded-full border border-[#00569e]/15 animate-orbitFast" />
+      </div>
+
       {/* AMBIENT TEXTURE */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.035] bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:28px_28px]" />
 
       {/* ================= INTRO ================= */}
-      <div className="relative max-w-[110rem] mx-auto px-6 sm:px-10 pt-28 sm:pt-40 pb-32 sm:pb-52">
+      <div className="relative z-10 max-w-[110rem] mx-auto px-6 sm:px-10 pt-28 sm:pt-40 pb-32 sm:pb-52">
         <motion.h1
           variants={headlineContainer}
           initial="hidden"
@@ -88,7 +96,10 @@ const Body: React.FC<BodyProps> = ({ contents }) => {
           <motion.span variants={headlineLine} className="block">
             We don’t install systems.
           </motion.span>
-          <motion.span variants={headlineLine} className="block text-slate-500">
+          <motion.span
+            variants={headlineLine}
+            className="block text-[#00569e]"
+          >
             We choreograph experiences.
           </motion.span>
         </motion.h1>
@@ -106,21 +117,16 @@ const Body: React.FC<BodyProps> = ({ contents }) => {
       </div>
 
       {/* ================= SECTIONS ================= */}
-      <div className="relative max-w-[120rem] mx-auto px-6 sm:px-10 space-y-24 sm:space-y-48 pb-32 sm:pb-48">
+      <div className="relative z-10 max-w-[120rem] mx-auto px-6 sm:px-10 space-y-24 sm:space-y-48 pb-32 sm:pb-48">
         {contents.map((section, index) => {
           const isReversed = index % 2 !== 0;
 
           return (
             <div
               key={index}
-              className={`
-                flex
-                flex-col
-                sm:flex-row
-                items-center
-                gap-10 sm:gap-20
-                ${isReversed ? "sm:flex-row-reverse" : ""}
-              `}
+              className={`flex flex-col sm:flex-row items-center gap-10 sm:gap-20 ${
+                isReversed ? "sm:flex-row-reverse" : ""
+              }`}
             >
               {/* IMAGE */}
               <motion.div
@@ -152,7 +158,10 @@ const Body: React.FC<BodyProps> = ({ contents }) => {
                   viewport={{ once: true }}
                   className="text-[2.4rem] sm:text-[3.2rem] lg:text-[4rem] font-medium text-slate-900 leading-[1.15]"
                 >
-                  {section.title}
+                  <span className="relative">
+                    {section.title}
+                    <span className="absolute -bottom-2 left-0 w-16 h-[3px] bg-[#00569e]" />
+                  </span>
                 </motion.h2>
 
                 <div className="space-y-5 sm:space-y-7">
@@ -166,7 +175,7 @@ const Body: React.FC<BodyProps> = ({ contents }) => {
                       className="text-[1.45rem] sm:text-[1.7rem] text-slate-600 leading-[1.7]"
                     >
                       {itm.bold && (
-                        <span className="font-semibold text-slate-900">
+                        <span className="font-semibold text-[#00569e]">
                           {itm.bold}:{" "}
                         </span>
                       )}
@@ -181,13 +190,13 @@ const Body: React.FC<BodyProps> = ({ contents }) => {
       </div>
 
       {/* ================= CTA ================= */}
-      <div className="relative max-w-[110rem] mx-auto px-6 sm:px-10 pb-32 sm:pb-48">
+      <div className="relative z-10 max-w-[110rem] mx-auto px-6 sm:px-10 pb-32 sm:pb-48">
         <motion.div
           variants={rise}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-10 border-t border-slate-300/60 pt-20"
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-10 border-t border-[#00569e]/30 pt-20"
         >
           <h3 className="text-[2.6rem] sm:text-[3.6rem] font-medium text-slate-900 max-w-[52rem] leading-[1.2]">
             Ready to design an experience that truly belongs to your space?
@@ -195,12 +204,46 @@ const Body: React.FC<BodyProps> = ({ contents }) => {
 
           <Link
             to="/contact"
-            className="inline-flex items-center gap-4 text-[1.6rem] font-medium text-slate-900 border-b border-slate-900/40 pb-2 hover:border-slate-900 transition-all"
+            className="
+              inline-flex items-center gap-4
+              text-[1.6rem] font-medium
+              text-[#00569e]
+              border-b border-[#00569e]/50
+              pb-2
+              hover:border-[#00569e]
+              transition-all
+            "
           >
             Begin the conversation <span className="text-[1.8rem]">→</span>
           </Link>
         </motion.div>
       </div>
+
+      {/* ================= ORBIT ANIMATIONS ================= */}
+      <style>{`
+        @keyframes orbitSlow {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes orbitMedium {
+          0% { transform: rotate(360deg); }
+          100% { transform: rotate(0deg); }
+        }
+        @keyframes orbitFast {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .animate-orbitSlow {
+          animation: orbitSlow 140s linear infinite;
+        }
+        .animate-orbitMedium {
+          animation: orbitMedium 110s linear infinite;
+        }
+        .animate-orbitFast {
+          animation: orbitFast 90s linear infinite;
+        }
+      `}</style>
     </section>
   );
 };

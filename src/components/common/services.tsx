@@ -55,14 +55,38 @@ const Services = () => {
   return (
     <section className="relative py-24 sm:py-32 bg-white overflow-hidden">
 
-      {/* SUBTLE BRAND BLUE BACKGROUND TOUCH */}
-      <div
-  className="
-    absolute inset-0
-   
-  "
-/>
-
+      {/* =====================================================
+          FIXED RIPPLE CURVED LINES (SIGNAL PROPAGATION)
+      ====================================================== */}
+      <div className="pointer-events-none fixed inset-0 z-[1]">
+        <svg
+          className="absolute left-[-25%] top-[10%] w-[1600px] h-[1000px]"
+          viewBox="0 0 1600 1000"
+          fill="none"
+        >
+          {[0, 1, 2, 3].map((i) => (
+            <motion.path
+              key={i}
+              d={`M 0 ${320 + i * 22}
+                  Q 420 ${120 + i * 18}
+                  820 ${360 + i * 16}
+                  T 1600 ${420 + i * 14}`}
+              stroke="#00569e"
+              strokeWidth="1.5"
+              strokeOpacity={0.25 - i * 0.04}
+              strokeLinecap="round"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: 1 }}
+              transition={{
+                duration: 7 + i * 1.2,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          ))}
+        </svg>
+      </div>
 
       <MaxContainer className="relative z-10">
 
@@ -85,13 +109,14 @@ const Services = () => {
                   relative w-full lg:w-[55%]
                   overflow-hidden rounded-3xl
                   ring-1 ring-[#00569e]/10
+                  bg-white isolate
                 "
               >
                 <motion.img
                   src={item.image}
                   alt={item.title}
                   className="w-full h-[34rem] sm:h-[40rem] object-cover rounded-3xl"
-                  initial={{ scale: 1.15 }}
+                  initial={{ scale: 1.08 }}
                   whileInView={{ scale: 1 }}
                   transition={{ duration: 1.8 }}
                 />
@@ -110,18 +135,20 @@ const Services = () => {
                   <h2 className="text-[3rem] sm:text-[3.4rem] font-semibold text-slate-900 tracking-tight leading-tight">
                     {item.title}
                   </h2>
-                  <span className="
-                    absolute -bottom-2 left-0
-                    h-[2px] w-12
-                    bg-[#00569e]
-                  " />
+                  <span
+                    className="
+                      absolute -bottom-2 left-0
+                      h-[2px] w-14
+                      bg-[#00569e]
+                    "
+                  />
                 </div>
 
                 <p className="text-[1.55rem] sm:text-[1.65rem] text-slate-600 leading-relaxed max-w-[580px]">
                   {item.text}
                 </p>
 
-                {/* CTA WITH BLUE TOUCH */}
+                {/* CTA */}
                 <Link to="/contact">
                   <button
                     className="
