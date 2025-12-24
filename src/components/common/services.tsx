@@ -54,40 +54,6 @@ const Services = () => {
 
   return (
     <section className="relative py-24 sm:py-32 bg-white overflow-hidden">
-
-      {/* =====================================================
-          FIXED RIPPLE CURVED LINES (SIGNAL PROPAGATION)
-      ====================================================== */}
-      <div className="pointer-events-none fixed inset-0 z-[1]">
-        <svg
-          className="absolute left-[-25%] top-[10%] w-[1600px] h-[1000px]"
-          viewBox="0 0 1600 1000"
-          fill="none"
-        >
-          {[0, 1, 2, 3].map((i) => (
-            <motion.path
-              key={i}
-              d={`M 0 ${320 + i * 22}
-                  Q 420 ${120 + i * 18}
-                  820 ${360 + i * 16}
-                  T 1600 ${420 + i * 14}`}
-              stroke="#00569e"
-              strokeWidth="1.5"
-              strokeOpacity={0.25 - i * 0.04}
-              strokeLinecap="round"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{
-                duration: 7 + i * 1.2,
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-          ))}
-        </svg>
-      </div>
-
       <MaxContainer className="relative z-10">
 
         {/* IMMERSIVE SERVICE SECTIONS */}
