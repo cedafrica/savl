@@ -29,25 +29,8 @@ type Category = {
    PROJECT DATA
 ======================= */
 
-const worshipProjects: Project[] = [
-  {
-    image: "/avmcc2.webp",
-    location: "Lagos, Nigeria",
-    date: "January 2025",
-    title: "AVMCC LAGOS",
-    link: "/projects/worship-centre",
-  },
-];
 
-const restaurantProjects: Project[] = [
-  {
-    image: "/kilala1.webp",
-    location: "Victoria Island, Lagos",
-    date: "December 2024",
-    title: "KILALA LOUNGE",
-    link: "/projects/restaurant-audio",
-  },
-];
+
 
 const nightclubProjects: Project[] = [
   {
@@ -60,18 +43,8 @@ const nightclubProjects: Project[] = [
 ];
 
 const categories: Category[] = [
-  {
-    id: "worship",
-    label: "Houses of Worship",
-    subtitle: "Clarity, warmth and intelligibility for every seat.",
-    projects: worshipProjects,
-  },
-  {
-    id: "restaurants",
-    label: "Restaurants & Lounges",
-    subtitle: "Refined ambiance through precision distributed audio.",
-    projects: restaurantProjects,
-  },
+  
+  
   {
     id: "nightclubs",
     label: "Night Clubs",
