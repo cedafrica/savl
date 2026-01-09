@@ -97,21 +97,28 @@ const Footer = () => {
           {/* SERVICES */}
           <div>
             <h3 className="text-[1.6rem] tracking-wider uppercase text-white/90 mb-6">
-              Expertise
+              Solutions
             </h3>
             <ul className="space-y-4">
               {[
-                "Audio Systems",
-                "Video & Projection",
-                "Architectural Lighting",
-                "System Integration",
-                "Performance Calibration",
-              ].map((service, i) => (
-                <li
-                  key={i}
-                  className="text-gray-300 text-[1.5rem] hover:text-white transition-colors"
-                >
-                  {service}
+                { name: "Audio", link: "/audio" },
+                { name: "Video", link: "/video" },
+                { name: "Lighting", link: "/lighting" },
+                
+              ].map((item, i) => (
+                <li key={i}>
+                  <Link
+                    to={item.link}
+                    className="
+                      text-gray-300 text-[1.5rem]
+                      hover:text-white
+                      inline-flex items-center gap-2
+                      transition-colors
+                    "
+                  >
+                    {item.name}
+                    <ArrowUpRight className="w-4 h-4 opacity-0 group-hover:opacity-100" />
+                  </Link>
                 </li>
               ))}
             </ul>

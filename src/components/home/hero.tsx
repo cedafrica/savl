@@ -1,74 +1,88 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import MaxContainer from "../common/max-container";
 import { Button } from "../ui/button";
 import { MoveRight, ArrowRight, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const AUTOPLAY_DELAY = 5000;
+const AUTOPLAY_DELAY = 8000; // change to 20000 if you want slower
+
+const slides = [
+  {
+    caption: "SPACES WE TRANSFORM",
+    title: "Welcome to Spectra AVL",
+    description:
+      "World-class audio, video, and lighting engineered to transform every environment.",
+    ctaText: "Explore Our Services",
+    ctaLink: "/services",
+    bg: "/led.webp",
+  },
+  {
+    caption: "HOUSES OF WORSHIP",
+    title: "Where Every Word Feels Divine.",
+    description: "Immersive AVL that deepens worship.",
+    ctaText: "Explore Houses of Worship",
+    ctaLink: "/application/house-of-worship",
+    bg: "/chu.webp",
+  },
+  {
+    caption: "CAFÉS & RESTAURANTS",
+    title: "Design the Mood. Elevate Every Moment.",
+    description: "Atmosphere that keeps guests connected.",
+    ctaText: "Explore Cafes & Restaurants",
+    ctaLink: "/application/cafes-restaurants",
+    bg: "/kilala3.webp",
+  },
+  {
+    caption: "NIGHTCLUBS & LOUNGES",
+    title: "Energy You Can Feel.",
+    description: "High-impact AVL that brings the night to life.",
+    ctaText: "Explore Nightclubs & Lounges",
+    ctaLink: "/application/night-clubs-lounges",
+    bg: "/club.png",
+  },
+  {
+    caption: "LARGE CONGREGATIONS",
+    title: "Clarity That Unites Thousands.",
+    description: "Powerful AVL that carries every message.",
+    ctaText: "Explore Large Congregations",
+    ctaLink: "/application/large-congregations",
+    bg: "/aud.webp",
+  },
+  {
+    caption: "HOTELS & RESORTS",
+    title: "Luxury Experiences, Seamlessly Delivered.",
+    description: "Elegant AVL that enhances every guest moment.",
+    ctaText: "Explore Hotels & Resorts",
+    ctaLink: "/application/hotels-resorts",
+    bg: "/resorts.png",
+  },
+];
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const timeoutRef = useRef<number | null>(null);
 
-  const slides = [
-    {
-      caption: "SPACES WE TRANSFORM",
-      title: "Welcome to Spectra AVL",
-      description:
-        "World-class audio, video, and lighting engineered to transform every environment.",
-      ctaText: "Explore Our Services",
-      ctaLink: "/services",
-      bg: "/led.webp",
-    },
-    {
-      caption: "HOUSES OF WORSHIP",
-      title: "Where Every Word Feels Divine.",
-      description: "Immersive AVL that deepens worship.",
-      ctaText: "Explore Houses of Worship",
-      ctaLink: "/application/house-of-worship",
-      bg: "/chu.webp",
-    },
-    {
-      caption: "CAFÉS & RESTAURANTS",
-      title: "Design the Mood. Elevate Every Moment.",
-      description: "Atmosphere that keeps guests connected.",
-      ctaText: "Explore Cafes & Restaurants",
-      ctaLink: "/application/cafes-restaurants",
-      bg: "/kilala3.webp",
-    },
-    {
-      caption: "NIGHTCLUBS & LOUNGES",
-      title: "Energy You Can Feel.",
-      description: "High-impact AVL that brings the night to life.",
-      ctaText: "Explore Nightclubs & Lounges",
-      ctaLink: "/application/night-clubs-lounges",
-      bg: "/club.png",
-    },
-    {
-      caption: "LARGE CONGREGATIONS",
-      title: "Clarity That Unites Thousands.",
-      description: "Powerful AVL that carries every message.",
-      ctaText: "Explore Large Congregations",
-      ctaLink: "/application/large-congregations",
-      bg: "/aud.webp",
-    },
-    {
-      caption: "HOTELS & RESORTS",
-      title: "Luxury Experiences, Seamlessly Delivered.",
-      description: "Elegant AVL that enhances every guest moment.",
-      ctaText: "Explore Hotels & Resorts",
-      ctaLink: "/application/hotels-resorts",
-      bg: "/resorts.png",
-    },
-  ];
 
-  // ▶ AUTOPLAY
+  // 🔁 AUTOPLAY (STRICT-MODE SAFE)
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((p) => (p + 1) % slides.length);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setCurrentSlide((prev) =>
+        prev === slides.length - 1 ? 0 : prev + 1
+      );
     }, AUTOPLAY_DELAY);
 
-    return () => clearInterval(timer);
-  }, [slides.length]);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [currentSlide]);
 
   const nextSlide = () =>
     setCurrentSlide((p) => (p + 1) % slides.length);
@@ -80,7 +94,7 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center bg-black overflow-hidden">
-      {/* BACKGROUND FADE (NO SHARP MOTION) */}
+      {/* BACKGROUND */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -95,15 +109,14 @@ const Hero = () => {
             style={{ backgroundImage: `url(${slide.bg})` }}
             initial={{ scale: 1 }}
             animate={{ scale: 1.1 }}
-            transition={{ duration: 14, ease: "easeInOut" }}
+            transition={{ duration: AUTOPLAY_DELAY / 1000, ease: "easeInOut" }}
           />
-
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/85" />
         </motion.div>
       </AnimatePresence>
 
       {/* CONTENT */}
-      <MaxContainer className="relative z-20 w-full pt-32 pb-20 px-10 sm:px-0">
+      <MaxContainer className="relative z-20 w-full pt-32 pb-20 px-6 sm:px-10 lg:px-32">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -126,7 +139,7 @@ const Hero = () => {
             </p>
 
             <a href={slide.ctaLink}>
-              <Button className="px-14 py-7 rounded-full text-[1.45rem] sm:text-[1.7rem] font-semibold border border-white/50 bg-white/10 text-white backdrop-blur-md hover:bg-white hover:text-black transition-all duration-500 flex items-center gap-3">
+              <Button className="px-14 py-7 cursor-pointer rounded-full text-[1.45rem] sm:text-[1.7rem] font-semibold border border-white/50 bg-white/10 text-white backdrop-blur-md hover:bg-white hover:text-black transition-all duration-500 flex items-center gap-3">
                 {slide.ctaText}
                 <MoveRight className="size-[1.9rem]" />
               </Button>
@@ -134,20 +147,20 @@ const Hero = () => {
           </motion.div>
         </AnimatePresence>
 
-        {/* NAV BUTTONS */}
+        {/* NAV */}
         <div className="flex gap-5 mt-12">
           <button
             onClick={prevSlide}
-            className="group w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 flex items-center justify-center bg-transparent hover:bg-white transition-all duration-300"
+            className="group w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 flex items-center justify-center hover:bg-white transition-all"
           >
-            <ArrowLeft className="text-white group-hover:text-black transition-colors" />
+            <ArrowLeft className="text-white group-hover:text-black" />
           </button>
 
           <button
             onClick={nextSlide}
-            className="group w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 flex items-center justify-center bg-transparent hover:bg-white transition-all duration-300"
+            className="group w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-white/30 flex items-center justify-center hover:bg-white transition-all"
           >
-            <ArrowRight className="text-white group-hover:text-black transition-colors" />
+            <ArrowRight className="text-white group-hover:text-black" />
           </button>
         </div>
       </MaxContainer>

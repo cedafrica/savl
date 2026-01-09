@@ -75,7 +75,7 @@ const NewsPage = () => {
           {/* subtle divider */}
           <div className="mb-8 h-[2px] w-20 bg-[#00569e]/70 rounded-full" />
 
-          <p className="text-3xl text-gray-500 max-w-3xl leading-relaxed">
+          <p className="text-3xl text-gray-500 w-[full] leading-relaxed">
             Industry announcements, partnerships, and project highlights from
             Spectra AVL.
           </p>
@@ -130,9 +130,14 @@ const NewsPage = () => {
               </div>
 
               {/* TITLE */}
-              <h2 className="text-3xl lg:text-3xl font-semibold text-black leading-snug mb-5 group-hover:underline decoration-[#00569e]">
+              <Link
+                to={item.link}
+                
+              >
+              <h2  className="text-3xl lg:text-3xl font-semibold text-black leading-snug cursor-pointer mb-5 group-hover:underline decoration-[#00569e]">
                 {item.title}
-              </h2>
+                
+              </h2></Link>
 
               {/* EXCERPT */}
               <p className="text-2xl text-gray-600 leading-relaxed mb-8">

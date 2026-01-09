@@ -24,22 +24,10 @@ const ContactForm = () => {
         py-24 sm:py-44
       "
     >
-      {/* ================= BLUE BACKGROUND PARTICLES ================= */}
+      {/* BACKGROUND */}
       <div className="pointer-events-none absolute inset-0">
-        <div
-          className="
-            absolute -top-40 -left-40
-            w-[700px] h-[700px]
-            bg-[radial-gradient(circle,rgba(0,86,158,0.10),transparent_65%)]
-          "
-        />
-        <div
-          className="
-            absolute bottom-[-300px] right-[-200px]
-            w-[800px] h-[800px]
-            bg-[radial-gradient(circle,rgba(0,86,158,0.08),transparent_70%)]
-          "
-        />
+        <div className="absolute -top-40 -left-40 w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(0,86,158,0.10),transparent_65%)]" />
+        <div className="absolute bottom-[-300px] right-[-200px] w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(0,86,158,0.08),transparent_70%)]" />
       </div>
 
       <MaxContainer className="relative z-10 max-w-[980px]">
@@ -49,112 +37,84 @@ const ContactForm = () => {
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
             <h2 className="text-[2.6rem] sm:text-[3.4rem] font-semibold text-black leading-tight">
               Let’s Discuss Your{" "}
               <span className="text-[#00569e]">Project</span>
             </h2>
 
-            {/* subtle divider */}
             <div className="mt-4 h-[2px] w-16 bg-[#00569e]/70 rounded-full" />
 
-            <p className="mt-5 text-[1.5rem] sm:text-[1.7rem] text-black/60 max-w-[34rem] leading-relaxed">
+            <p className="mt-5 text-[1.6rem] sm:text-[1.8rem] text-black/60 max-w-[34rem] leading-relaxed">
               Engage with Spectra AVL to design and deliver world-class
               audio-visual experiences tailored to your space.
             </p>
           </motion.div>
         </div>
 
-        {/* FORM CARD */}
+        {/* FORM */}
         <motion.form
-          action="mailto:projects@savl"
-          method="POST"
-          encType="text/plain"
           initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, duration: 0.9, ease: "easeOut" }}
+          transition={{ delay: 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="
-            bg-white/80
-            backdrop-blur-xl
+            bg-white/80 backdrop-blur-xl
             rounded-[3.2rem]
             border border-[#00569e]/15
             shadow-[0_40px_120px_rgba(0,86,158,0.10)]
-            px-10 sm:px-16
-            py-16
+            px-10 sm:px-16 py-16
             flex flex-col gap-10
           "
         >
           {/* NAME + EMAIL */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <Input
-              name="Full Name"
-              required
               placeholder="Full Name"
               className="
-                h-24
-                rounded-full
-                border-black/20
-                pl-8
-                text-[1.5rem]
-                placeholder:text-black/40
-                focus:border-[#00569e]
-                focus:ring-[#00569e]/20
+                h-24 rounded-full border-black/20 pl-8
+                text-[1.8rem] font-medium
+                placeholder:text-[1.6rem] placeholder:text-black/40
+                focus:border-[#00569e] focus:ring-[#00569e]/20
               "
             />
 
             <Input
-              name="Email"
               type="email"
-              required
               placeholder="Email Address"
               className="
-                h-24
-                rounded-full
-                border-black/20
-                pl-8
-                text-[1.5rem]
-                placeholder:text-black/40
-                focus:border-[#00569e]
-                focus:ring-[#00569e]/20
+                h-24 rounded-full border-black/20 pl-8
+                text-[1.8rem] font-medium
+                placeholder:text-[1.6rem] placeholder:text-black/40
+                focus:border-[#00569e] focus:ring-[#00569e]/20
               "
             />
           </div>
 
           {/* PHONE */}
           <Input
-            name="Phone"
             placeholder="Phone Number (Optional)"
             className="
-              h-24
-              rounded-full
-              border-black/20
-              pl-8
-              text-[1.5rem]
-              placeholder:text-black/40
-              focus:border-[#00569e]
-              focus:ring-[#00569e]/20
+              h-24 rounded-full border-black/20 pl-8
+              text-[1.8rem] font-medium
+              placeholder:text-[1.6rem] placeholder:text-black/40
+              focus:border-[#00569e] focus:ring-[#00569e]/20
             "
           />
 
           {/* PROJECT TYPE */}
-          <Select name="Project Type">
+          <Select>
             <SelectTrigger
               className="
-                h-24
-                rounded-full
-                border-black/20
-                pl-8
-                text-[1.5rem]
-                text-black/70
-                focus:border-[#00569e]
-                focus:ring-[#00569e]/20
+                h-24 rounded-full border-black/20 pl-8
+                text-[1.8rem] font-medium text-black/70
+                focus:border-[#00569e] focus:ring-[#00569e]/20
               "
             >
               <SelectValue placeholder="Select Project Type" />
             </SelectTrigger>
 
-            <SelectContent>
+            <SelectContent className="text-[1.6rem]">
               <SelectItem value="Houses of Worship">Houses of Worship</SelectItem>
               <SelectItem value="Cafés & Restaurants">Cafés & Restaurants</SelectItem>
               <SelectItem value="Night Clubs & Lounges">Night Clubs & Lounges</SelectItem>
@@ -171,18 +131,13 @@ const ContactForm = () => {
 
           {/* MESSAGE */}
           <Textarea
-            name="Message"
             rows={5}
             placeholder="Briefly describe your project requirements"
             className="
-              rounded-[2.4rem]
-              border-black/20
-              px-8
-              pt-6
-              text-[1.5rem]
-              placeholder:text-black/40
-              focus:border-[#00569e]
-              focus:ring-[#00569e]/20
+              rounded-[2.4rem] border-black/20 px-8 pt-6
+              text-[1.8rem] font-medium
+              placeholder:text-[1.6rem] placeholder:text-black/40
+              focus:border-[#00569e] focus:ring-[#00569e]/20
             "
           />
 
@@ -191,17 +146,14 @@ const ContactForm = () => {
             <button
               type="submit"
               className="
-                h-22
-                px-20
-                rounded-full
+                h-22 px-20 rounded-full
                 border border-[#00569e]
                 text-[#00569e]
                 font-semibold
-                text-[1.4rem]
-                hover:bg-[#00569e]
-                hover:text-white
+                text-[1.6rem]
+                hover:bg-[#00569e] hover:text-white
                 hover:shadow-[0_12px_35px_rgba(0,86,158,0.25)]
-                transition-all duration-400
+                transition-all duration-300
               "
             >
               Submit Enquiry

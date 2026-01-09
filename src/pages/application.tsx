@@ -11,7 +11,7 @@ const Application = () => {
     {
         id: "house-of-worship",
         headlineText: "Transform Your Worship Experience",
-        subHeadlineText: "Engage your congregation in a deeper and more meaningful way with immersive sound clear visuals and inspiring lighting.",
+        subHeadlineText: "Engage your congregation in a deeper and more meaningful way with immersive sound, clear visuals, and inspiring lighting",
         link: "/contact",
         buttonLabel: "Lets Discuss Your Next Project",
         backgroundImage: "bg-[url(/Church.webp)]",
@@ -20,9 +20,9 @@ const Application = () => {
                 title: "Why Modern Worship Spaces Need Professional AV Integration",
                 image: "/Church1.webp",
                 items: [
-                    { text: "Inspire deeper connection with crystal clear audio that carries every message prayer and song with precision." },
+                    { text: "Inspire deeper connection with crystal clear audio that carries every message, prayer and song with precision." },
                     { text: "Amplify sermons worship content and announcements with visual displays that strengthen engagement." },
-                    { text: "Use purposeful lighting to shape emotion highlight moments and elevate the worship atmosphere." },
+                    { text: "Use purposeful lighting to shape emotion, highlight moments, and elevate the worship atmosphere." },
                     { text: "Reach members anywhere with seamless live streaming and broadcast ready systems." }
                 ]
                 
@@ -31,10 +31,10 @@ const Application = () => {
                 title: "Our Services for Houses of Worship",
                 image: "/Church2.webp",
                 items: [
-                    { bold: "Audio Systems", text: "Purpose tuned sound designed for speech clarity and immersive worship experiences." },
-                    { bold: "Video and Projection", text: "Large format screens projectors and LED walls that enhance teaching and communication." },
-                    { bold: "Lighting Solutions", text: "Atmosphere shaping lighting that supports worship transitions and performances." },
-                    { bold: "Control and Automation", text: "One touch volunteer friendly control over audio video and lighting." },
+                    { bold: "Audio Systems", text: "Purpose-tuned sound designed for speech clarity and immersive worship experiences." },
+                    { bold: "Video and Projection", text: "Large format screens, projectors, and LED walls that enhance teaching and communication." },
+                    { bold: "Lighting Solutions", text: "Atmosphere-shaping lighting that supports worship transitions and performances." },
+                    { bold: "Control and Automation", text: "One-touch volunteer friendly control over audio video and lighting." },
                     { bold: "Broadcast and Streaming", text: "Professional streaming setups for hybrid worship environments." }
                 ]
             },
@@ -43,8 +43,8 @@ const Application = () => {
                 image: "/worship.png",
                 items: [
                     { text: "Deep experience designing acoustically optimized sanctuaries and worship spaces." },
-                    { text: "Custom solutions tailored to your congregation size architecture and worship style." },
-                    { text: "Premium equipment trusted globally for reliability clarity and long term performance." },
+                    { text: "Custom solutions tailored to your congregation size, architecture, and worship style." },
+                    { text: "Premium equipment trusted globally for reliability, clarity, and long term performance." },
                     { text: "Dedicated expert support ensuring flawless operation for every service." }
                 ]
             }
@@ -58,7 +58,7 @@ const Application = () => {
     {
         id: "cafes-restaurants",
         headlineText: "Create an Unforgettable Atmosphere for Your Guests",
-        subHeadlineText: "Use immersive audio dynamic lighting and captivating visual design to elevate every dining moment.",
+        subHeadlineText: "Use immersive audio, dynamic lighting, and captivating visual design to elevate every dining moment.",
         link: "/contact",
         buttonLabel: "Lets Discuss Your Next Project",
         backgroundImage: "bg-[url(/unforgettable.png)]",
@@ -68,9 +68,9 @@ const Application = () => {
                 image: "/restaurant.webp",
                 items: [
                     { text: "Set the perfect mood with curated ambient sound and lighting that reflects your brand." },
-                    { text: "Ensure announcements promotions and live events sound clear and professional." },
-                    { text: "Use visual displays to enhance menus storytelling and guest engagement." },
-                    { text: "Centralize control of audio video and lighting for smooth daily operations." }
+                    { text: "Ensure announcements, promotions, and live events sound clear and professional." },
+                    { text: "Use visual displays to enhance menus, storytelling, and guest engagement." },
+                    { text: "Centralize control of audio, video, and lighting for smooth daily operations." }
                 ]
             },
             {
@@ -78,20 +78,20 @@ const Application = () => {
                 image: "/restaurant2.webp",
                 items: [
                     { bold: "Audio Systems", text: "Balanced sound for background music and live performances alike." },
-                    { bold: "Visual Displays", text: "Digital menus promotional screens and immersive visual storytelling." },
+                    { bold: "Visual Displays", text: "Digital menus, promotional screens, and immersive visual storytelling." },
                     { bold: "Lighting Design", text: "Scene based lighting for daytime evenings and special events." },
                     { bold: "Control and Automation", text: "One touch control for seamless staff operation throughout the day." },
-                    { bold: "Event Support", text: "Professional AV for private events live music and presentations." }
+                    { bold: "Event Support", text: "Professional AV for private events, live music, and presentations." }
                 ]
             },
             {
                 title: "Why Choose Spectra AV",
                 image: "/restaurant3.webp",
                 items: [
-                    { text: "Tailored AV design that aligns with your interior design brand identity and guest journey." },
+                    { text: "Tailored AV design that aligns with your interior design, brand identity, and guest journey." },
                     { text: "Premium equipment that ensures performance reliability and longevity." },
-                    { text: "Strong experience designing high end dining environments across hospitality." },
-                    { text: "Full collaboration from concept to installation tuning and ongoing support." }
+                    { text: "Strong experience designing high-end dining environments across hospitality." },
+                    { text: "Full collaboration from concept to installation, tuning, and ongoing support." }
                 ]
             }
         ],
@@ -104,7 +104,7 @@ const Application = () => {
     {
         id: "night-clubs-lounges",
         headlineText: "Turn Up the Night with Stunning Sound and Lighting",
-        subHeadlineText: "Deliver an electrifying nightlife experience with powerful audio immersive lighting and captivating visuals.",
+        subHeadlineText: "Deliver an electrifying nightlife experience with powerful audio, immersive lighting, and captivating visuals.",
         link: "/contact",
         buttonLabel: "Lets Discuss Your Next Project",
         backgroundImage: "bg-[url(/club.png)]",
@@ -123,11 +123,11 @@ const Application = () => {
                 title: "Our Services for Night Clubs and Lounges",
                 image: "/avl.png",
                 items: [
-                    { bold: "Audio Systems", text: "Powerful clean sound for dance floors lounges and VIP rooms." },
+                    { bold: "Audio Systems", text: "Powerful clean sound for dance floors, lounges, and VIP rooms." },
                     { bold: "Lighting Solutions", text: "Intelligent lighting that evolves with the music and energy." },
                     { bold: "Visual Systems", text: "LED walls screens and immersive visual designs." },
                     { bold: "Control and Automation", text: "One unified system for lighting sound and visuals." },
-                    { bold: "Event Support", text: "Engineering for themed nights guest DJs and private parties." }
+                    { bold: "Event Support", text: "Engineering for themed nights, guest DJs, and private parties" }
                 ]
             },
             {
@@ -149,15 +149,15 @@ const Application = () => {
 
     {
         id: "large-congregations",
-        headlineText: "Empower Every Voice Every Message Every Moment",
-        subHeadlineText: "Deliver clarity and emotional impact to thousands with professional audio video and lighting design.",
+        headlineText: "Empower Every Voice, Every Message, Every Moment",
+        subHeadlineText: "Deliver clarity and emotional impact to thousands with professional audio, video, and lighting design.",
         link: "/contact",
         buttonLabel: "Request a Consultation",
         backgroundImage: "bg-[url(/congregation.png)]",
         bodyContents: [
             {
                 title: "Why Large Congregations Need Advanced AV Systems",
-                image: "/clear.png",
+                image: "/uiu.webp",
                 items: [
                     { text: "Deliver the same clarity and impact to every listener from the front row to the balcony." },
                     { text: "Use large format visuals to bring the message closer to every attendee." },
@@ -169,7 +169,7 @@ const Application = () => {
                 title: "Our Services for Large Congregations",
                 image: "/light.png",
                 items: [
-                    { bold: "Audio Systems", text: "High power high fidelity sound for music speech and worship." },
+                    { bold: "Audio Systems", text: "High-power high-fidelity sound for music, speech, and worship." },
                     { bold: "LED and Projection", text: "Large scale screens for sermons lyrics and media." },
                     { bold: "Lighting Systems", text: "Stage and ambient lighting that enhances worship flow." },
                     { bold: "Control and Automation", text: "Centralized systems for volunteer and technical teams." },
@@ -183,7 +183,7 @@ const Application = () => {
                     { text: "Extensive experience with mega churches and large format worship spaces." },
                     { text: "Custom acoustic and visual design tailored to your layout and style." },
                     { text: "Premium equipment that delivers long term performance and reliability." },
-                    { text: "Full support for services events and special programs." }
+                    { text: "Full support for services, events, and special programs." }
                 ]
             }
         ],
@@ -206,7 +206,7 @@ const Application = () => {
                 image: "/sit-up.png",
                 items: [
                     { text: "Create memorable first impressions with intentional audio and lighting." },
-                    { text: "Support events conferences and weddings with production ready systems." },
+                    { text: "Support events, conferences, and weddings with production ready systems." },
                     { text: "Use immersive visuals to enhance brand storytelling and ambience." },
                     { text: "Improve staff efficiency with centralized control of AV and lighting." }
                 ]
@@ -216,7 +216,7 @@ const Application = () => {
                 image: "/resorts.png",
                 items: [
                     { bold: "Audio Systems", text: "Balanced ambient sound for guest areas lounges and restaurants." },
-                    { bold: "Visual Displays", text: "Screens LED walls and signage for branding and events." },
+                    { bold: "Visual Displays", text: "Screens, LED walls, and signage for branding and events." },
                     { bold: "Lighting Solutions", text: "Elegant lighting that enhances architecture and guest comfort." },
                     { bold: "Control and Automation", text: "One touch control for staff convenience and efficiency." },
                     { bold: "Event Support", text: "Professional AV services for conferences celebrations and gatherings." }
@@ -226,7 +226,7 @@ const Application = () => {
                 title: "Why Choose Spectra AV",
                 image: "/hotels.png",
                 items: [
-                    { text: "Strong experience designing AV for high end hotels and luxury resorts." },
+                    { text: "Strong experience designing AV for high-end hotels and luxury resorts." },
                     { text: "Custom solutions aligned with your brand architecture and guest goals." },
                     { text: "Premium equipment ensuring reliable performance day and night." },
                     { text: "Dedicated support teams ensuring flawless guest experiences." }
@@ -242,7 +242,7 @@ const Application = () => {
     {
         id: "auditoriums-concert-halls",
         headlineText: "Deliver Performances with Power and Precision",
-        subHeadlineText: "Create world class audio visual and lighting environments for every performance.",
+        subHeadlineText: "Create world class audiovisual and lighting environments for every performance.",
         link: "/contact",
         buttonLabel: "Lets Discuss Your Next Project",
         backgroundImage: "bg-[url(/aud.png)]",
@@ -251,7 +251,7 @@ const Application = () => {
                 title: "Why Auditoriums and Concert Halls Need Professional AV",
                 image: "/blue_aud.png",
                 items: [
-                    { text: "Ensure unmatched clarity for orchestras speeches and live performances." },
+                    { text: "Ensure unmatched clarity for orchestras, speeches, and live performances." },
                     { text: "Use high definition visuals for immersive audience engagement." },
                     { text: "Shape emotion with dynamic stage and architectural lighting." },
                     { text: "Design scalable production ready systems for any event." }
@@ -288,7 +288,7 @@ const Application = () => {
     {
         id: "concerts-live-events",
         headlineText: "Make Every Event Unforgettable",
-        subHeadlineText: "Powerful sound immersive lighting and spectacular visuals built for impact.",
+        subHeadlineText: "Powerful sound, immersive lighting, and spectacular visuals built for impact.",
         link: "/contact",
         buttonLabel: "Lets Discuss Your Next Project",
         backgroundImage: "bg-[url(/mon.png)]",
@@ -300,7 +300,7 @@ const Application = () => {
                     { text: "Deliver powerful clean audio that reaches every attendee clearly." },
                     { text: "Use dramatic lighting to shape energy and highlight performances." },
                     { text: "Captivate audiences with large visual canvases and projection." },
-                    { text: "Build flexible systems suited for festivals indoor events and outdoor shows." }
+                    { text: "Build flexible systems suited for festivals, indoor events, and outdoor shows." }
                 ]
             },
             {
@@ -308,7 +308,7 @@ const Application = () => {
                 image: "/the.png",
                 items: [
                     { bold: "Audio Systems", text: "High output systems for performers and audiences." },
-                    { bold: "Visual and Projection", text: "LED walls screens and projection for impactful visuals." },
+                    { bold: "Visual and Projection", text: "LED walls, screens, and projection for impactful visuals." },
                     { bold: "Lighting Solutions", text: "Intelligent lighting for dynamic stage presence." },
                     { bold: "Control Systems", text: "Unified control for audio lighting and visuals." },
                     { bold: "Event Support", text: "Full production engineering streaming and technical support." }

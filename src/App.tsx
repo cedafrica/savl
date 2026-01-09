@@ -21,6 +21,10 @@ import News from "./pages/news";
 import NewsInfo from "./components/news/news-info";
 
 import Contact from "./pages/contact";
+import Video from "./pages/video";
+import Audio from "./pages/audio";
+import Lighting from "./pages/lighting";
+
 import Application from "./pages/application";
 
 function App() {
@@ -57,6 +61,9 @@ function App() {
             </Route>
 
             <Route path="/contact" element={<Contact />} />
+            <Route path="/video" element={<Video />} />
+             <Route path="/audio" element={<Audio />} />
+             <Route path="/lighting" element={<Lighting />} />
 
             {/* Dynamic Application Pages */}
             <Route path="/application/:id" element={<Application />} />

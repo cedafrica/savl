@@ -1,3 +1,5 @@
+"use client";
+
 import MaxContainer from "../common/max-container";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -27,39 +29,15 @@ const Content = () => {
 
   return (
     <section className="relative bg-[#EFEFEF] overflow-hidden">
-
-      {/* =====================================================
-          FIXED CURVED BACKGROUND LINE (VISIBLE & SUBTLE)
-      ====================================================== */}
+      {/* ================= FIXED CURVED BACKGROUND ================= */}
       <div className="pointer-events-none fixed inset-0 z-[1]">
-        <div
-          className="
-            absolute
-            left-[-40%] top-[5%]
-            w-[1200px] h-[1200px]
-            rounded-full
-            border border-[#00569e]/20
-            rotate-[18deg]
-          "
-        />
-        <div
-          className="
-            absolute
-            left-[-30%] top-[15%]
-            w-[900px] h-[900px]
-            rounded-full
-            border border-[#00569e]/10
-            rotate-[18deg]
-          "
-        />
+        <div className="absolute left-[-40%] top-[5%] w-[1200px] h-[1200px] rounded-full border border-[#00569e]/20 rotate-[18deg]" />
+        <div className="absolute left-[-30%] top-[15%] w-[900px] h-[900px] rounded-full border border-[#00569e]/10 rotate-[18deg]" />
       </div>
 
-      {/* =====================================================
-          VISION & MISSION
-      ====================================================== */}
-      <div className="relative z-10 px-10 sm:px-0 py-16 sm:py-24">
-        <MaxContainer>
-
+      {/* ================= VISION & MISSION ================= */}
+      <div className="relative z-10 py-16 sm:py-24">
+        <MaxContainer className="px-6 sm:px-12 lg:px-24 xl:px-32">
           {/* SECTION HEADER */}
           <motion.div
             variants={fadeUp}
@@ -75,7 +53,7 @@ const Content = () => {
               </p>
             </div>
 
-            <h2 className="mt-4 text-[2.4rem] sm:text-[3.2rem] font-semibold text-slate-900 max-w-[42rem]">
+            <h2 className="mt-4 max-w-[42rem] text-[2.4rem] sm:text-[3.2rem] font-semibold text-slate-900">
               A clear vision and mission guiding every integration.
             </h2>
           </motion.div>
@@ -90,17 +68,8 @@ const Content = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: index * 0.12 }}
-                className="
-                  relative overflow-hidden
-                  rounded-2xl
-                  bg-white/85
-                  border border-slate-200/70
-                  shadow-[0_18px_60px_rgba(15,23,42,0.08)]
-                  px-6 py-8 sm:px-8 sm:py-10
-                  flex flex-col gap-4
-                "
+                className="relative overflow-hidden rounded-2xl bg-white/85 border border-slate-200/70 shadow-[0_18px_60px_rgba(15,23,42,0.08)] px-6 py-8 sm:px-8 sm:py-10 flex flex-col gap-4"
               >
-                {/* BLUE TOP ACCENT */}
                 <span className="absolute inset-x-0 top-0 h-[3px] bg-[#00569e]" />
 
                 <p className="text-[1.3rem] sm:text-[1.4rem] uppercase tracking-[0.18em] text-[#00569e]">
@@ -120,54 +89,39 @@ const Content = () => {
         </MaxContainer>
       </div>
 
-      {/* =====================================================
-          FIXED BACKGROUND HERO SECTION
-      ====================================================== */}
+      {/* ================= FIXED BACKGROUND HERO ================= */}
       <motion.section
         variants={fadeUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.9 }}
-        className="
-          relative w-full h-[100vh]
-          bg-[url(/uiu.webp)]
-          bg-cover bg-center bg-no-repeat
-          bg-fixed
-        "
+        className="relative w-full h-[100vh] bg-[url(/uiu.webp)] bg-cover bg-center bg-no-repeat bg-fixed"
       >
-        {/* DARK OVERLAY */}
         <div className="absolute inset-0 bg-black/60" />
 
         <div className="relative z-10">
-          <MaxContainer className="py-20 sm:py-28">
-            <div className="max-w-[860px] text-left text-white px-10 sm:px-0">
-
-              <p className="text-[1.3rem] sm:text-[1.4rem] tracking-[0.25em] uppercase text-[#ffff]">
+          <MaxContainer className="py-20 sm:py-28 px-6 sm:px-12 lg:px-24 xl:px-32">
+            <div className="max-w-[860px] text-left text-white">
+              <p className="text-[1.3rem] sm:text-[1.4rem] tracking-[0.25em] uppercase">
                 Elevating Audiovisual Excellence
               </p>
 
-              <h2 className="mt-4 text-[2.6rem] sm:text-[4rem] font-semibold leading-tight text-white">
-                Redefining performance-driven AVL for
-                <span className="text-[#00569e]"> modern African spaces</span>.
+              <h2 className="mt-4 text-[2.6rem] sm:text-[4rem] font-semibold leading-tight">
+                Redefining performance-driven AVL for modern African spaces.
               </h2>
 
-              <p className="mt-6 sm:mt-5 text-[1.5rem] sm:text-[1.8rem] leading-relaxed text-white/85">
+              <p className="mt-6 text-[1.5rem] sm:text-[1.8rem] leading-relaxed text-white/85">
                 At Spectra AVL, we are reshaping the audio, video, and lighting
                 landscape in Nigeria through precision engineering and global
                 collaboration.
               </p>
 
               <p className="mt-4 text-[1.5rem] sm:text-[1.8rem] leading-relaxed text-white/80">
-                With over{" "}
-                31+ years,{" "}
-                100+ specialists,
-                and{" "}
-                4,500+ projects,
+                With over 31+ years, 100+ specialists, and 4,500+ projects,
                 our systems are engineered to perform at scale.
               </p>
 
-              {/* BLUE UNDERLINE */}
               <div className="mt-8 h-[2px] w-24 bg-[#00569e]" />
             </div>
           </MaxContainer>

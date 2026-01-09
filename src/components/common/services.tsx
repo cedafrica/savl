@@ -35,37 +35,40 @@ const Services = () => {
     {
       title: "Audio",
       text:
-        "We implement and finely tune professional audio systems that deliver clear, balanced, and immersive sound, creating spaces where audiences feel connected, comfortable, and fully engaged, and where every voice and note is heard exactly as intended.",
+        "We implement and finely tune professional audio systems that deliver clear, balanced, and immersive sound, creating spaces where audiences feel connected, comfortable, and fully engaged.",
       image: "/audser.png",
+      link: "/audio",
     },
     {
       title: "Video",
       text:
         "From large-scale LED walls to ultra-high-definition projection, we deliver stunning visual experiences that captivate audiences and enhance engagement.",
       image: "/champ.webp",
+      link: "/video",
     },
     {
       title: "Lighting",
       text:
         "Lighting is more than illumination—it’s an experience. Our intelligent lighting solutions set the mood, enhance performances, and create unforgettable atmospheres.",
       image: "/malight.webp",
+      link: "/lighting",
     },
   ];
 
   return (
     <section className="relative py-24 sm:py-32 bg-white overflow-hidden">
-      <MaxContainer className="relative z-10">
+      <MaxContainer className="relative z-10 px-6 sm:px-12 lg:px-24 xl:px-32">
 
         {/* IMMERSIVE SERVICE SECTIONS */}
         <div className="flex flex-col space-y-40">
           {data.map((item, i) => (
             <div
-              key={i}
+              key={item.title}
               className={`flex flex-col ${
                 i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
               } gap-20 items-center`}
             >
-              {/* IMAGE SIDE */}
+              {/* IMAGE */}
               <motion.div
                 variants={fade(0.2)}
                 initial="hidden"
@@ -88,7 +91,7 @@ const Services = () => {
                 />
               </motion.div>
 
-              {/* TEXT SIDE */}
+              {/* TEXT */}
               <motion.div
                 variants={slide(0.3)}
                 initial="hidden"
@@ -96,18 +99,12 @@ const Services = () => {
                 viewport={{ once: true }}
                 className="w-full lg:w-[45%] space-y-7"
               >
-                {/* TITLE WITH BLUE ACCENT */}
+                {/* TITLE */}
                 <div className="relative inline-block">
                   <h2 className="text-[3rem] sm:text-[3.4rem] font-semibold text-slate-900 tracking-tight leading-tight">
                     {item.title}
                   </h2>
-                  <span
-                    className="
-                      absolute -bottom-2 left-0
-                      h-[2px] w-14
-                      bg-[#00569e]
-                    "
-                  />
+                  <span className="absolute -bottom-2 left-0 h-[2px] w-14 bg-[#00569e]" />
                 </div>
 
                 <p className="text-[1.55rem] sm:text-[1.65rem] text-slate-600 leading-relaxed max-w-[580px]">
@@ -115,21 +112,22 @@ const Services = () => {
                 </p>
 
                 {/* CTA */}
-                <Link to="/contact">
+                <Link to={item.link}>
                   <button
                     className="
                       mt-6 inline-flex items-center
                       text-[1.45rem] font-medium
                       text-slate-900
                       border border-[#00569e]/30
-                      px-6 py-3 rounded-full
+                      px-7 py-3 rounded-full
+                      cursor-pointer
                       transition-all duration-300
                       hover:text-[#00569e]
                       hover:border-[#00569e]
                       hover:shadow-[0_8px_25px_rgba(0,86,158,0.18)]
                     "
                   >
-                    Discuss Your Project
+                    Explore {item.title}
                     <span className="ml-2 text-[1.9rem] translate-y-[1px]">→</span>
                   </button>
                 </Link>
