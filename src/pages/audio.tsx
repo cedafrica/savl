@@ -9,7 +9,7 @@ import {
   Waves,
   EyeOff,
   Activity,
-  Layers,
+  
   Plus,
   Minus,
   Workflow,
